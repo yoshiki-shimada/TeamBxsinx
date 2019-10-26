@@ -1,14 +1,22 @@
 fileFormatVersion: 2
-guid: 3f28e3e9934b8f949855026c135cca1d
+guid: ffd3f100d25680d42b65790f908db2db
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Camera001
+    100004: Camera001.Target
+    100006: obon
     400000: //RootNode
+    400002: Camera001
+    400004: Camera001.Target
+    400006: obon
+    2000000: Camera001
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Box044
+    2300000: obon
+    3300000: obon
+    4300000: obon
+    6000828045688606266: Camera001
   externalObjects: {}
   materials:
     importMaterials: 1

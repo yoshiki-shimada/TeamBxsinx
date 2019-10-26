@@ -1,14 +1,48 @@
 fileFormatVersion: 2
-guid: 4697e2399251319439a5043bf5f44d0c
+guid: bfbac05f3cf9cdd4c85aad2cf5e8143c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: 'Material #2'
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Line001
+    100000: 01Curtain
+    100002: 02Curtain
+    100004: 03Curtain
+    100006: FrontLane
+    100008: FrontLane004
+    100010: FrontLane005
+    100012: FrontLane006
+    100014: //RootNode
+    400000: 01Curtain
+    400002: 02Curtain
+    400004: 03Curtain
+    400006: FrontLane
+    400008: FrontLane004
+    400010: FrontLane005
+    400012: FrontLane006
+    400014: //RootNode
+    2100000: 'Material #4'
+    2100002: 'Material #2'
+    2100004: 'Material #3'
+    2300000: 01Curtain
+    2300002: 02Curtain
+    2300004: 03Curtain
+    2300006: FrontLane
+    2300008: FrontLane004
+    2300010: FrontLane005
+    2300012: FrontLane006
+    3300000: 01Curtain
+    3300002: 02Curtain
+    3300004: 03Curtain
+    3300006: FrontLane
+    3300008: FrontLane004
+    3300010: FrontLane005
+    3300012: FrontLane006
+    4300000: FrontLane
+    4300002: 02Curtain
+    4300004: 03Curtain
+    4300006: 01Curtain
+    4300008: FrontLane004
+    4300010: FrontLane005
+    4300012: FrontLane006
   externalObjects: {}
   materials:
     importMaterials: 1
