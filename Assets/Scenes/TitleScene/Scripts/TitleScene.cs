@@ -12,10 +12,20 @@ enum TitlePhase : short
     TITLEPHASE_DONE = 0x04
 }
 
+enum ButtonNum : short
+{
+    SCENE_RULE = 0x00,
+    SCENE_MAIN = 0x01,
+    SCENE_DONE = 0x02
+}
+
 public class TitleScene : MonoBehaviour
 {
     [SerializeField]
     private TitlePhase m_ePhase;
+
+    [SerializeField]
+    private ButtonNum B_Num;
 
     [SerializeField]
     float m_fFadeSpeed;
@@ -32,6 +42,7 @@ public class TitleScene : MonoBehaviour
         m_fFadeSpeed = 0.005f;
 
         m_ePhase = TitlePhase.TITLEPHASE_INIT;
+        B_Num = ButtonNum.SCENE_MAIN;
     }
 
     // Update is called once per frame
@@ -42,30 +53,41 @@ public class TitleScene : MonoBehaviour
         switch (m_ePhase)
         {
             case TitlePhase.TITLEPHASE_INIT:
+
                 m_ePhase = TitlePhase.TITLEPHASE_FADEIN;
                 break;
             case TitlePhase.TITLEPHASE_FADEIN:
+
                 bFlag = m_Fade.isFadeIn(m_fFadeSpeed);
                 if (bFlag)
                     m_ePhase = TitlePhase.TITLEPHASE_RUN;
                 break;
             case TitlePhase.TITLEPHASE_RUN:
-
+                
                 if (Input.GetButtonDown("GamePad1_buttonB"))
+                {
+
                     m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
+                }
                 break;
             case TitlePhase.TITLEPHASE_FADEOUT:
+
                 bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
                 if (bFlag)
                     m_ePhase = TitlePhase.TITLEPHASE_DONE;
                 break;
             case TitlePhase.TITLEPHASE_DONE:
-                SceneManager.LoadScene("MainScene");
+
+                if (B_Num == ButtonNum.SCENE_RULE)
+                    SceneManager.LoadScene("yoshiki");
+                else if (B_Num == ButtonNum.SCENE_MAIN)
+                    SceneManager.LoadScene("MainScene");
+                else
+                    SceneManager.LoadScene("yoshiki");
+
                 break;
 
         }
-
-
     }
 }
 
