@@ -18,9 +18,13 @@ public class Player : MonoBehaviour
     //private string m_LeftHorizontalName, m_LeftVerticalName;
     
     private float hori;
+    //RaycastHit hit;
 
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CapsuleCollider CapCol;
+
+
+    [SerializeField] private GameObject light;
 
     // Start is called before the first frame update
     void Start()

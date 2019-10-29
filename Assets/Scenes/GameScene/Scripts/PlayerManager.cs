@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
             character[i] = transform.GetChild(i).gameObject;
             Debug.Log(character[i].name);
             m_benabled[i] = character[i].GetComponent<Player>().enabled;
-            Debug.Log(m_benabled);
+            Debug.Log(m_benabled[i]);
         }
         character[1].GetComponent<Player>().enabled = m_benabled[1] = false;
 
