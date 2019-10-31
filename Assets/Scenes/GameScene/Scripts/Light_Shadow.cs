@@ -7,13 +7,7 @@ public class Light_Shadow : MonoBehaviour
     private GameObject[] CenterObjects; //真ん中のオブジェクト
     private GameObject[] ShadowObjects; //影のオブジェクト
 
-    private float ShadowY, ShadowZ; //影のY、Z座標
-    private bool LightPosFlag = true;//
-    private bool Lightflag = true;  //光源のレーン移動関連です
-    public bool  LightFlag{         //消してもいいです
-        set { Lightflag = value; }
-        get { return Lightflag; }
-    }
+    [SerializeField] private float ShadowY, ShadowZ;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +17,6 @@ public class Light_Shadow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (LightPosFlag != LightFlag)
-        {
-
-        }
         CreateShadow();
     }
 
@@ -34,8 +24,9 @@ public class Light_Shadow : MonoBehaviour
     void GetCenterObj()
     {
         CenterObjects = GameObject.FindGameObjectsWithTag("CenterObject");
-            Debug.Log(CenterObjects[0].name);
+        Debug.Log(CenterObjects[0].name);
         int i = 0;
+        ShadowObjects = new GameObject[CenterObjects.Length];
         foreach (GameObject game in CenterObjects)
         {
             ShadowObjects[i] = game.transform.GetChild(0).gameObject;
@@ -51,7 +42,9 @@ public class Light_Shadow : MonoBehaviour
         foreach (GameObject game in CenterObjects)
         {
             float x = game.transform.position.x * 2 - transform.position.x;
-            Vector3 pos = new Vector3(x, 2.64f, 6);
+            float y = game.transform.position.y * 2 - transform.position.y;
+            Vector3 pos = new Vector3(x, ShadowY, ShadowZ);
+                
             ShadowObjects[0].transform.position = pos;
         }
     }

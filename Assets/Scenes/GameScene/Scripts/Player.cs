@@ -18,13 +18,15 @@ public class Player : MonoBehaviour
     //private string m_LeftHorizontalName, m_LeftVerticalName;
     
     private float hori;
-    //RaycastHit hit;
+    private bool wallcheck = false;
 
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private CapsuleCollider CapCol;
+//RaycastHit hit;
+
+    [SerializeField] private Rigidbody rb;          //! このオブジェクトについているもの
+    [SerializeField] private CapsuleCollider CapCol;//! このオブジェクトについているもの
 
 
-    [SerializeField] private GameObject light;
+    [SerializeField] private LightManager lightManager;　//! LightManagerについているもの
 
     // Start is called before the first frame update
     void Start()
@@ -42,17 +44,17 @@ public class Player : MonoBehaviour
         {
             RaycastHit hit;
             if (Physics.SphereCast(this.transform.position,
-                CapCol.radius * 0.5f,
+                CapCol.radius * 0.4f,
                 Vector3.down,
                 out hit,
-                CapCol.height*0.8f  ,//- CapCol.radius + 0.1f,
+                CapCol.height*0.5f - CapCol.radius + 0.4f,
                Physics.AllLayers))
             {
                 Debug.Log("IsCast"+hit.distance);
-                if (hit.distance<=CapCol.height*0.8)
-                {
+              /*  if (hit.distance<=CapCol.height*0.8)
+                {*/
                     m_bIsJump = false;
-                }
+                //}
             }
            // else { Debug.Log("castFailed"); }
         }
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("GamePad1_buttonX") && !m_bIsJump)
         {
-            
+            lightManager.ChageLight();
         }
 
     }
@@ -82,7 +84,7 @@ public class Player : MonoBehaviour
             }
         }
         // Playerの移動
-        if ( hori != 0)
+        if ( (hori != 0) )
         {
             /*  direction = Vector3.zero;
               if (LeftVertical < -0.5f)
@@ -91,27 +93,43 @@ public class Player : MonoBehaviour
                   direction.x += 2;*/
             float x= hori * moveSpeed;
             x = 1000 * (x - rb.velocity.x) * Time.deltaTime;
-            Debug.Log(x);
+            // Debug.Log(x);
+            if (wallcheck && m_bIsJump)
+                x = 0;
             rb.AddForce(x,0,0);
         }
 
     }
 
-   /* void OnDrawGizmos()
+    private void OnTriggerStay(Collider other)
     {
-
-        var radius = transform.lossyScale.x * 0.5f;
-
-        var isHit = Physics.SphereCast(transform.position, radius, transform.forward * 10, out hit);
-        if (isHit)
+        if (m_bIsJump)
         {
-            Gizmos.DrawRay(transform.position, -transform.up * hit.distance);
-            Gizmos.DrawWireSphere(transform.position + -transform.up * (hit.distance), radius);
+            wallcheck = true;
+          //  Debug.Log("TriggerEnter");
         }
-        else
-        {
-            Gizmos.DrawRay(transform.position, transform.forward * 100);
-        }
-    }*/
+    }
+    private void OnTriggerExit(Collider other)
+    {
+      //  Debug.Log("TriggerExit");
+        wallcheck = false;
+    }
+   /*  void OnDrawGizmos()
+     {
+
+         var radius = transform.lossyScale.x * 0.5f;
+
+         var isHit = Physics.SphereCast(transform.position, radius, 
+             new Vector3(0, (CapCol.height * 0.5f - CapCol.radius) + 0.3f,0), out hit);
+         if (isHit)
+         {
+             Gizmos.DrawRay(transform.position, -transform.up * hit.distance);
+             Gizmos.DrawWireSphere(transform.position + -transform.up * (hit.distance), radius);
+         }
+         else
+         {
+             Gizmos.DrawRay(transform.position, transform.forward * 100);
+         }
+     }*/
 
 }
