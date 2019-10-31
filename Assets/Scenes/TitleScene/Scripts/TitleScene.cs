@@ -12,25 +12,17 @@ enum TitlePhase : short
     TITLEPHASE_DONE = 0x04
 }
 
-enum ButtonNum : short
-{
-    SCENE_RULE = 0x00,
-    SCENE_MAIN = 0x01,
-    SCENE_DONE = 0x02
-}
-
 public class TitleScene : MonoBehaviour
 {
     [SerializeField]
     private TitlePhase m_ePhase;
 
     [SerializeField]
-    private ButtonNum B_Num;
-
-    [SerializeField]
     float m_fFadeSpeed;
 
     public GameObject m_FadeObject;
+
+    public int m_Button;
 
     FadeManager m_Fade;
 
@@ -42,7 +34,7 @@ public class TitleScene : MonoBehaviour
         m_fFadeSpeed = 0.005f;
 
         m_ePhase = TitlePhase.TITLEPHASE_INIT;
-        B_Num = ButtonNum.SCENE_MAIN;
+        m_Button = 1;
     }
 
     // Update is called once per frame
@@ -58,32 +50,37 @@ public class TitleScene : MonoBehaviour
                 break;
             case TitlePhase.TITLEPHASE_FADEIN:
 
-                bFlag = m_Fade.isFadeIn(m_fFadeSpeed);
-                if (bFlag)
+                //bFlag = m_Fade.isFadeIn(m_fFadeSpeed);
+                //if (bFlag)
                     m_ePhase = TitlePhase.TITLEPHASE_RUN;
                 break;
             case TitlePhase.TITLEPHASE_RUN:
-                
-                if (Input.GetButtonDown("GamePad1_buttonB"))
-                {
-
+               if(Input.GetButtonDown("GamePad1_buttonB"))
                     m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
+
+                Debug.Log("jump");
+                if (Input.GetButton("Jump"))
+                {
+                    m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
+                    Debug.Log("jump");
                 }
                 break;
             case TitlePhase.TITLEPHASE_FADEOUT:
 
-                bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
-                if (bFlag)
+                //bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
+                //if (bFlag)
                     m_ePhase = TitlePhase.TITLEPHASE_DONE;
                 break;
             case TitlePhase.TITLEPHASE_DONE:
 
-                if (B_Num == ButtonNum.SCENE_RULE)
-                    SceneManager.LoadScene("yoshiki");
-                else if (B_Num == ButtonNum.SCENE_MAIN)
-                    SceneManager.LoadScene("MainScene");
-                else
-                    SceneManager.LoadScene("yoshiki");
+                SceneManager.LoadScene("MainScene");
+
+                //if (m_Button == 0)
+                //    SceneManager.LoadScene("yoshiki");
+                //else if (m_Button == 1)
+                //    SceneManager.LoadScene("MainScene");
+                //else
+                //    SceneManager.LoadScene("yoshiki");
 
                 break;
 
