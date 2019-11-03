@@ -318,6 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3583695347653413469}
   - component: {fileID: 4430895263509944111}
+  - component: {fileID: 114560982964153128}
   m_Layer: 0
   m_Name: Tree1
   m_TagString: Untagged
@@ -332,7 +333,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3583695347653645949}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.5, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -343,7 +344,7 @@ Transform:
   - {fileID: 3583695347653413463}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4430895263509944111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +359,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tree1Prefab: {fileID: 3583695347653645949}
   Tree1Data: {fileID: 11400000, guid: 86925ab05bc40844a9ddb32ce11e29bf, type: 2}
+--- !u!114 &114560982964153128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3583695347653645949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521257714fc9e437a9163df2d37f2ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  type: 
+  method: 
+  easeType: 0
+  time: 0
+  delay: 0
+  loopType: 0
+  isRunning: 0
+  isPaused: 0
+  _name: 
 --- !u!1 &3583695347653645951
 GameObject:
   m_ObjectHideFlags: 0

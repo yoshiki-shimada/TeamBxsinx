@@ -6,9 +6,12 @@ enum GamePhase : short
 {
     GAMEPHASE_INIT = 0x00,
     GAMEPHASE_FADEIN = 0x01,
-    GAMEPHASE_RUN = 0x02,
-    GAMEPHASE_FADEOUT = 0X03,
-    GAMEPHASE_DONE = 0x04
+    GAMEPHASE_STAGE1 = 0x02,
+    GAMEPHASE_STAGE2 = 0x03,
+    GAMEPHASE_STAGE3 = 0x04,
+    GAMEPHASE_STAGE4 = 0x05,
+    GAMEPHASE_FADEOUT = 0X06,
+    GAMEPHASE_DONE = 0x07
 }
 
 public class GameSceneManager : MonoBehaviour
@@ -48,18 +51,16 @@ public class GameSceneManager : MonoBehaviour
                 m_ePhase = GamePhase.GAMEPHASE_FADEIN;
                 break;
             case GamePhase.GAMEPHASE_FADEIN:
-                m_ePhase = GamePhase.GAMEPHASE_RUN;
+                m_ePhase = GamePhase.GAMEPHASE_STAGE1;
                 break;
-            case GamePhase.GAMEPHASE_RUN:
-                if (m_bStageFlag)
+            case GamePhase.GAMEPHASE_STAGE1:
+                if (nPageCount == 0)
                 {
                     nPageCount++;
-                    m_bStageFlag = false;
-                   // m_Instantiate.NextPage(nPageCount);
+                    Tree1.GetComponent<Tree1>().Spawn();
                 }
                 if (nPageCount == 2)
                     m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
-                Tree1.GetComponent<Tree1>().Spawn();
                 break;
             case GamePhase.GAMEPHASE_FADEOUT:
                 m_ePhase = GamePhase.GAMEPHASE_DONE;
