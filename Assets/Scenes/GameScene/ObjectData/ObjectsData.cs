@@ -11,4 +11,17 @@ public class ObjectsData : ScriptableObject
     public int numberOfPrefabsToCreate;
 
     public Vector3[] spawnPoints;
+
+    public Vector3[] OInitAnim;
+
+    public Vector3[] ODereteAnim;
+
+    public Vector3[] OMoveAnim;
+
+    public Quaternion q = new Quaternion();
+
+    void Start()
+    {
+        q = Quaternion.identity;
+    }
 }

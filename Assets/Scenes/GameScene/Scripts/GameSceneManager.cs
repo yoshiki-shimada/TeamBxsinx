@@ -25,14 +25,16 @@ public class GameSceneManager : MonoBehaviour
 
     int nPageCount;
 
-    ObjectInstantiate m_Instantiate;
+    //ObjectInstantiate m_Instantiate;
+    GameObject Tree1;
 
     // Start is called before the first frame update
     void Start()
     {
         m_fFadeSpeed = 0.005f;
-        m_bStageFlag = true;
+        m_bStageFlag = false;
         nPageCount = 0;
+        Tree1 = GameObject.Find("Tree1");
 
         m_ePhase = GamePhase.GAMEPHASE_INIT;
     }
@@ -53,10 +55,11 @@ public class GameSceneManager : MonoBehaviour
                 {
                     nPageCount++;
                     m_bStageFlag = false;
-                    //m_Instantiate.NextPage(nPageCount);
+                   // m_Instantiate.NextPage(nPageCount);
                 }
                 if (nPageCount == 2)
                     m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
+                Tree1.GetComponent<Tree1>().Spawn();
                 break;
             case GamePhase.GAMEPHASE_FADEOUT:
                 m_ePhase = GamePhase.GAMEPHASE_DONE;

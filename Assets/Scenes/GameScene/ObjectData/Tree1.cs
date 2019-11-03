@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Tree1 : MonoBehaviour
 {
-    [SerializeField]
-    ObjectsData Tree1Data;
+    public GameObject Tree1Prefab;
 
-    private void Update()
+    public ObjectsData Tree1Data;
+
+    public void Spawn()
     {
-        Debug.Log(Tree1Data.prefabName);
+        Debug.Log("Tree1Init");
+
+        Instantiate(Tree1Prefab, Tree1Data.spawnPoints[0],Tree1Data.q);
     }
 }
 
