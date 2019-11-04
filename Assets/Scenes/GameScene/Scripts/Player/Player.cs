@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private float hori;
     private bool wallcheck;
 
-//RaycastHit hit;
+    RaycastHit hit;
 
     [SerializeField] private Rigidbody rb;          //! このオブジェクトについているもの
     [SerializeField] private CapsuleCollider CapCol;//! このオブジェクトについているもの
@@ -44,18 +44,19 @@ public class Player : MonoBehaviour
 
         if (m_bIsJump)
         {
-            RaycastHit hit;
+            //RaycastHit hit;
             if (Physics.SphereCast(this.transform.position,
                 CapCol.radius * 0.5f,
                 Vector3.down,
                 out hit,
-                CapCol.height*0.5f - (CapCol.radius*0.5f) + 0.1f,
+                1,//CapCol.height*0.5f - (CapCol.radius*0.5f) + 0.11f,
                Physics.AllLayers))
             {
                 Debug.Log("IsCast"+hit.distance);
-              /*  if (hit.distance<=CapCol.height*0.8)
-                {*/
-                    m_bIsJump = false;
+                Debug.Log((CapCol.height * 0.5f) - (CapCol.radius * 0.5f) + 0.11f);
+                /*  if (hit.distance<=CapCol.height*0.8)
+                  {*/
+                m_bIsJump = false;
                 //}
             }
            // else { Debug.Log("castFailed"); }
@@ -118,7 +119,7 @@ public class Player : MonoBehaviour
       //  Debug.Log("TriggerExit");
         wallcheck = false;
     }
-   /*  void OnDrawGizmos()
+     void OnDrawGizmos()
      {
 
          var radius = transform.lossyScale.x * 0.5f;
@@ -132,8 +133,8 @@ public class Player : MonoBehaviour
          }
          else
          {
-             Gizmos.DrawRay(transform.position, transform.forward * 100);
+             Gizmos.DrawRay(transform.position, -transform.forward * 100);
          }
-     }*/
+     }
 
 }
