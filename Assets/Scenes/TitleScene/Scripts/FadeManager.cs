@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using TMPro;
 using UnityEngine.UI;
 
 public class FadeManager : MonoBehaviour
@@ -17,6 +16,7 @@ public class FadeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //GetComponent<Image>().enabled = true;
         GetComponent<Image>().color = new Color(r, g, b, m_fAlpha);
         m_fAlpha = 1.0f;
     }
@@ -33,7 +33,7 @@ public class FadeManager : MonoBehaviour
      */
     public bool isFadeIn(float speed)
     {
-        if (m_fAlpha > 0.0f)
+        if (m_fAlpha >= 0.0f)
             m_fAlpha -= speed;
         else
             return true;
@@ -48,7 +48,7 @@ public class FadeManager : MonoBehaviour
      */
     public bool isFadeOut(float speed)
     {
-        if (m_fAlpha < 1.0f)
+        if (m_fAlpha <= 1.0f)
             m_fAlpha += speed;
         else
             return true;

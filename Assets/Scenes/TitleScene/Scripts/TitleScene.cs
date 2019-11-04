@@ -22,8 +22,6 @@ public class TitleScene : MonoBehaviour
 
     public GameObject m_FadeObject;
 
-    public int m_Button;
-
     FadeManager m_Fade;
 
     // Start is called before the first frame update
@@ -34,7 +32,6 @@ public class TitleScene : MonoBehaviour
         m_fFadeSpeed = 0.005f;
 
         m_ePhase = TitlePhase.TITLEPHASE_INIT;
-        m_Button = 1;
     }
 
     // Update is called once per frame
@@ -58,17 +55,14 @@ public class TitleScene : MonoBehaviour
                if(Input.GetButtonDown("GamePad1_buttonB"))
                     m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
 
-                Debug.Log("jump");
                 if (Input.GetButton("Jump"))
-                {
                     m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
-                    Debug.Log("jump");
-                }
+
                 break;
             case TitlePhase.TITLEPHASE_FADEOUT:
 
-                //bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
-                //if (bFlag)
+               // bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
+               // if (bFlag)
                     m_ePhase = TitlePhase.TITLEPHASE_DONE;
                 break;
             case TitlePhase.TITLEPHASE_DONE:
