@@ -53,9 +53,9 @@ public class TitleScene : MonoBehaviour
                 break;
             case TitlePhase.TITLEPHASE_FADEIN:
 
-                //bFlag = m_Fade.isFadeIn(m_fFadeSpeed);
-                //if (bFlag)
-                m_ePhase = TitlePhase.TITLEPHASE_RUN;
+                bFlag = m_Fade.isFadeIn(m_fFadeSpeed);
+                if (bFlag)
+                    m_ePhase = TitlePhase.TITLEPHASE_RUN;
                 break;
             case TitlePhase.TITLEPHASE_RUN:
 
@@ -82,9 +82,9 @@ public class TitleScene : MonoBehaviour
                 break;
             case TitlePhase.TITLEPHASE_FADEOUT:
 
-                // bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
-                // if (bFlag)
-                m_ePhase = TitlePhase.TITLEPHASE_DONE;
+                bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
+                if (bFlag)
+                    m_ePhase = TitlePhase.TITLEPHASE_DONE;
                 break;
             case TitlePhase.TITLEPHASE_DONE:
 
