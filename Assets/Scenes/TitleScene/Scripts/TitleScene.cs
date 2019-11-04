@@ -24,6 +24,10 @@ public class TitleScene : MonoBehaviour
 
     FadeManager m_Fade;
 
+    private float hori;
+
+    int nCarsor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,12 +36,14 @@ public class TitleScene : MonoBehaviour
         m_fFadeSpeed = 0.005f;
 
         m_ePhase = TitlePhase.TITLEPHASE_INIT;
+        nCarsor = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         bool bFlag = false;
+        hori = Input.GetAxisRaw("GamePad1_LeftStick_H");
 
         switch (m_ePhase)
         {
@@ -49,32 +55,47 @@ public class TitleScene : MonoBehaviour
 
                 //bFlag = m_Fade.isFadeIn(m_fFadeSpeed);
                 //if (bFlag)
-                    m_ePhase = TitlePhase.TITLEPHASE_RUN;
+                m_ePhase = TitlePhase.TITLEPHASE_RUN;
                 break;
             case TitlePhase.TITLEPHASE_RUN:
-               if(Input.GetButtonDown("GamePad1_buttonB"))
-                    m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
 
-                if (Input.GetButton("Jump"))
+
+                if ((hori != 0))
+                {
+                    Debug.Log("o");
+                    if (hori < -0.5f)
+                        nCarsor--;
+
+                    if (hori > 0.5f)
+                        nCarsor--;
+
+                    if (nCarsor < 0)
+                        nCarsor = 2;
+
+                    if (nCarsor > 2)
+                        nCarsor = 0;
+                }
+
+                if (Input.GetButtonDown("GamePad1_buttonB"))
                     m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
 
                 break;
             case TitlePhase.TITLEPHASE_FADEOUT:
 
-               // bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
-               // if (bFlag)
-                    m_ePhase = TitlePhase.TITLEPHASE_DONE;
+                // bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
+                // if (bFlag)
+                m_ePhase = TitlePhase.TITLEPHASE_DONE;
                 break;
             case TitlePhase.TITLEPHASE_DONE:
 
                 SceneManager.LoadScene("MainScene");
 
-                //if (m_Button == 0)
-                //    SceneManager.LoadScene("yoshiki");
-                //else if (m_Button == 1)
-                //    SceneManager.LoadScene("MainScene");
-                //else
-                //    SceneManager.LoadScene("yoshiki");
+                if (nCarsor == 0)
+                    SceneManager.LoadScene("yoshiki");
+                else if (nCarsor == 1)
+                    SceneManager.LoadScene("MainScene");
+                else
+                    SceneManager.LoadScene("yoshiki");
 
                 break;
 
