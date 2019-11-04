@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainScene.unity
     guid: 8c5f7872f8612b8429f0749e63d33d14
+  - enabled: 1
+    path: Assets/Shimada.unity
+    guid: 2ac624a3028e1ed458e456060ec18b5b
   m_configObjects: {}
