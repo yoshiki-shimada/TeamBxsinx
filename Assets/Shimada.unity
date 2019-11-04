@@ -997,7 +997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8012bd60ca0074047bb48a149fc86515, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8012bd60ca0074047bb48a149fc86515, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1023,6 +1023,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1733915645}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1838903041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838903043}
+  - component: {fileID: 1838903042}
+  m_Layer: 0
+  m_Name: Tree2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1838903042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838903041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc1a4d794db2d04c9bb1622c5128b5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tree2Prefab: {fileID: 909926936656091510, guid: a93f7b1cdb070ea41a8e9f4d4a70e61d,
+    type: 3}
+  Tree2Data: {fileID: 11400000, guid: 86925ab05bc40844a9ddb32ce11e29bf, type: 2}
+--- !u!4 &1838903043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838903041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.919284, y: 1.6824586, z: 5.53288}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1938629271 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: 7f2cc6cd55b3f7148943d8aa73b56443,
