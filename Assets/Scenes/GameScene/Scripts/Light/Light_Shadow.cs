@@ -30,12 +30,18 @@ public class Light_Shadow : MonoBehaviour
         foreach (Transform game in CenterObjects)
         {
             float x = game.transform.position.x * 2 - transform.position.x;
-            //Vector3 Lx = game.transform.InverseTransformPoint(transform.position);
+            Vector3 Lx = game.transform.InverseTransformPoint(transform.position);
             float y = game.transform.position.y * 2 - transform.position.y;
-            Vector3 pos = new Vector3(x, //Lx.x+game.position.x,// 
-                ShadowY + (0.05f * y) + 0.6f, //-Lx.y+game.position.y,//
+            Vector3 pos = new Vector3(-Lx.x + game.position.x,//x, // 
+                -Lx.y*0.1f + game.position.y + ShadowY,//ShadowY + (0.2f * y), //
                 ShadowZ);
-            Debug.Log(ShadowObjects[i].position);    
+            Debug.Log(ShadowObjects[i].position);
+
+            Debug.Log(Lx);
+            Debug.Log(-Lx.x + game.position.x);
+
+            Debug.Log(-Lx.y*0.2f + game.position.y);
+            Debug.Log(ShadowY + (0.05f * y) + 0.6f);
             ShadowObjects[i].MovePosition(pos);
             i++;
         }

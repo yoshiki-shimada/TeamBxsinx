@@ -69,7 +69,7 @@ public class LightManager : MonoBehaviour
     }
     void ChangeLight_End()
     {
-        lightIndex =(++lightIndex) % 2;
+        lightIndex =(1 + lightIndex) % 2;
         changeLight = false;
     }
 }
