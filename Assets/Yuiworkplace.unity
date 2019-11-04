@@ -231,8 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf92dc3ffbefaae479483c8e1015239e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShadowY: 0
-  ShadowZ: 0.3
+  ShadowZ: 0
 --- !u!135 &159285672
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -322,6 +321,7 @@ GameObject:
   - component: {fileID: 197414243}
   - component: {fileID: 197414242}
   - component: {fileID: 197414241}
+  - component: {fileID: 197414244}
   m_Layer: 0
   m_Name: ShadowObject
   m_TagString: Untagged
@@ -338,7 +338,7 @@ Transform:
   m_GameObject: {fileID: 197414239}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.183633, y: 1.3599999, z: 2.3}
-  m_LocalScale: {x: 1.5000004, y: 1.5, z: 1.5000002}
+  m_LocalScale: {x: 1.5000004, y: 1.3, z: 1.5000002}
   m_Children: []
   m_Father: {fileID: 307215669}
   m_RootOrder: 0
@@ -350,7 +350,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197414239}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2ffd84a87e1e6344fa5bf0fef253ca3c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -401,6 +401,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197414239}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &197414244
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197414239}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &205053163
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,8 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf92dc3ffbefaae479483c8e1015239e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShadowY: 2.64
-  ShadowZ: 6.1
+  ShadowZ: 0
 --- !u!1 &307215665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,6 +1099,7 @@ MonoBehaviour:
   light_s:
   - {fileID: 271876581}
   - {fileID: 159285671}
+  LocalPosY: []
 --- !u!4 &1472113334
 Transform:
   m_ObjectHideFlags: 0
@@ -1153,7 +1169,7 @@ MonoBehaviour:
   m_iDamage: 0
   m_bDethFlag: 0
   rb: {fileID: 1886612046}
-  CapCol: {fileID: 1886612047}
+  CapCol: {fileID: 1265802017}
   lightManager: {fileID: 1472113333}
 --- !u!54 &1886612046
 Rigidbody:
@@ -1254,6 +1270,10 @@ PrefabInstance:
     - target: {fileID: 100014, guid: ae6cafcc782d86948bee3bc2ee935b39, type: 3}
       propertyPath: m_Name
       value: Stage_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: ae6cafcc782d86948bee3bc2ee935b39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: ae6cafcc782d86948bee3bc2ee935b39, type: 3}
       propertyPath: m_LocalPosition.x
