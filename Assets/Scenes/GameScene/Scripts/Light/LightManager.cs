@@ -8,15 +8,14 @@ public class LightManager : MonoBehaviour
     private Rigidbody[] ShadowObjects; //影のオブジェクト
 
     [SerializeField] private Light_Shadow[] light_s;
-    private bool[] IsLight = new bool[2];
+    private int lightIndex;
     [SerializeField] private float[] LocalPosY;
     private bool changeLight;
     // Start is called before the first frame update
     void Start()
     {
         GetCenterObj();
-        IsLight[0] = true;
-        IsLight[1] = false;
+        lightIndex = 0;
         changeLight = false;
     }
 
@@ -30,14 +29,8 @@ public class LightManager : MonoBehaviour
     {
         if (!changeLight)
         {
-            if (IsLight[0])
-            {
-                light_s[0].CreateShadow(CenterObjects,ShadowObjects);
-            }
-            else if(IsLight[1])
-            {
-                light_s[1].CreateShadow(CenterObjects, ShadowObjects);
-            }
+                light_s[lightIndex].CreateShadow(CenterObjects, ShadowObjects);
+            
         }
     }
 
@@ -66,20 +59,17 @@ public class LightManager : MonoBehaviour
         
         for(int i = 0; i < light_s.Length; i++)
         {
-            if (IsLight[i])
-                light_s[i].ChangeLight(IsLight[i], LocalPosY[1]
+            if (i==lightIndex)
+                light_s[i].ChangeLight(true, LocalPosY[1]
                     ,gameObject,ShadowObjects);
             else
-                light_s[i].ChangeLight(IsLight[i], LocalPosY[0]
+                light_s[i].ChangeLight(false, LocalPosY[0]
                     ,gameObject,ShadowObjects);
         }
     }
     void ChangeLight_End()
     {
-        for(int i = 0; i < light_s.Length; i++)
-        {
-            IsLight[i] = !IsLight[i];
-        }
+        lightIndex =(++lightIndex) % 2;
         changeLight = false;
     }
 }

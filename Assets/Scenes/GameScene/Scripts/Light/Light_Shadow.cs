@@ -5,7 +5,7 @@ using UnityEngine;
 public class Light_Shadow : MonoBehaviour
 {
     
-    [SerializeField] private float ShadowZ;
+    [SerializeField] private float ShadowY,ShadowZ;
     private float OppositeShadowZ;
     public float oppositeZ
     {
@@ -23,8 +23,6 @@ public class Light_Shadow : MonoBehaviour
         
     }
 
-
-
     //影の生成
     public void CreateShadow(Transform[] CenterObjects,Rigidbody[] ShadowObjects)
     {
@@ -32,11 +30,12 @@ public class Light_Shadow : MonoBehaviour
         foreach (Transform game in CenterObjects)
         {
             float x = game.transform.position.x * 2 - transform.position.x;
+            //Vector3 Lx = game.transform.InverseTransformPoint(transform.position);
             float y = game.transform.position.y * 2 - transform.position.y;
-            Vector3 pos = new Vector3(x, 
-                (ShadowObjects[i].transform.position.y - y),
+            Vector3 pos = new Vector3(x, //Lx.x+game.position.x,// 
+                ShadowY + (0.05f * y) + 0.6f, //-Lx.y+game.position.y,//
                 ShadowZ);
-                
+            Debug.Log(ShadowObjects[i].position);    
             ShadowObjects[i].MovePosition(pos);
             i++;
         }
