@@ -34,7 +34,7 @@ public class Light_Shadow : MonoBehaviour
             float x = game.transform.position.x * 2 - transform.position.x;
             float y = game.transform.position.y * 2 - transform.position.y;
             Vector3 pos = new Vector3(x, 
-                y*0.4f,//ShadowObjects[i].transform.position.y,
+                (ShadowObjects[i].transform.position.y - y),
                 ShadowZ);
                 
             ShadowObjects[i].MovePosition(pos);

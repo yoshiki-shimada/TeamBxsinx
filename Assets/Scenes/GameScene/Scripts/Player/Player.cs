@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private float hori;
     private bool wallcheck;
 
-    RaycastHit hit;
+    //RaycastHit hit;
 
     [SerializeField] private Rigidbody rb;          //! このオブジェクトについているもの
     [SerializeField] private CapsuleCollider CapCol;//! このオブジェクトについているもの
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
 
         if (m_bIsJump)
         {
-            //RaycastHit hit;
+            RaycastHit hit;
             if (Physics.SphereCast(this.transform.position,
                 CapCol.radius * 0.5f,
                 Vector3.down,
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
       //  Debug.Log("TriggerExit");
         wallcheck = false;
     }
-     void OnDrawGizmos()
+     /*void OnDrawGizmos()
      {
 
          var radius = transform.lossyScale.x * 0.5f;
@@ -135,6 +135,6 @@ public class Player : MonoBehaviour
          {
              Gizmos.DrawRay(transform.position, -transform.forward * 100);
          }
-     }
+     }*/
 
 }
