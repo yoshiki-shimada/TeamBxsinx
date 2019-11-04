@@ -6,8 +6,8 @@ public class Player : MonoBehaviour
 {
     //   {SerializeField]はインスペクターでの編集を可能にする
     [SerializeField] private Vector3 direction;
-    [SerializeField] private float moveSpeed = 2.0f;        //! 移動速度
-    [SerializeField] private float jampSpeed = 9.0f;        //! ジャンプの高さ
+    [SerializeField] private float moveSpeed = 3.0f;        //! 移動速度
+    [SerializeField] private float jampSpeed = 18.0f;        //! ジャンプの高さ
     [SerializeField] private int m_iDamage;                 //! 体力
     public bool m_bDethFlag;
     private bool m_bJumpIn;
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
                Physics.AllLayers))
             {
                 Debug.Log("IsCast"+hit.distance);
-                Debug.Log((CapCol.height * 0.5f) - (CapCol.radius * 0.5f) + 0.11f);
+                //Debug.Log(hit.point);
                 /*  if (hit.distance<=CapCol.height*0.8)
                   {*/
                 m_bIsJump = false;
