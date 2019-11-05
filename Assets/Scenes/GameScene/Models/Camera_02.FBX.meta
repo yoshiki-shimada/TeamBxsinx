@@ -1,48 +1,22 @@
 fileFormatVersion: 2
-guid: ae6cafcc782d86948bee3bc2ee935b39
+guid: 2fe13dad1b4ed1444a098b6ab11b7f65
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: 01Curtain
-    100002: 02Curtain
-    100004: 03Curtain
-    100006: FrontLane
-    100008: FrontLane004
-    100010: FrontLane005
-    100012: FrontLane006
-    100014: //RootNode
-    400000: 01Curtain
-    400002: 02Curtain
-    400004: 03Curtain
-    400006: FrontLane
-    400008: FrontLane004
-    400010: FrontLane005
-    400012: FrontLane006
-    400014: //RootNode
-    2100000: 'Material #4'
-    2100002: 'Material #2'
-    2100004: 'Material #3'
-    2300000: 01Curtain
-    2300002: 02Curtain
-    2300004: 03Curtain
-    2300006: FrontLane
-    2300008: FrontLane004
-    2300010: FrontLane005
-    2300012: FrontLane006
-    3300000: 01Curtain
-    3300002: 02Curtain
-    3300004: 03Curtain
-    3300006: FrontLane
-    3300008: FrontLane004
-    3300010: FrontLane005
-    3300012: FrontLane006
-    4300000: FrontLane
-    4300002: 02Curtain
-    4300004: 03Curtain
-    4300006: 01Curtain
-    4300008: FrontLane004
-    4300010: FrontLane005
-    4300012: FrontLane006
+    100000: Box006
+    100002: Camera001
+    100004: Camera001.Target
+    100006: //RootNode
+    400000: Box006
+    400002: Camera001
+    400004: Camera001.Target
+    400006: //RootNode
+    2000000: Camera001
+    2100000: No Name
+    2300000: Box006
+    3300000: Box006
+    4300000: Box006
+    6000828045688606266: Camera001
   externalObjects: {}
   materials:
     importMaterials: 1
