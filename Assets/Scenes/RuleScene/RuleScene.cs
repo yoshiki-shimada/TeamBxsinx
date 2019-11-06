@@ -16,7 +16,7 @@ public class RuleScene : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetSpaceKey(0))
+        if (Input.GetButtonDown("GamePad1_button_B"))
         {
             SceneManager.LoadScene("TitleScene");
         }
