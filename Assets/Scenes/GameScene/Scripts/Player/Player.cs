@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
                Physics.AllLayers))
             {
                 Debug.Log("IsCast"+hit.distance);
-                //Debug.Log(hit.point);
+                Debug.Log(hit.point);
                 /*  if (hit.distance<=CapCol.height*0.8)
                   {*/
                 m_bIsJump = false;
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("GamePad1_buttonX") && !m_bIsJump)
         {
-           // lightManager.ChageLight();
+            lightManager.ChageLight();
         }
 
     }

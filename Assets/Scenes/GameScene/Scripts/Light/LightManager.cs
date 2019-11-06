@@ -9,7 +9,8 @@ public class LightManager : MonoBehaviour
 
     [SerializeField] private Light_Shadow[] light_s;
     private int lightIndex;
-    [SerializeField] private float[] LocalPosY;
+    //[SerializeField]
+    private float[] LocalPosY= new float[2];
     private bool changeLight;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,8 @@ public class LightManager : MonoBehaviour
         GetCenterObj();
         lightIndex = 0;
         changeLight = false;
+        LocalPosY[0] = light_s[0].transform.localPosition.z;
+        LocalPosY[1] = light_s[1].transform.localPosition.z;
     }
 
     // Update is called once per frame
@@ -27,7 +30,7 @@ public class LightManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!changeLight)
+       // if (!changeLight)
         {
                 light_s[lightIndex].CreateShadow(CenterObjects, ShadowObjects);
             
@@ -55,21 +58,29 @@ public class LightManager : MonoBehaviour
     
     public void ChageLight()
     {
+        if (changeLight)
+            return;
         changeLight = true;
         
         for(int i = 0; i < light_s.Length; i++)
         {
-            if (i==lightIndex)
-                light_s[i].ChangeLight(true, LocalPosY[1]
-                    ,gameObject,ShadowObjects);
+            if (i == lightIndex)
+            {
+                light_s[i].ChangeLight(LocalPosY[1],gameObject);
+                Invoke("ChangeLight_End", 0.9f);
+            }
             else
-                light_s[i].ChangeLight(false, LocalPosY[0]
-                    ,gameObject,ShadowObjects);
+            {
+                light_s[i].ChangeLight(LocalPosY[0],gameObject);
+            }
         }
     }
     void ChangeLight_End()
     {
         lightIndex =(1 + lightIndex) % 2;
+    }
+    void ChangeLight_flag()
+    {
         changeLight = false;
     }
 }
