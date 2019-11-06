@@ -9,7 +9,7 @@ public class TextAction : MonoBehaviour
     public GameObject Chara;
     public GameObject IKON;
 
-    bool bFlag;
+    public bool bFlag;
 
     [SerializeField]
     private float r, g, b;
@@ -32,21 +32,27 @@ public class TextAction : MonoBehaviour
         Vector3 CharaPos = Chara.transform.position;
         float fDistance = Vector3.Distance(TextPos, CharaPos);
 
-        if (fDistance <= 1.5f)
+
+        if (fDistance <= 3.5f)
         {
             bFlag = true;
             m_fAlpha = 1.0f;
+            Debug.Log("tuiteru");
         }
         else
         {
             bFlag = false;
             m_fAlpha = 0.0f;
+            Debug.Log("nai");
         }
 
-        if (bFlag == true)
-            if(Input.GetButtonDown("GamePad1_button_B"))
-
-
         IKON.GetComponent<Image>().color = new Color(r, g, b, m_fAlpha);
+
+        if (bFlag == true)
+            if (Input.GetButtonDown("GamePad1_button_B"))
+            {
+
+            }
+                
     }
 }
