@@ -18,8 +18,8 @@ public class LightManager : MonoBehaviour
         GetCenterObj();
         lightIndex = 0;
         changeLight = false;
-        LocalPosY[0] = light_s[0].transform.localPosition.z;
-        LocalPosY[1] = light_s[1].transform.localPosition.z;
+        LocalPosY[0] = light_s[0].transform.localPosition.y;
+        LocalPosY[1] = light_s[1].transform.localPosition.y;
     }
 
     // Update is called once per frame
@@ -83,4 +83,5 @@ public class LightManager : MonoBehaviour
     {
         changeLight = false;
     }
+
 }

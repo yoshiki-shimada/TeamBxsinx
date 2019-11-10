@@ -6,21 +6,22 @@ public class Light_Shadow : MonoBehaviour
 {
     
     [SerializeField] private float ShadowY,ShadowZ;
-    private float OppositeShadowZ;
-    public float oppositeZ
-    {
-        set { OppositeShadowZ = value; }
-    }
+
+    private Vector3 rot;
     // Start is called before the first frame update
+    void Awake()
+    {
+        rot = transform.rotation.eulerAngles;
+    }
     void Start()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        transform.rotation = Quaternion.Euler(rot);
     }
 
     //影の生成
@@ -35,7 +36,7 @@ public class Light_Shadow : MonoBehaviour
             Vector3 pos = new Vector3(x, //-Lx.x + game.position.x,// 
                 game.position.y+(ShadowY-game.position.y)+y*0.2f,//ShadowY + (0.2f * y), //
                 ShadowZ);
-            Debug.Log(ShadowObjects[i].position);
+            //Debug.Log(ShadowObjects[i].position);
 
            /* Debug.Log(Lx);
             Debug.Log(-Lx.x + game.position.x);
@@ -50,7 +51,7 @@ public class Light_Shadow : MonoBehaviour
     public void ChangeLight(float distination,GameObject game)
     {
         iTween.MoveTo(gameObject, iTween.Hash(
-            "z", distination,
+            "y", distination,
             "time", 1.6f,
             "easeType", iTween.EaseType.easeInOutQuint,
             "isLocal", true,
@@ -58,34 +59,7 @@ public class Light_Shadow : MonoBehaviour
             "oncompletetarget", game
             ));
 
-        /*if (IsLight)
-            ChangeShadow(Shadow);*/
     }
 
-    void ChangeShadow(Rigidbody[] Shadow)
-    {
-        for (int i = 0; i < Shadow.Length; i++)
-        {
-            iTween.ValueTo(Shadow[i].gameObject, iTween.Hash(
-                "from", Shadow[i].transform.localPosition.y,
-                "to", Shadow[i].transform.localPosition.y - 5f,
-                "time", 0.8f,
-                "easeType", iTween.EaseType.easeInOutQuint,
-                "onupdatetarget", gameObject,
-                "onupdate", "ChsngeShadowMove",
-                "oncompletetarget", gameObject,
-                "oncompleat", "ChangeShadowOpposite",
-                "oncompleatparams", Shadow));
-
-        }
-    }
-    void ChangeShadowOpposite(Rigidbody[] Shadow)
-    {
-
-    }
-    void ChangeShadowMove(float y)
-    {
-
-    }
 
 }
