@@ -59,21 +59,26 @@ public class TitleScene : MonoBehaviour
                 break;
             case TitlePhase.TITLEPHASE_RUN:
 
-
-                if ((hori != 0))
+                switch (nCarsor)
                 {
-                    Debug.Log("o");
-                    if (hori < -0.5f)
-                        nCarsor--;
-
-                    if (hori > 0.5f)
-                        nCarsor--;
-
-                    if (nCarsor < 0)
-                        nCarsor = 2;
-
-                    if (nCarsor > 2)
-                        nCarsor = 0;
+                    case (0):
+                        if (hori < -0.5)
+                            nCarsor++;
+                        else if (hori > 0.5)
+                            nCarsor = 2;
+                        break;
+                    case (1):
+                        if (hori < -0.5)
+                            nCarsor++;
+                        else if (hori > 0.5)
+                            nCarsor--;
+                        break;
+                    case (2):
+                        if (hori < -0.5)
+                            nCarsor = 0;
+                        else if (hori > 0.5)
+                            nCarsor--;
+                        break;
                 }
 
                 if (Input.GetButtonDown("GamePad1_buttonB"))
@@ -91,11 +96,18 @@ public class TitleScene : MonoBehaviour
                 SceneManager.LoadScene("MainScene");
 
                 if (nCarsor == 0)
-                    SceneManager.LoadScene("yoshiki");
+                    SceneManager.LoadScene("RuleScene");
                 else if (nCarsor == 1)
                     SceneManager.LoadScene("MainScene");
                 else
-                    SceneManager.LoadScene("yoshiki");
+                {
+#if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;
+#else
+                    Application.Quit();
+#endif
+                }
+
 
                 break;
 

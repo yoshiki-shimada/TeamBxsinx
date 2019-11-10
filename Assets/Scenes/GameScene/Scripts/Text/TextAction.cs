@@ -10,6 +10,9 @@ public class TextAction : MonoBehaviour
     public GameObject IKON;
     public GameObject Text;
 
+    private RectTransform TextImage;
+    public float x, y;
+
     public bool bFlag;
 
     [SerializeField]
@@ -23,6 +26,7 @@ public class TextAction : MonoBehaviour
     {
         bFlag = false;
         IKON.GetComponent<Image>().color = new Color(r, g, b, m_fAlpha);
+        TextImage = GameObject.Find("TextImage").GetComponent<RectTransform>();
         m_fAlpha = 0.0f;
     }
 
@@ -32,7 +36,6 @@ public class TextAction : MonoBehaviour
         Vector3 TextPos = TextObject.transform.position;
         Vector3 CharaPos = Chara.transform.position;
         float fDistance = Vector3.Distance(TextPos, CharaPos);
-
 
         if (fDistance <= 3.0f)
         {
@@ -52,8 +55,11 @@ public class TextAction : MonoBehaviour
         if (bFlag == true && Input.GetButtonDown("GamePad1_buttonA"))
         {
             Debug.Log("SuccessofbuttonA");
+            //! Itweenで枠を移動
+
+            //! ImageのWidthを広げる
+            TextImage.sizeDelta = new Vector2(x, y);
             Text.GetComponent<TextDraw>().NextText();
-            //Text.GetComponent<TextDraw>().DrawText();
         }
 
     }
