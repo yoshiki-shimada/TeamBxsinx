@@ -14,6 +14,9 @@ public class TextHilight : MonoBehaviour
     {
         fAlpha = 0;
         iPhase = 0;
+        // 自分を選択状態にする
+        Selectable sel = GetComponent<Selectable>();
+        sel.Select();
     }
 
     void Update()

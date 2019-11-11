@@ -24,9 +24,7 @@ public class TitleScene : MonoBehaviour
 
     FadeManager m_Fade;
 
-    private float hori;
-
-    int nCarsor;
+    string sNext;
 
     // Start is called before the first frame update
     void Start()
@@ -36,14 +34,12 @@ public class TitleScene : MonoBehaviour
         m_fFadeSpeed = 0.005f;
 
         m_ePhase = TitlePhase.TITLEPHASE_INIT;
-        nCarsor = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         bool bFlag = false;
-        hori = Input.GetAxisRaw("GamePad1_LeftStick_H");
 
         switch (m_ePhase)
         {
@@ -59,28 +55,6 @@ public class TitleScene : MonoBehaviour
                 break;
             case TitlePhase.TITLEPHASE_RUN:
 
-                switch (nCarsor)
-                {
-                    case (0):
-                        if (hori < -0.5)
-                            nCarsor++;
-                        else if (hori > 0.5)
-                            nCarsor = 2;
-                        break;
-                    case (1):
-                        if (hori < -0.5)
-                            nCarsor++;
-                        else if (hori > 0.5)
-                            nCarsor--;
-                        break;
-                    case (2):
-                        if (hori < -0.5)
-                            nCarsor = 0;
-                        else if (hori > 0.5)
-                            nCarsor--;
-                        break;
-                }
-
                 if (Input.GetButtonDown("GamePad1_buttonB"))
                     m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
 
@@ -93,25 +67,24 @@ public class TitleScene : MonoBehaviour
                 break;
             case TitlePhase.TITLEPHASE_DONE:
 
-                SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene(sNext);
+                break;
+        }
+    }
 
-                if (nCarsor == 0)
-                    SceneManager.LoadScene("RuleScene");
-                else if (nCarsor == 1)
-                    SceneManager.LoadScene("MainScene");
-                else
-                {
+    public void StringArgFunction(string s)
+    {
+        sNext = s;
+    }
+
+    public void Quit()
+    {
 #if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
                     Application.Quit();
 #endif
-                }
-
-
-                break;
-
-        }
     }
+
 }
 
