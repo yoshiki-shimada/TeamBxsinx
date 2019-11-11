@@ -65,9 +65,8 @@ public class GameClearManager : MonoBehaviour
             case ClearPhase.CLEARPHASE_RUN:
 
                 StartCoroutine("NextImage");
-                //if (Input.GetButtonDown("GamePad1_buttonB"))
-                // m_ePhase = ClearPhase.CLEARPHASE_FADEOUT;
-
+                if (Input.GetButtonDown("GamePad1_buttonB")) ///////&&全てのImageを描画したか
+                    m_ePhase = ClearPhase.CLEARPHASE_FADEOUT;
                 break;
             case ClearPhase.CLEARPHASE_FADEOUT:
 
@@ -84,8 +83,8 @@ public class GameClearManager : MonoBehaviour
 
     IEnumerator NextImage()
     {
-            Debug.Log("ahfeh;gaed");
-            Image.transform.SetParent(canvas.transform, false);
-            yield return new WaitForSeconds(100f);
+        Debug.Log("ahfeh;gaed");
+        Image.transform.SetParent(canvas.transform, false);
+        yield return new WaitForSeconds(100f);
     }
 }
