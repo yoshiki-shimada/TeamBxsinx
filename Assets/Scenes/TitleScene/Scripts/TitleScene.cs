@@ -24,9 +24,7 @@ public class TitleScene : MonoBehaviour
 
     FadeManager m_Fade;
 
-    private float hori;
-
-    int nCarsor;
+    string sNext;
 
     // Start is called before the first frame update
     void Start()
@@ -36,14 +34,12 @@ public class TitleScene : MonoBehaviour
         m_fFadeSpeed = 0.005f;
 
         m_ePhase = TitlePhase.TITLEPHASE_INIT;
-        nCarsor = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         bool bFlag = false;
-        hori = Input.GetAxisRaw("GamePad1_LeftStick_H");
 
         switch (m_ePhase)
         {
@@ -59,23 +55,6 @@ public class TitleScene : MonoBehaviour
                 break;
             case TitlePhase.TITLEPHASE_RUN:
 
-
-                if ((hori != 0))
-                {
-                    Debug.Log("o");
-                    if (hori < -0.5f)
-                        nCarsor--;
-
-                    if (hori > 0.5f)
-                        nCarsor--;
-
-                    if (nCarsor < 0)
-                        nCarsor = 2;
-
-                    if (nCarsor > 2)
-                        nCarsor = 0;
-                }
-
                 if (Input.GetButtonDown("GamePad1_buttonB"))
                     m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
 
@@ -88,18 +67,24 @@ public class TitleScene : MonoBehaviour
                 break;
             case TitlePhase.TITLEPHASE_DONE:
 
-                SceneManager.LoadScene("MainScene");
-
-                if (nCarsor == 0)
-                    SceneManager.LoadScene("yoshiki");
-                else if (nCarsor == 1)
-                    SceneManager.LoadScene("MainScene");
-                else
-                    SceneManager.LoadScene("yoshiki");
-
+                SceneManager.LoadScene(sNext);
                 break;
-
         }
     }
+
+    public void StringArgFunction(string s)
+    {
+        sNext = s;
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+                    Application.Quit();
+#endif
+    }
+
 }
 
