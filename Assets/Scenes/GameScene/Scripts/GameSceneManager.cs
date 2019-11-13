@@ -31,6 +31,7 @@ public class GameSceneManager : MonoBehaviour
     //ObjectInstantiate m_Instantiate;
     GameObject Tree1;
     GameObject Tree2;
+    GameObject oLog;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,7 @@ public class GameSceneManager : MonoBehaviour
         nPageCount = 0;
         Tree1 = GameObject.Find("Tree1");
         Tree2 = GameObject.Find("Tree2");
+        oLog = GameObject.Find("Log");
 
         m_ePhase = GamePhase.GAMEPHASE_INIT;
     }
