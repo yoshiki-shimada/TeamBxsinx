@@ -15,7 +15,7 @@ MonoBehaviour:
   prefabName: ShadowObuject
   numberOfPrefabsToCreate: 0
   spawnPoints:
-  - {x: 20, y: 1.5, z: 3}
+  - {x: 20, y: 1, z: 3}
   - {x: -20, y: 1.5, z: 3}
   OInitAnim:
   - {x: 10, y: 0, z: 0}
@@ -25,3 +25,4 @@ MonoBehaviour:
   OMoveAnim:
   - {x: 10, y: 0, z: 0}
   q: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
+  q2: {x: 0, y: 0, z: 0, w: 1}

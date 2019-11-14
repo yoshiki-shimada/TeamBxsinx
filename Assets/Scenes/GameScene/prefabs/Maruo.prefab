@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5207077322770689885}
   - component: {fileID: 5207077322769591709}
   m_Layer: 0
-  m_Name: Maruta_03
+  m_Name: Maruo
   m_TagString: CenterObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cb7d908d7d7e74c47bcabbe533b97d52, type: 3}
+  - {fileID: 2100000, guid: 8012bd60ca0074047bb48a149fc86515, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -29,9 +29,8 @@ public class GameSceneManager : MonoBehaviour
     int nPageCount;
 
     //ObjectInstantiate m_Instantiate;
-    GameObject Tree1;
-    GameObject Tree2;
-    GameObject oLog;
+    GameObject OMaruo;
+    GameObject OLope;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +38,8 @@ public class GameSceneManager : MonoBehaviour
         m_fFadeSpeed = 0.005f;
         m_bStageFlag = false;
         nPageCount = 0;
-        Tree1 = GameObject.Find("Tree1");
-        Tree2 = GameObject.Find("Tree2");
-        oLog = GameObject.Find("Log");
+        OMaruo = GameObject.Find("Maruo");
+        OLope = GameObject.Find("Lope");
 
         m_ePhase = GamePhase.GAMEPHASE_INIT;
     }
@@ -61,9 +59,9 @@ public class GameSceneManager : MonoBehaviour
                 if (nPageCount == 0)
                 {
                     nPageCount++;
-                    Tree1.GetComponent<Tree1>().Spawn();
-                    Tree2.GetComponent<Tree2>().Spawn();
-                    //Destroy(Tree1);
+                    OMaruo.GetComponent<Maruo>().Spawn();
+                    OLope.GetComponent<Lope>().Spawn();
+                    //Destroy(Maruo);
                 }
                 if (nPageCount == 2)
                     m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
