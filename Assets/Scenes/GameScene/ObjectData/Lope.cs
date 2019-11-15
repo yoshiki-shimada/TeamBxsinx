@@ -15,6 +15,6 @@ public class Lope : MonoBehaviour
         GameObject t = Instantiate(LopePrefab, LopeData.spawnPoints[0], LopeData.q2) as GameObject;
 
         //! animation
-        iTween.MoveBy(t, iTween.Hash("y", LopeData.OInitAnim[0].y, "time", 1f));
+        iTween.MoveBy(t, iTween.Hash("y", LopeData.OInitAnim[0].y, "time", 1f,"delay",3f));
     }
 }

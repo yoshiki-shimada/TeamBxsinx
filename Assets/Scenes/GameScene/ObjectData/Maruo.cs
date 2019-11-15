@@ -19,6 +19,6 @@ public class Maruo : MonoBehaviour
         LightManager.GetComponent<LightManager>().GetCenterObj();
 
         //! animation
-        iTween.MoveBy(t, iTween.Hash("x", ShadowObjectData.OInitAnim[0].x, "time", 1f, "delay", 1f));
+        iTween.MoveBy(t, iTween.Hash("x", ShadowObjectData.OInitAnim[0].x, "time", 1f, "delay", 3f));
     }
 }

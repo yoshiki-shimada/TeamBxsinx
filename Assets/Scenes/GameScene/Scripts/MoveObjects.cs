@@ -23,7 +23,7 @@ public class MoveObjects : MonoBehaviour
         OBackLane.GetComponent<BackLane>().Spawn();
 
         BackLane01 = GameObject.Find("BackLane01");
-        iTween.MoveBy(BackLane01, iTween.Hash("x", 25f, "time", 2f));
+        iTween.MoveBy(BackLane01, iTween.Hash("x", 25f, "time", 2f,"delay",2f));
 
         OMaruo.GetComponent<Maruo>().Spawn();
         OLope.GetComponent<Lope>().Spawn();

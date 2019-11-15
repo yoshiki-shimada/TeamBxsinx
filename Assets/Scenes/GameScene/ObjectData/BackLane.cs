@@ -15,6 +15,6 @@ public class BackLane : MonoBehaviour
         GameObject t = Instantiate(LanePrefab, LaneData.spawnPoints[4], LaneData.q) as GameObject;
 
         //! animation
-        iTween.MoveBy(t, iTween.Hash("x", LaneData.OInitAnim[2].x, "time", 2f));
+        iTween.MoveBy(t, iTween.Hash("x", LaneData.OInitAnim[2].x, "time", 2f,"delay",2f));
     }
 }
