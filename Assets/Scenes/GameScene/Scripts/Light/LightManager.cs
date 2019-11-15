@@ -12,6 +12,10 @@ public class LightManager : MonoBehaviour
     //[SerializeField]
     private float[] LocalPosY= new float[2];
     private bool changeLight;
+    public bool changelight
+    {
+        get { return changeLight; }
+    }
     // Start is called before the first frame update
     void Start()
     {
