@@ -1,0 +1,245 @@
+fileFormatVersion: 2
+guid: c169843e8d338b346ae53183a0d88ee4
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: BackLane003
+    100002: BackLane004
+    100004: BackLane005
+    100006: BackLane02
+    100008: Box007
+    100010: Box009
+    100012: Box010
+    100014: Box013
+    100016: Box014
+    100018: Box015
+    100020: Box017
+    100022: //RootNode
+    100024: Tree_A_01
+    100026: Tree_A_02
+    100028: Tree_A_03
+    100030: Tree_A_04
+    100032: Tree_A_05
+    100034: Tree_B_01
+    100036: Tree_B_02
+    100038: Tree_B_03
+    100040: Tree_B_04
+    100042: Tree_B_05
+    100044: Tree_C_01
+    100046: Tree_C_02
+    100048: Tree_C_03
+    100050: Tree_C_04
+    100052: Tree_C_05
+    400000: BackLane003
+    400002: BackLane004
+    400004: BackLane005
+    400006: BackLane02
+    400008: Box007
+    400010: Box009
+    400012: Box010
+    400014: Box013
+    400016: Box014
+    400018: Box015
+    400020: Box017
+    400022: //RootNode
+    400024: Tree_A_01
+    400026: Tree_A_02
+    400028: Tree_A_03
+    400030: Tree_A_04
+    400032: Tree_A_05
+    400034: Tree_B_01
+    400036: Tree_B_02
+    400038: Tree_B_03
+    400040: Tree_B_04
+    400042: Tree_B_05
+    400044: Tree_C_01
+    400046: Tree_C_02
+    400048: Tree_C_03
+    400050: Tree_C_04
+    400052: Tree_C_05
+    2100000: 'Material #8'
+    2100002: No Name
+    2100004: 'Material #7'
+    2100006: 'Material #4'
+    2100008: 'Material #9'
+    2100010: 'Material #2'
+    2100012: 'Material #3'
+    2100014: 'Material #5'
+    2100016: 'Material #10'
+    2100018: 'Material #6'
+    2100020: 'Material #11'
+    2100022: 'Material #12'
+    2100024: 'Material #13'
+    2100026: 'Material #14'
+    2100028: 'Material #15'
+    2100030: 'Material #16'
+    2100032: 'Material #17'
+    2100034: 'Material #18'
+    2100036: 'Material #19'
+    2100038: 'Material #20'
+    2300000: BackLane003
+    2300002: BackLane004
+    2300004: BackLane005
+    2300006: BackLane02
+    2300008: Box007
+    2300010: Box009
+    2300012: Box010
+    2300014: Box013
+    2300016: Box014
+    2300018: Box015
+    2300020: Box017
+    2300022: Tree_A_01
+    2300024: Tree_A_02
+    2300026: Tree_A_03
+    2300028: Tree_A_04
+    2300030: Tree_A_05
+    2300032: Tree_B_01
+    2300034: Tree_B_02
+    2300036: Tree_B_03
+    2300038: Tree_B_04
+    2300040: Tree_B_05
+    2300042: Tree_C_01
+    2300044: Tree_C_02
+    2300046: Tree_C_03
+    2300048: Tree_C_04
+    2300050: Tree_C_05
+    3300000: BackLane003
+    3300002: BackLane004
+    3300004: BackLane005
+    3300006: BackLane02
+    3300008: Box007
+    3300010: Box009
+    3300012: Box010
+    3300014: Box013
+    3300016: Box014
+    3300018: Box015
+    3300020: Box017
+    3300022: Tree_A_01
+    3300024: Tree_A_02
+    3300026: Tree_A_03
+    3300028: Tree_A_04
+    3300030: Tree_A_05
+    3300032: Tree_B_01
+    3300034: Tree_B_02
+    3300036: Tree_B_03
+    3300038: Tree_B_04
+    3300040: Tree_B_05
+    3300042: Tree_C_01
+    3300044: Tree_C_02
+    3300046: Tree_C_03
+    3300048: Tree_C_04
+    3300050: Tree_C_05
+    4300000: Box007
+    4300002: Box010
+    4300004: Box009
+    4300006: BackLane003
+    4300008: Box015
+    4300010: BackLane02
+    4300012: Box014
+    4300014: BackLane005
+    4300016: Box013
+    4300018: BackLane004
+    4300020: Box017
+    4300022: Tree_A_01
+    4300024: Tree_A_02
+    4300026: Tree_A_04
+    4300028: Tree_A_03
+    4300030: Tree_A_05
+    4300032: Tree_B_01
+    4300034: Tree_B_05
+    4300036: Tree_B_04
+    4300038: Tree_B_02
+    4300040: Tree_B_03
+    4300042: Tree_C_01
+    4300044: Tree_C_04
+    4300046: Tree_C_03
+    4300048: Tree_C_02
+    4300050: Tree_C_05
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/TitleScene.unity
     guid: 43f594969f6e0cd46a08306bf5cf46be
   - enabled: 1
+    path: Assets/RurleScene.unity
+    guid: c50fbdd0999e70847b5f92820e000215
+  - enabled: 1
     path: Assets/MainScene.unity
     guid: 8c5f7872f8612b8429f0749e63d33d14
   - enabled: 1
-    path: Assets/RurleScene.unity
-    guid: c50fbdd0999e70847b5f92820e000215
+    path: Assets/GameClear.unity
+    guid: d418cbdcf23d7694ea3546800fbe7605
+  - enabled: 1
+    path: Assets/GameOver.unity
+    guid: a1315813d9c505d4f8efacea1fbaf571
   m_configObjects: {}

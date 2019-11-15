@@ -12,7 +12,7 @@ public class Lope : MonoBehaviour
     {
         Debug.Log("adjkahgkjdshgkhsad");
         //! CloneInstance
-        GameObject t = Instantiate(LopePrefab, LopeData.spawnPoints[0], LopeData.q) as GameObject;
+        GameObject t = Instantiate(LopePrefab, LopeData.spawnPoints[0], LopeData.q2) as GameObject;
 
         //! animation
         iTween.MoveBy(t, iTween.Hash("y", LopeData.OInitAnim[0].y, "time", 1f));

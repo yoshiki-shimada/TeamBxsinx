@@ -19,4 +19,7 @@ public class ObjectsData : ScriptableObject
     public Vector3[] OMoveAnim;
 
     public Quaternion q = Quaternion.Euler(0, 90, 0);
+
+    public Quaternion q2 = Quaternion.Euler(0, 180, 0);
+
 }
