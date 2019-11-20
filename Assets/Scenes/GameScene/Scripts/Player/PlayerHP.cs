@@ -8,6 +8,7 @@ public class PlayerHP : MonoBehaviour
     [SerializeField] Material Blackmaterial;
 
     Material[] copymat = new Material[3];
+    int damag;
     //[SerializeField] Player player;
 
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class PlayerHP : MonoBehaviour
         {
             HPmaterials[i] = child.GetChild(0).GetComponent<Renderer>();
             HPmaterials[i].material.EnableKeyword("_EMISSION");
-            Debug.Log(HPmaterials[i].name);
+            //Debug.Log(HPmaterials[i].name);
             i++;
         }
     }
@@ -31,31 +32,29 @@ public class PlayerHP : MonoBehaviour
 
     public void Off(int damage)
     {
-        copymat[damage] = HPmaterials[damage].material;
-        HPmaterials[damage].material = Blackmaterial;
-
-        /*iTween.ValueTo(gameObject, iTween.Hash(
-            "from", 2.2f,
-            "to", -10f,
-            "time", 2f,
+        damag = damage;
+        iTween.ValueTo(gameObject, iTween.Hash(
+            "from", 1.5f,
+            "to", -1f,
+            "time", 1f,
             "onupdate", "SetIntensity",
-            "onupdateparams",damage,
+            //"onupdateparams",damage,
             "onupdatetarget", gameObject,
             "oncomplete", "SetBlackMaterial",
             "oncompleteparams",damage,
-            "oncompletetraget", gameObject));*/
+            "oncompletetraget", gameObject));
     }
-   /* void SetIntensity(float vale,int damage)
+    void SetIntensity(float vale)
     {
 
-        HPmaterials[damage].SetColor("_EmissionColor",
-            HPmaterials[damage].GetColor("_Emission") * vale);
+        HPmaterials[damag].material.SetColor("_EmissionColor",
+            HPmaterials[damag].material.GetColor("_EmissionColor") * vale);
     }
     void SetBlackMaterial(int damage)
     {
-        copymat[damage] = HPmaterials[damage];
-        HPmaterials[damage] = Blackmaterial;
+        copymat[damage] = HPmaterials[damage].material;
+        HPmaterials[damage].material = Blackmaterial;
         copymat[damage].SetColor("_EmissionColor",
-            copymat[damage].GetColor("_Emission") * 2.2f);
-    }*/
+            copymat[damage].GetColor("_EmissionColor") * 1f);
+    }
 }
