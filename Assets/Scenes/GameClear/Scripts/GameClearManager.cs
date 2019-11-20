@@ -7,11 +7,9 @@ enum ClearPhase : short
 {
     CLEARPHASE_INIT = 0x00,
     CLEARPHASE_FADEIN = 0x01,
-    CLEARPHASE_RUN1 = 0x02,
-    CLEARPHASE_RUN2 = 0x03,
-    CLEARPHASE_RUN3 = 0x04,
-    CLEARPHASE_FADEOUT = 0x05,
-    CLEARPHASE_DONE = 0x06
+    CLEARPHASE_RUN = 0x02,
+    CLEARPHASE_FADEOUT = 0x03,
+    CLEARPHASE_DONE = 0x04
 }
 
 public class GameClearManager : MonoBehaviour
@@ -33,16 +31,17 @@ public class GameClearManager : MonoBehaviour
     GameObject canvas;
 
     GameObject Image;
+    GameObject FrontImage;
     int i;
     bool bImageFlag;
 
     // Start is called before the first frame update
     void Start()
     {
-        Image = (GameObject)Instantiate(Imeeeeji[0]);
+        FrontImage = (GameObject)Instantiate(Imeeeeji[0]);
         i = 0;
-        ImageChange();
-        bImageFlag = true;
+        //ImageChange();
+        bImageFlag = false;
 
         //! フェードオブジェクト
         if (m_FadeObject)
@@ -67,39 +66,26 @@ public class GameClearManager : MonoBehaviour
 
                 bFlag = m_Fade.isFadeIn(m_fFadeSpeed);
                 if (bFlag)
-                    m_ePhase = ClearPhase.CLEARPHASE_RUN1;
+                    m_ePhase = ClearPhase.CLEARPHASE_RUN;
                 break;
-            case ClearPhase.CLEARPHASE_RUN1:
+            case ClearPhase.CLEARPHASE_RUN:
 
-                m_ePhase = ClearPhase.CLEARPHASE_RUN2;
-                break;
-            case ClearPhase.CLEARPHASE_RUN2:
-
-                if (bImageFlag)
-                {
-                    i++;
-                    ImageChange();
-                    bImageFlag = false;
-                }
                 if (Input.GetButtonDown("GamePad1_buttonB") && !bImageFlag)
                 {
-                    m_ePhase = ClearPhase.CLEARPHASE_RUN3;
                     bImageFlag = true;
                 }
-                break;
-            case ClearPhase.CLEARPHASE_RUN3:
-
                 if (bImageFlag)
                 {
+                    //FrontImage = Image;
                     i++;
                     ImageChange();
                     bImageFlag = false;
+                    iTween.MoveAdd(FrontImage, iTween.Hash("x", -1920f, "time", 10.0f));
                 }
-                if (Input.GetButtonDown("GamePad1_buttonB") && !bImageFlag)
-                {
+                
+                if (i >= Imeeeeji.Length)
                     m_ePhase = ClearPhase.CLEARPHASE_FADEOUT;
-                    bImageFlag = true;
-                }
+
                 break;
             case ClearPhase.CLEARPHASE_FADEOUT:
 
@@ -119,6 +105,8 @@ public class GameClearManager : MonoBehaviour
         Debug.Log("ahfeh;gaed");
         Image = (GameObject)Instantiate(Imeeeeji[i]);
         Image.transform.SetParent(canvas.transform, false);
+        FrontImage = (GameObject)Instantiate(Imeeeeji[i - 1]);
+        FrontImage.transform.SetParent(canvas.transform, false);
         //yield return new WaitForSeconds(10f);
     }
 }

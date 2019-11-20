@@ -1,20 +1,14 @@
 fileFormatVersion: 2
-guid: c428293acf957d946bf21bfc3761f6a1
+guid: 3e9150dae1f7f12439314efc1b29f910
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Box009
-    100002: //RootNode
-    400000: Box009
-    400002: //RootNode
-    2100000: 'Material #7'
-    2100002: No Name
-    2300000: Box009
-    2300002: //RootNode
-    3300000: Box009
-    3300002: //RootNode
-    4300000: Box008
-    4300002: Box009
+    100000: //RootNode
+    400000: //RootNode
+    2100000: 'Material #12'
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Sphere003
   externalObjects: {}
   materials:
     importMaterials: 1

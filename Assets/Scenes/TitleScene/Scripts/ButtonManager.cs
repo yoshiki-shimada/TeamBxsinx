@@ -1,21 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ButtonManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject FirstSelect;
+
     void Start()
     {
-        // 自分を選択状態にする
-        Selectable sel = GetComponent<Selectable>();
-        sel.Select();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        EventSystem.current.SetSelectedGameObject(FirstSelect);
     }
 }
