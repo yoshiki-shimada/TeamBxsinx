@@ -78,7 +78,7 @@ public class LightManager : MonoBehaviour
         else if(light_on==ActiveLight.None)
         {
             light_s[(int)playernum].ChangeLight(LocalPosY[0], gameObject);
-            StartCoroutine(ChangeLight_End(playernum,0.1f));
+            StartCoroutine(ChangeLight_End(playernum,0.2f));
         }
         else
         {

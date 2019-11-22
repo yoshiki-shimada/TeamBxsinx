@@ -38,35 +38,45 @@ public class ShadowRange : MonoBehaviour
             collider.transform.localPosition.y >= -1.5f)
         {
             NowMode = ShadowMode.Plane;
-            if (PrevMode == ShadowMode.Nothing)
-            {
-                ChangeShadowPhase(0.7f, 0.4f,plane.gameObject);
-            }else if (PrevMode == ShadowMode.Solid)
-            {
-                ChangeShadowPhase(0.7f, 0.3f, plane.gameObject);
-                ChangeShadowPhase(0f, 0.3f, collider.gameObject);
-                StartCoroutine(Shadow_enable(false));
-            }
-                
-                
+                                
             if (Solid.CheckSolidRange(collider.transform.position))
             {
                 NowMode = ShadowMode.Solid;
-                if (PrevMode == ShadowMode.Plane)
+                if (PrevMode == ShadowMode.Plane||
+                    PrevMode == ShadowMode.Nothing)
                 {
-                    ChangeShadowPhase(0.7f, 0.3f, collider.gameObject);
-                    ChangeShadowPhase(0f, 0.3f, collider.gameObject);
+                    ChangeShadowPhase(0.7f, 0.06f, collider.gameObject);
+                    ChangeShadowPhase(0f, 0.06f, plane.gameObject);
                     StartCoroutine(Shadow_enable(true));
+                    //Debug.Log("SolidRangeIn");
                 }
 
             }
-                
+            if (NowMode == ShadowMode.Plane)
+            {
+                if (PrevMode == ShadowMode.Nothing)
+                {
+                    ChangeShadowPhase(0.7f, 0.4f, plane.gameObject);
+                }
+                else if (PrevMode == ShadowMode.Solid)
+                {
+                    ChangeShadowPhase(0f, 0.06f, collider.gameObject);
+                    ChangeShadowPhase(0.7f, 0.06f, plane.gameObject);
+                    StartCoroutine(Shadow_enable(false));
+                    //Debug.Log("SolidRangeOut");
+                }
+            }
         }
         else
         {
             NowMode = ShadowMode.Nothing;
             if (PrevMode == ShadowMode.Plane) {
                 ChangeShadowPhase(0f, 0.4f,plane.gameObject);
+            }else if (PrevMode == ShadowMode.Solid)
+            {
+                ChangeShadowPhase(0f, 0.06f, collider.gameObject);
+                ChangeShadowPhase(0f, 0.06f, plane.gameObject);
+                StartCoroutine(Shadow_enable(false));
             }
               
         }
@@ -94,7 +104,7 @@ public class ShadowRange : MonoBehaviour
 
     IEnumerator Shadow_enable(bool enable)
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.06f);
         collider.enabled = enable;
     }
 
