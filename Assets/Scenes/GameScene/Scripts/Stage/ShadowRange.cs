@@ -112,6 +112,6 @@ public class ShadowRange : MonoBehaviour
     {
         Gizmos.DrawWireCube(transform.position,
             new Vector3(shadowRange * 2f * transform.localScale.x
-            , 1.56f, 7.3f));
+            , 1.7f, 7.3f));
     }
 }
