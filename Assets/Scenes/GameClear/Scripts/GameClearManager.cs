@@ -32,7 +32,7 @@ public class GameClearManager : MonoBehaviour
 
     GameObject Image;
     GameObject FrontImage;
-    int i;
+    int i,m;
     bool bImageFlag;
 
     // Start is called before the first frame update
@@ -40,6 +40,7 @@ public class GameClearManager : MonoBehaviour
     {
         FrontImage = (GameObject)Instantiate(Imeeeeji[0]);
         i = 0;
+        m = Imeeeeji.Length;
         //ImageChange();
         bImageFlag = false;
 
@@ -78,17 +79,20 @@ public class GameClearManager : MonoBehaviour
                 {
                     //FrontImage = Image;
                     i++;
+                    if (i > m)
+                    {
+                        m_ePhase = ClearPhase.CLEARPHASE_FADEOUT;
+                        break;
+                    }
                     ImageChange();
                     bImageFlag = false;
                     iTween.MoveAdd(FrontImage, iTween.Hash("x", -1920f, "time", 10.0f));
                 }
-                
-                if (i >= Imeeeeji.Length)
-                    m_ePhase = ClearPhase.CLEARPHASE_FADEOUT;
-
+            
                 break;
             case ClearPhase.CLEARPHASE_FADEOUT:
 
+                m_FadeObject.GetComponent<RectTransform>().SetAsLastSibling();
                 bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
                 if (bFlag)
                     m_ePhase = ClearPhase.CLEARPHASE_DONE;
