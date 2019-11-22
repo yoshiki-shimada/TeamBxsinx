@@ -7,14 +7,16 @@ public class Pause : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Input.GetButtonDown("GamePad1_Buttonab"){
-            if ()
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonDown("GamePad1_ButtonB")){
+            Canvas canvas = GameObject.Find("Canvasitem").GetComponent<Canvas>();
+            canvas.enabled = !canvas.enabled;
+        }
     }
+
 }
