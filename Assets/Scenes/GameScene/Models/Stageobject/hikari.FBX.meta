@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3e9150dae1f7f12439314efc1b29f910
+guid: feabceb054593604f952ee71fb3b4e5b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -8,7 +8,7 @@ ModelImporter:
     2100000: 'Material #12'
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Sphere003
+    4300000: "\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8004"
   externalObjects: {}
   materials:
     importMaterials: 1
