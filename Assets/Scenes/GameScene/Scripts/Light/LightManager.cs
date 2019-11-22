@@ -14,6 +14,7 @@ public class LightManager : MonoBehaviour
     private Rigidbody[] ShadowObjects; //影のオブジェクト
 
     [SerializeField] private Light_Shadow[] light_s;
+    [SerializeField] private GameObject[] Yui;
     ActiveLight light_on;    
     private bool[] lightFlag=new bool[2];
     //[SerializeField]
@@ -102,7 +103,22 @@ public class LightManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         light_on = nextLight;
         if (light_on == ActiveLight.None)
+        {
             NoneShadow();
+            Yui[0].SetActive(false);
+            Yui[1].SetActive(false);
+        }
+        else if (light_on == ActiveLight.Front)
+        {
+            Yui[0].SetActive(true);
+            Yui[1].SetActive(false);
+        }
+        else
+        {
+            Yui[0].SetActive(false);
+            Yui[1].SetActive(true);
+        }
+            
     }
 
     void NoneShadow()
