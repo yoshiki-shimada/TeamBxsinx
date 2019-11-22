@@ -9,17 +9,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 3.0f;        //! 移動速度
     [SerializeField] private float jampSpeed = 18.0f;        //! ジャンプの高さ
     [SerializeField] private int m_iDamage;                 //! 体力
-    public int damage
-    {
-        get { return m_iDamage; }
-        set { m_iDamage = value; }
-    }
+    [SerializeField] private ActiveLight Playernum;                 //! Playerの番号
+
     public bool m_bDethFlag;
     private bool m_bInvincible;
     private bool m_bJumpIn;
     private bool m_bIsJump;
     
     private float hori;
+    private float lightTime;
 
     private bool wallcheck;
 
@@ -29,6 +27,7 @@ public class Player : MonoBehaviour
     [SerializeField] private CapsuleCollider CapCol;//! このオブジェクトについているTriggerでないもの
 
     [SerializeField] private LightManager lightManager;　//! LightManagerについているもの
+    [SerializeField] private PlayerHP HP;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +59,6 @@ public class Player : MonoBehaviour
     }
     public void UpdateP()
     {
-        if (m_bIsJump)
         {
             RaycastHit hit;
             if (Physics.SphereCast(this.transform.position + CapCol.center,
@@ -70,14 +68,14 @@ public class Player : MonoBehaviour
                 CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.6f,
                Physics.AllLayers))
             {
-                Debug.Log("IsCast" + hit.distance);
-                Debug.Log(CapCol.center);
+                //Debug.Log("IsCast" + hit.distance);
+                //Debug.Log(CapCol.center);
                 //Debug.Log(hit.point);
 
                 //if(hit.distance<=CapCol.height*0.5f)
                 m_bIsJump = false;
             }
-            // else { Debug.Log("castFailed"); }
+            else { m_bIsJump = true; }
         }
 
         if (!m_bInvincible && !m_bDethFlag)
@@ -97,15 +95,14 @@ public class Player : MonoBehaviour
             if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump)
             {
                 m_bJumpIn = true;
-                // rb.velocity = new Vector3(0, jampSpeed, 0);
             }
 
             if (Input.GetButtonDown("GamePad1_buttonX") && !m_bIsJump)
             {
-                lightManager.ChageLight();
+                lightManager.ChageLight(Playernum);
             }
+            
         }
-
 
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -115,12 +112,13 @@ public class Player : MonoBehaviour
                 Vector3.down,
                 out hit,
                 10,
-               Physics.AllLayers))
+                Physics.AllLayers))
             {
                 Debug.Log("IsCast" + hit.distance);
-                Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.5f);
+                Debug.Log(hit.point);
+                //Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.5f);
             }
-            
+            damage(1f);
         }
     }
 
@@ -170,17 +168,18 @@ public class Player : MonoBehaviour
         {
             if (!m_bInvincible)
             {
-                m_iDamage++;
-                Invincible(1f);
+                damage(1f);
             }
         }
     }
-
-    public void Invincible(float time)
+    public void damage(float time)
     {
+        m_iDamage++;
         m_bInvincible = true;
         Invoke("InvincibleEnd", time);
+        HP.Off(m_iDamage-1);
     }
+
     void InvincibleEnd()
     {
         m_bInvincible = false;
@@ -188,6 +187,8 @@ public class Player : MonoBehaviour
 
     bool CrushPlayer()
     {
+        if (lightManager.changelight)
+            return false;
         float posplus = CapCol.height * 0.5f - CapCol.radius;
         Vector3 pos = transform.position + CapCol.center;
         Vector3 pos2 = new Vector3(pos.x, pos.y + posplus - 0.1f, pos.z);

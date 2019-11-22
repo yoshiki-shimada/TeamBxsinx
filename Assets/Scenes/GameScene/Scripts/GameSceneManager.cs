@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 enum GamePhase : short
 {
@@ -28,9 +29,7 @@ public class GameSceneManager : MonoBehaviour
 
     int nPageCount;
 
-    //ObjectInstantiate m_Instantiate;
-    GameObject Tree1;
-    GameObject Tree2;
+    public GameObject Objectugokuze;
 
     // Start is called before the first frame update
     void Start()
@@ -38,8 +37,6 @@ public class GameSceneManager : MonoBehaviour
         m_fFadeSpeed = 0.005f;
         m_bStageFlag = false;
         nPageCount = 0;
-        Tree1 = GameObject.Find("Tree1");
-        Tree2 = GameObject.Find("Tree2");
 
         m_ePhase = GamePhase.GAMEPHASE_INIT;
     }
@@ -59,18 +56,22 @@ public class GameSceneManager : MonoBehaviour
                 if (nPageCount == 0)
                 {
                     nPageCount++;
-                    Tree1.GetComponent<Tree1>().Spawn();
-                    Tree2.GetComponent<Tree2>().Spawn();
-                    //Destroy(Tree1);
+                    Objectugokuze.GetComponent<MoveObjects>().Stage1();
+                    //Destroy(Maruo);
                 }
-                if (nPageCount == 2)
+                if (m_bStageFlag)
+                {
                     m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
+                    Debug.Log("やっぱり俺最強");
+                }
                 break;
             case GamePhase.GAMEPHASE_FADEOUT:
+                Debug.Log("やっぱり俺最強");
                 m_ePhase = GamePhase.GAMEPHASE_DONE;
                 break;
             case GamePhase.GAMEPHASE_DONE:
 
+                SceneManager.LoadScene("GameClear");
                 break;
         }
     }

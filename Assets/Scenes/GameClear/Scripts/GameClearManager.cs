@@ -25,19 +25,26 @@ public class GameClearManager : MonoBehaviour
     FadeManager m_Fade;
 
     [SerializeField]
-    GameObject Imeeeeji;
+    GameObject[] Imeeeeji;
 
     [SerializeField]
     GameObject canvas;
 
     GameObject Image;
+    GameObject FrontImage;
+    int i,m;
+    bool bImageFlag;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("NextImage");
-        Image = (GameObject)Instantiate(Imeeeeji);
+        FrontImage = (GameObject)Instantiate(Imeeeeji[0]);
+        i = 0;
+        m = Imeeeeji.Length;
+        //ImageChange();
+        bImageFlag = false;
 
+        //! フェードオブジェクト
         if (m_FadeObject)
             m_Fade = m_FadeObject.GetComponent<FadeManager>();
         m_fFadeSpeed = 0.005f;
@@ -64,12 +71,28 @@ public class GameClearManager : MonoBehaviour
                 break;
             case ClearPhase.CLEARPHASE_RUN:
 
-                StartCoroutine("NextImage");
-                if (Input.GetButtonDown("GamePad1_buttonB")) ///////&&全てのImageを描画したか
-                    m_ePhase = ClearPhase.CLEARPHASE_FADEOUT;
+                if (Input.GetButtonDown("GamePad1_buttonB") && !bImageFlag)
+                {
+                    bImageFlag = true;
+                }
+                if (bImageFlag)
+                {
+                    //FrontImage = Image;
+                    i++;
+                    if (i > m)
+                    {
+                        m_ePhase = ClearPhase.CLEARPHASE_FADEOUT;
+                        break;
+                    }
+                    ImageChange();
+                    bImageFlag = false;
+                    iTween.MoveAdd(FrontImage, iTween.Hash("x", -1920f, "time", 10.0f));
+                }
+            
                 break;
             case ClearPhase.CLEARPHASE_FADEOUT:
 
+                m_FadeObject.GetComponent<RectTransform>().SetAsLastSibling();
                 bFlag = m_Fade.isFadeOut(m_fFadeSpeed);
                 if (bFlag)
                     m_ePhase = ClearPhase.CLEARPHASE_DONE;
@@ -81,10 +104,13 @@ public class GameClearManager : MonoBehaviour
         }
     }
 
-    IEnumerator NextImage()
+    private void ImageChange()
     {
         Debug.Log("ahfeh;gaed");
+        Image = (GameObject)Instantiate(Imeeeeji[i]);
         Image.transform.SetParent(canvas.transform, false);
-        yield return new WaitForSeconds(100f);
+        FrontImage = (GameObject)Instantiate(Imeeeeji[i - 1]);
+        FrontImage.transform.SetParent(canvas.transform, false);
+        //yield return new WaitForSeconds(10f);
     }
 }

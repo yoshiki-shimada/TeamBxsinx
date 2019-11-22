@@ -37,7 +37,7 @@ public class TextAction : MonoBehaviour
         Vector3 CharaPos = Chara.transform.position;
         float fDistance = Vector3.Distance(TextPos, CharaPos);
 
-        if (fDistance <= 3.0f)
+        if (fDistance <= 4.0f)
         {
             bFlag = true;
             m_fAlpha = 1.0f;
