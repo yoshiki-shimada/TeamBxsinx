@@ -34,7 +34,7 @@ public class PlayerHP : MonoBehaviour
     {
         damag = damage;
         iTween.ValueTo(gameObject, iTween.Hash(
-            "from", 1.5f,
+            "from", 1.8f,
             "to", -1f,
             "time", 1f,
             "onupdate", "SetIntensity",
