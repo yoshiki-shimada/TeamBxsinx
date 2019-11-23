@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class BGAnimation : MonoBehaviour
 {
-    Animation anim;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        anim = this.gameObject.GetComponent<Animation>();
-        anim.Play();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("animFlag", false);
+    }
 
+    public void MapForest()
+    {
+        anim.SetBool("animFlag", false);
     }
 }
