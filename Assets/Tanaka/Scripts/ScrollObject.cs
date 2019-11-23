@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class ScrollObject : MonoBehaviour
 {
+    public GameObject[] obj;
     public float speedX;
     public float startPosition;
     public float endPosition;
+    public bool pushYFlag;
 
-    private bool pushYFlag;
     private float hori;
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<GameObject>();
+        GetComponent<Transform>();
         pushYFlag = false;
-
     }
-    
+
 
     // Update is called once per frame
     void Update()
@@ -41,12 +43,19 @@ public class ScrollObject : MonoBehaviour
         {
             if (hori < 0)
             {
-                if (transform.position.x >= endPosition)
-                    transform.position -= new Vector3(speedX * Time.deltaTime, 0, 0);
-            }else if (hori > 0)
+                for (int i = 0; i < obj.Length; i++)
+                {
+                    if (obj[i].transform.position.x >= endPosition)
+                        obj[i].transform.position -= new Vector3(speedX * Time.deltaTime, 0, 0);
+                }
+            }
+            else if (hori > 0)
             {
-                if (transform.position.x >= endPosition)
-                    transform.position += new Vector3(speedX * Time.deltaTime, 0, 0);
+                for (int i = 0; i < obj.Length; i++)
+                {
+                    if (obj[i].transform.position.x >= endPosition)
+                        obj[i].transform.position += new Vector3(speedX * Time.deltaTime, 0, 0);
+                }
             }
             ScrollEnd();
         }
@@ -55,16 +64,20 @@ public class ScrollObject : MonoBehaviour
     //オブジェクトが決められた位置まで到達したときの処理
     void ScrollEnd()
     {
-        if (transform.position.x <= endPosition)
-        {
-            //Destroy(this.gameObject);
-            transform.position = new Vector3(startPosition, 0, 0);
-        }
-        else if (transform.position.x >= startPosition)
-        {
-            //Destroy(this.gameObject);
-            transform.position = new Vector3(endPosition, 0, 0);
-        }
 
+        for (int i = 0; i < obj.Length; i++)
+        {
+            Vector3 Pos = obj[i].transform.position;
+            if (obj[i].transform.position.x <= endPosition)
+            {
+                //Destroy(this.gameObject);
+                obj[i].transform.position = new Vector3(startPosition, Pos.y, Pos.z);
+            }
+            else if (obj[i].transform.position.x >= startPosition)
+            {
+                //Destroy(this.gameObject);
+                obj[i].transform.position = new Vector3(endPosition, Pos.y, Pos.z);
+            }
+        }
     }
 }
