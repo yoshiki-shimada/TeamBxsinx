@@ -211,23 +211,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1335194594}
   m_PrefabAsset: {fileID: 0}
---- !u!320 &38945636
-PlayableDirector:
+--- !u!114 &38945636
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38945635}
   m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 0}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings: []
-  m_ExposedReferences:
-    m_References: []
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b40cf081c947bd4891f2d619da750d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &40375978 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: 4cabbec7a4ddbc449b1565e95cdb5c52,
