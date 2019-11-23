@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//-----------------------------------------------
+//センターレーンのオブジェクトを動かす
+//-----------------------------------------------
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
