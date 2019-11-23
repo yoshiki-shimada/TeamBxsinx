@@ -25,12 +25,14 @@ public class ScrollObject : MonoBehaviour
         Move();
     }
 
+    //”Y"ボタン操作
     void buttonflag()
     {
         if (Input.GetButtonDown("GamePad1_buttonY") && !pushYFlag) { pushYFlag = true; }
         else if (Input.GetButtonDown("GamePad1_buttonY") && pushYFlag) { pushYFlag = false; }
     }
 
+    //アタッチしたオブジェクトの移動操作
     void Move()
     {
         hori = Input.GetAxisRaw("GamePad1_LeftStick_H");
@@ -50,6 +52,7 @@ public class ScrollObject : MonoBehaviour
         }
     }
 
+    //オブジェクトが決められた位置まで到達したときの処理
     void ScrollEnd()
     {
         if (transform.position.x <= endPosition)
