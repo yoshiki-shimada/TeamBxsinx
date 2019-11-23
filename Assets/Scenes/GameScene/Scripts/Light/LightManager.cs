@@ -50,7 +50,7 @@ public class LightManager : MonoBehaviour
     public void GetCenterObj()
     {
         GameObject[] Objects = GameObject.FindGameObjectsWithTag("CenterObject");
-
+        Yui[1].SetActive(false);
         //  Debug.Log(CenterObjects[0].name);
         CenterObjects = new Transform[Objects.Length];
         ShadowObjects = new Rigidbody[Objects.Length];
@@ -108,12 +108,13 @@ public class LightManager : MonoBehaviour
             Yui[0].SetActive(false);
             Yui[1].SetActive(false);
         }
-        else if (light_on == ActiveLight.Front)
+
+        if (light_on == ActiveLight.Front)
         {
             Yui[0].SetActive(true);
             Yui[1].SetActive(false);
         }
-        else
+        else if(light_on == ActiveLight.Back)
         {
             Yui[0].SetActive(false);
             Yui[1].SetActive(true);
