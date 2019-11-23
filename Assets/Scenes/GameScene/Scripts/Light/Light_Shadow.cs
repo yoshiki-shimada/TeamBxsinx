@@ -13,10 +13,6 @@ public class Light_Shadow : MonoBehaviour
     {
         rot = transform.rotation.eulerAngles;
     }
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void LateUpdate()
@@ -52,7 +48,7 @@ public class Light_Shadow : MonoBehaviour
     {
         iTween.MoveTo(gameObject, iTween.Hash(
             "y", distination,
-            "time", 1.6f,
+            "time", 1.8f,
             "easeType", iTween.EaseType.easeInOutQuint,
             "isLocal", true,
             "oncomplete", "ChangeLight_flag",
@@ -60,6 +56,5 @@ public class Light_Shadow : MonoBehaviour
             ));
 
     }
-
 
 }

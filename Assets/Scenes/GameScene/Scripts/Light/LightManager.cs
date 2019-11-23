@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ActiveLight : byte{
+    Front,
+    Back,
+    None,
+};
+
 public class LightManager : MonoBehaviour
 {
     private Transform[] CenterObjects; //真ん中のオブジェクト
     private Rigidbody[] ShadowObjects; //影のオブジェクト
 
     [SerializeField] private Light_Shadow[] light_s;
-    private int lightIndex;
+    [SerializeField] private GameObject[] Yui;
+    ActiveLight light_on;    
+    private bool[] lightFlag=new bool[2];
     //[SerializeField]
     private float[] LocalPosY= new float[2];
     private bool changeLight;
@@ -20,25 +28,22 @@ public class LightManager : MonoBehaviour
     void Start()
     {
         GetCenterObj();
-        lightIndex = 0;
+        light_on = ActiveLight.Front;
+        lightFlag[0] = true;
+        lightFlag[1] = false;
+
         changeLight = false;
         LocalPosY[0] = light_s[0].transform.localPosition.y;
         LocalPosY[1] = light_s[1].transform.localPosition.y;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
 
     private void FixedUpdate()
     {
-       // if (!changeLight)
-        {
-                light_s[lightIndex].CreateShadow(CenterObjects, ShadowObjects);
-            
-        }
+        if(light_on!=ActiveLight.None)
+            light_s[(int)light_on].CreateShadow(CenterObjects, ShadowObjects);
+        //else
+
     }
 
     //真ん中のオブジェクトと影のオブジェクト取得
@@ -57,32 +62,73 @@ public class LightManager : MonoBehaviour
             Debug.Log(ShadowObjects[i].name);
             i++;
         }
-        i = 0;
+        
     }
     
-    public void ChageLight()
+    public void ChageLight(ActiveLight playernum)
     {
         if (changeLight)
             return;
         changeLight = true;
-        
-        for(int i = 0; i < light_s.Length; i++)
+
+        if (light_on == playernum)
         {
-            if (i == lightIndex)
+            light_s[(int)playernum].ChangeLight(LocalPosY[1], gameObject);
+            StartCoroutine(ChangeLight_End(ActiveLight.None,1.2f));
+        }
+        else if(light_on==ActiveLight.None)
+        {
+            light_s[(int)playernum].ChangeLight(LocalPosY[0], gameObject);
+            StartCoroutine(ChangeLight_End(playernum,0.2f));
+        }
+        else
+        {
+            for (int i = 0; i < light_s.Length; i++)
             {
-                light_s[i].ChangeLight(LocalPosY[1],gameObject);
-                Invoke("ChangeLight_End", 0.9f);
+                if (i == (int)light_on)
+                {
+                    light_s[i].ChangeLight(LocalPosY[1], gameObject);
+                    
+                    StartCoroutine(ChangeLight_End((ActiveLight)((int)(light_on + 1) % 2),
+                        0.9f));
+                }
+                else
+                    light_s[i].ChangeLight(LocalPosY[0], gameObject);
             }
-            else
-            {
-                light_s[i].ChangeLight(LocalPosY[0],gameObject);
-            }
+
         }
     }
-    void ChangeLight_End()
+    IEnumerator ChangeLight_End(ActiveLight nextLight,float time)
     {
-        lightIndex =(1 + lightIndex) % 2;
+        yield return new WaitForSeconds(time);
+        light_on = nextLight;
+        if (light_on == ActiveLight.None)
+        {
+            NoneShadow();
+            Yui[0].SetActive(false);
+            Yui[1].SetActive(false);
+        }
+        else if (light_on == ActiveLight.Front)
+        {
+            Yui[0].SetActive(true);
+            Yui[1].SetActive(false);
+        }
+        else
+        {
+            Yui[0].SetActive(false);
+            Yui[1].SetActive(true);
+        }
+            
     }
+
+    void NoneShadow()
+    {
+        foreach (Rigidbody shadow in ShadowObjects)
+        {
+            shadow.transform.localPosition = new Vector3(0, -2, 0);
+        }
+    }
+
     void ChangeLight_flag()
     {
         changeLight = false;

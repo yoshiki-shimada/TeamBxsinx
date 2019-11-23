@@ -352,10 +352,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 1861822805}
-    m_SelectOnRight: {fileID: 1648207469}
+    m_SelectOnUp: {fileID: 1648207469}
+    m_SelectOnDown: {fileID: 1861822805}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
@@ -441,8 +441,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -200}
-  m_SizeDelta: {x: 480, y: 200}
+  m_AnchoredPosition: {x: 0, y: -300}
+  m_SizeDelta: {x: 360, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &725015781
 GameObject:
@@ -545,6 +545,7 @@ GameObject:
   - component: {fileID: 1162452705}
   - component: {fileID: 1162452704}
   - component: {fileID: 1162452703}
+  - component: {fileID: 1162452707}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -635,6 +636,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1162452707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162452702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a87199a6135a6a4ab36f1430cb1ac11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirstSelect: {fileID: 1861822804}
 --- !u!1 &1269045467
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +751,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 480, y: 200}
+  m_SizeDelta: {x: 360, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1532579913
 MonoBehaviour:
@@ -753,6 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1532579914}
   fSpeed: 0.01
+  thisButton: {fileID: 1861822804}
 --- !u!114 &1532579914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -906,8 +921,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: -200}
-  m_SizeDelta: {x: 480, y: 200}
+  m_AnchoredPosition: {x: 0, y: -150}
+  m_SizeDelta: {x: 360, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1648207469
 MonoBehaviour:
@@ -923,10 +938,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 469071035}
-    m_SelectOnRight: {fileID: 1861822805}
+    m_SelectOnUp: {fileID: 1861822805}
+    m_SelectOnDown: {fileID: 469071035}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
@@ -1007,7 +1022,6 @@ GameObject:
   - component: {fileID: 1861822808}
   - component: {fileID: 1861822806}
   - component: {fileID: 1861822805}
-  - component: {fileID: 1861822807}
   m_Layer: 5
   m_Name: StateButton
   m_TagString: Untagged
@@ -1029,10 +1043,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 1648207469}
-    m_SelectOnRight: {fileID: 469071035}
+    m_SelectOnUp: {fileID: 469071035}
+    m_SelectOnDown: {fileID: 1648207469}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
@@ -1093,18 +1107,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &1861822807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861822804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a87199a6135a6a4ab36f1430cb1ac11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1861822808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1131,7 +1133,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 480, y: 200}
+  m_SizeDelta: {x: 360, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1916363007
 GameObject:
@@ -1169,7 +1171,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 480, y: 200}
+  m_SizeDelta: {x: 360, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1916363009
 MonoBehaviour:
@@ -1185,6 +1187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1916363010}
   fSpeed: 0.01
+  thisButton: {fileID: 1648207467}
 --- !u!114 &1916363010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1256,7 +1259,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 480, y: 200}
+  m_SizeDelta: {x: 360, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1995037372
 MonoBehaviour:
@@ -1272,6 +1275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: 1995037373}
   fSpeed: 0.01
+  thisButton: {fileID: 469071034}
 --- !u!114 &1995037373
 MonoBehaviour:
   m_ObjectHideFlags: 0

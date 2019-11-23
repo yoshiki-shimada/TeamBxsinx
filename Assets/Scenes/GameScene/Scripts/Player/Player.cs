@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 3.0f;        //! 移動速度
     [SerializeField] private float jampSpeed = 18.0f;        //! ジャンプの高さ
     [SerializeField] private int m_iDamage;                 //! 体力
+    [SerializeField] private ActiveLight Playernum;                 //! Playerの番号
 
     public bool m_bDethFlag;
     private bool m_bInvincible;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     private bool m_bIsJump;
     
     private float hori;
+    private float lightTime;
 
     private bool wallcheck;
 
@@ -66,8 +68,8 @@ public class Player : MonoBehaviour
                 CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.6f,
                Physics.AllLayers))
             {
-                Debug.Log("IsCast" + hit.distance);
-                Debug.Log(CapCol.center);
+                //Debug.Log("IsCast" + hit.distance);
+                //Debug.Log(CapCol.center);
                 //Debug.Log(hit.point);
 
                 //if(hit.distance<=CapCol.height*0.5f)
@@ -93,15 +95,14 @@ public class Player : MonoBehaviour
             if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump)
             {
                 m_bJumpIn = true;
-                // rb.velocity = new Vector3(0, jampSpeed, 0);
             }
 
             if (Input.GetButtonDown("GamePad1_buttonX") && !m_bIsJump)
             {
-                lightManager.ChageLight();
+                lightManager.ChageLight(Playernum);
             }
+            
         }
-
 
         if (Input.GetKeyDown(KeyCode.L))
         {
@@ -111,10 +112,11 @@ public class Player : MonoBehaviour
                 Vector3.down,
                 out hit,
                 10,
-               Physics.AllLayers))
+                Physics.AllLayers))
             {
                 Debug.Log("IsCast" + hit.distance);
-                Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.5f);
+                Debug.Log(hit.point);
+                //Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.5f);
             }
             damage(1f);
         }
