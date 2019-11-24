@@ -12,6 +12,7 @@ public class LightManager : MonoBehaviour
 {
     private Transform[] CenterObjects; //真ん中のオブジェクト
     private Rigidbody[] ShadowObjects; //影のオブジェクト
+    public GameObject[] spotLigths;    //spotLigth
 
     [SerializeField] private Light_Shadow[] light_s;
     [SerializeField] private GameObject[] Yui;
@@ -20,6 +21,9 @@ public class LightManager : MonoBehaviour
     //[SerializeField]
     private float[] LocalPosY= new float[2];
     private bool changeLight;
+    //-------------------------------------------
+    bool switchligth; 
+    //-------------------------------------------
     public bool changelight
     {
         get { return changeLight; }
@@ -35,6 +39,12 @@ public class LightManager : MonoBehaviour
         changeLight = false;
         LocalPosY[0] = light_s[0].transform.localPosition.y;
         LocalPosY[1] = light_s[1].transform.localPosition.y;
+
+        //---------------------------------------
+        switchligth = false;
+        //GetComponent<GameObject>();
+        //---------------------------------------
+
     }
 
 
@@ -43,7 +53,7 @@ public class LightManager : MonoBehaviour
         if(light_on!=ActiveLight.None)
             light_s[(int)light_on].CreateShadow(CenterObjects, ShadowObjects);
         //else
-
+        putOnSpotligth();
     }
 
     //真ん中のオブジェクトと影のオブジェクト取得
@@ -107,17 +117,20 @@ public class LightManager : MonoBehaviour
             NoneShadow();
             Yui[0].SetActive(false);
             Yui[1].SetActive(false);
+            switchligth = true;
         }
 
         if (light_on == ActiveLight.Front)
         {
             Yui[0].SetActive(true);
             Yui[1].SetActive(false);
+            switchligth = false;
         }
         else if(light_on == ActiveLight.Back)
         {
             Yui[0].SetActive(false);
             Yui[1].SetActive(true);
+            switchligth = false;
         }
             
     }
@@ -135,4 +148,15 @@ public class LightManager : MonoBehaviour
         changeLight = false;
     }
 
+    void putOnSpotligth()
+    {
+        if (switchligth)
+        {
+            Debug.Log("asdfg");
+            for (int i = 0; i < spotLigths.Length - 1; i++) { spotLigths[i].SetActive(true); }
+        }
+        else {
+            for (int i = 0; i < spotLigths.Length - 1; i++) { spotLigths[i].SetActive(false); }
+        }
+    }
 }
