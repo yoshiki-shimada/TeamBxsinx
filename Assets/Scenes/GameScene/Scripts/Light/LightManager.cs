@@ -53,7 +53,7 @@ public class LightManager : MonoBehaviour
         if(light_on!=ActiveLight.None)
             light_s[(int)light_on].CreateShadow(CenterObjects, ShadowObjects);
         //else
-
+        putOnSpotligth();
     }
 
     //真ん中のオブジェクトと影のオブジェクト取得
@@ -155,7 +155,8 @@ public class LightManager : MonoBehaviour
             Debug.Log("asdfg");
             for (int i = 0; i < spotLigths.Length - 1; i++) { spotLigths[i].SetActive(true); }
         }
-        else {
+        else
+        {
             for (int i = 0; i < spotLigths.Length - 1; i++) { spotLigths[i].SetActive(false); }
         }
     }
