@@ -15,14 +15,14 @@ MonoBehaviour:
   prefabName: StageObject
   numberOfPrefabsToCreate: 0
   spawnPoints:
-  - {x: 10, y: 15, z: 6}
-  - {x: 10, y: 15, z: 0}
-  - {x: 0, y: -15, z: 6}
-  - {x: 0, y: -15, z: 0}
+  - {x: 10, y: -15, z: 6}
+  - {x: 10, y: -15, z: 0}
+  - {x: -10, y: -15, z: 7}
+  - {x: -10, y: -15, z: 0}
   - {x: 56, y: -0.4, z: 6.1}
   OInitAnim:
-  - {x: 0, y: -15, z: 0}
-  - {x: 0, y: 15, z: 0}
+  - {x: 0, y: -14.5, z: 0}
+  - {x: 0, y: 10, z: 0}
   - {x: -25, y: 0, z: 0}
   ODereteAnim: []
   OMoveAnim: []
