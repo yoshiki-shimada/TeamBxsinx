@@ -1192,12 +1192,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2be80dec81bafe942af75e0c9b3472ef, type: 3}
---- !u!1 &634812555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4076826364675010489, guid: 6572c5258d2a4ac47b02a30e214086da,
-    type: 3}
-  m_PrefabInstance: {fileID: 147314309}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &703491774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1905,11 +1899,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec3c3e63c7322c458c0560e93df8a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spotLigths:
+  pointLights:
   - {fileID: 1100857602}
   - {fileID: 1951679294}
   - {fileID: 1805853856}
-  - {fileID: 634812555}
   light_s:
   - {fileID: 583795431}
   - {fileID: 1428577449}

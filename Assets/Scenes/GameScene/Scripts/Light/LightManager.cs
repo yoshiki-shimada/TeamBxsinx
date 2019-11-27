@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ActiveLight : byte{
+public enum ActiveLight : byte
+{
     Front,
     Back,
     None,
@@ -12,17 +13,17 @@ public class LightManager : MonoBehaviour
 {
     private Transform[] CenterObjects; //真ん中のオブジェクト
     private Rigidbody[] ShadowObjects; //影のオブジェクト
-    public GameObject[] spotLigths;    //spotLigth
 
+    [SerializeField] private GameObject[] pointLights;    //spotLigth
     [SerializeField] private Light_Shadow[] light_s;
     [SerializeField] private GameObject[] Yui;
-    ActiveLight light_on;    
-    private bool[] lightFlag=new bool[2];
+    ActiveLight light_on;
+    private bool[] lightFlag = new bool[2];
     //[SerializeField]
-    private float[] LocalPosY= new float[2];
+    private float[] LocalPosY = new float[2];
     private bool changeLight;
     //-------------------------------------------
-    bool switchligth; 
+    bool pointlightOn;
     //-------------------------------------------
     public bool changelight
     {
@@ -41,8 +42,7 @@ public class LightManager : MonoBehaviour
         LocalPosY[1] = light_s[1].transform.localPosition.y;
 
         //---------------------------------------
-        switchligth = false;
-        //GetComponent<GameObject>();
+        pointlightOn = false;
         //---------------------------------------
 
     }
@@ -50,10 +50,10 @@ public class LightManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(light_on!=ActiveLight.None)
+        if (light_on != ActiveLight.None)
             light_s[(int)light_on].CreateShadow(CenterObjects, ShadowObjects);
         //else
-        putOnSpotligth();
+        putOnPointlight();
     }
 
     //真ん中のオブジェクトと影のオブジェクト取得
@@ -72,9 +72,9 @@ public class LightManager : MonoBehaviour
             Debug.Log(ShadowObjects[i].name);
             i++;
         }
-        
+
     }
-    
+
     public void ChageLight(ActiveLight playernum)
     {
         if (changeLight)
@@ -84,12 +84,12 @@ public class LightManager : MonoBehaviour
         if (light_on == playernum)
         {
             light_s[(int)playernum].ChangeLight(LocalPosY[1], gameObject);
-            StartCoroutine(ChangeLight_End(ActiveLight.None,1.2f));
+            StartCoroutine(ChangeLight_End(ActiveLight.None, 1.2f));
         }
-        else if(light_on==ActiveLight.None)
+        else if (light_on == ActiveLight.None)
         {
             light_s[(int)playernum].ChangeLight(LocalPosY[0], gameObject);
-            StartCoroutine(ChangeLight_End(playernum,0.2f));
+            StartCoroutine(ChangeLight_End(playernum, 0.2f));
         }
         else
         {
@@ -98,7 +98,7 @@ public class LightManager : MonoBehaviour
                 if (i == (int)light_on)
                 {
                     light_s[i].ChangeLight(LocalPosY[1], gameObject);
-                    
+
                     StartCoroutine(ChangeLight_End((ActiveLight)((int)(light_on + 1) % 2),
                         0.9f));
                 }
@@ -108,31 +108,28 @@ public class LightManager : MonoBehaviour
 
         }
     }
-    IEnumerator ChangeLight_End(ActiveLight nextLight,float time)
+    IEnumerator ChangeLight_End(ActiveLight nextLight, float time)
     {
         yield return new WaitForSeconds(time);
         light_on = nextLight;
+
         if (light_on == ActiveLight.None)
         {
             NoneShadow();
-            Yui[0].SetActive(false);
-            Yui[1].SetActive(false);
-            switchligth = true;
         }
-
-        if (light_on == ActiveLight.Front)
-        {
-            Yui[0].SetActive(true);
-            Yui[1].SetActive(false);
-            switchligth = false;
-        }
-        else if(light_on == ActiveLight.Back)
-        {
-            Yui[0].SetActive(false);
-            Yui[1].SetActive(true);
-            switchligth = false;
-        }
-            
+        /*               Yui[0].SetActive(false);
+                       Yui[1].SetActive(false);
+                   if (light_on == ActiveLight.Front)
+                   {
+                       Yui[0].SetActive(true);
+                       Yui[1].SetActive(false);
+                   }
+                   else if (light_on == ActiveLight.Back)
+                   {
+                       Yui[0].SetActive(false);
+                       Yui[1].SetActive(true);
+                   }
+        */
     }
 
     void NoneShadow()
@@ -148,16 +145,40 @@ public class LightManager : MonoBehaviour
         changeLight = false;
     }
 
-    void putOnSpotligth()
+    void putOnPointlight()
     {
-        if (switchligth)
+        //flag
+        /*if (light_s[0].transform.localPosition.y <= LocalPosY[0] 
+            || light_s[1].transform.localPosition.y <= LocalPosY[0])
         {
-            Debug.Log("asdfg");
-            for (int i = 0; i < spotLigths.Length - 1; i++) { spotLigths[i].SetActive(true); }
+            pointlightOn = false;
+        }
+        */
+        if (light_s[0].transform.localPosition.y < LocalPosY[1]
+            || light_s[1].transform.localPosition.y < LocalPosY[1])
+        {
+            pointlightOn = false;
+        }
+        //Front,Back  Upside
+        if (light_s[1].transform.localPosition.y >= LocalPosY[1]
+            && light_s[0].transform.localPosition.y >= LocalPosY[1])
+        {
+            pointlightOn = true;
+        }
+        //Front
+        if (light_s[0].transform.localPosition.y > 1.5) { Yui[0].SetActive(false); }
+        else if (light_s[0].transform.localPosition.y <= 1.5) { Yui[0].SetActive(true); }
+        //Back
+        if (light_s[1].transform.localPosition.y > 1.5) { Yui[1].SetActive(false); }
+        else if (light_s[1].transform.localPosition.y <= 1.5) { Yui[1].SetActive(true); }
+        //処理
+        if (pointlightOn)
+        {
+            for (int i = 0; i < pointLights.Length; i++) { pointLights[i].SetActive(true); }
         }
         else
         {
-            for (int i = 0; i < spotLigths.Length - 1; i++) { spotLigths[i].SetActive(false); }
+            for (int i = 0; i < pointLights.Length; i++) { pointLights[i].SetActive(false); }
         }
     }
 }
