@@ -10,18 +10,21 @@ public class MoveObjects : MonoBehaviour
     GameObject OLope;
     GameObject OBackLane;
     GameObject BackLane01;
+    GameObject KANBAN;
 
     private void Start()
     {
         OMaruo = GameObject.Find("Maruo");
         OLope = GameObject.Find("Lope");
         OBackLane = GameObject.Find("BackLane");
+        KANBAN = GameObject.Find("KANBAN");
     }
 
     public void Stage1()
     {
-        OBackLane.GetComponent<BackLane>().Spawn();
+        KANBAN.GetComponent<Kanban>().Move();
 
+        OBackLane.GetComponent<BackLane>().Spawn();
         BackLane01 = GameObject.Find("BackLane01");
         iTween.MoveBy(BackLane01, iTween.Hash("x", 25f, "time", 2f,"delay",2f));
 
