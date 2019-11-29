@@ -159,18 +159,21 @@ public class LightManager : MonoBehaviour
         {
             pointlightOn = false;
         }
+        else { pointlightOn = true; }
         //Front,Back  Upside
-        if (light_s[1].transform.localPosition.y >= LocalPosY[1]
+/*        if (light_s[1].transform.localPosition.y >= LocalPosY[1]
             && light_s[0].transform.localPosition.y >= LocalPosY[1])
         {
             pointlightOn = true;
         }
+*/
         //Front
         if (light_s[0].transform.localPosition.y > 1.5) { Yui[0].SetActive(false); }
         else if (light_s[0].transform.localPosition.y <= 1.5) { Yui[0].SetActive(true); }
         //Back
         if (light_s[1].transform.localPosition.y > 1.5) { Yui[1].SetActive(false); }
         else if (light_s[1].transform.localPosition.y <= 1.5) { Yui[1].SetActive(true); }
+
         //処理
         if (pointlightOn)
         {
