@@ -20,6 +20,9 @@ public class Player : MonoBehaviour
     private float lightTime;
 
     private bool wallcheck;
+    private sbyte walldis = 1;
+
+    Animator animator;
 
     //RaycastHit hit;
 
@@ -37,6 +40,10 @@ public class Player : MonoBehaviour
         m_bDethFlag = false;
         m_bInvincible = false;
         wallcheck = false;
+        animator = GetComponent<Animator>();
+        animator.SetBool("WarkFlag", true);
+        animator.SetBool("ChangeFlag", true);
+        animator.SetBool("JumpFlag", true);
     }
 
     // Update is called once per frame
@@ -62,10 +69,10 @@ public class Player : MonoBehaviour
         {
             RaycastHit hit;
             if (Physics.SphereCast(this.transform.position + CapCol.center,
-                CapCol.radius * 1.3f,
+                CapCol.radius ,
                 Vector3.down,
                 out hit,
-                CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.6f,
+                CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.2f,
                Physics.AllLayers))
             {
                 //Debug.Log("IsCast" + hit.distance);
@@ -81,15 +88,26 @@ public class Player : MonoBehaviour
         if (!m_bInvincible && !m_bDethFlag)
         {
             hori = Input.GetAxisRaw("GamePad1_LeftStick_H");
+
             if (hori < 0)
             {
+                animator.SetBool("WarkFlag", false);
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.AngleAxis(180f, new Vector3(0, 1, 0)), 0.6f);
+                if (wallcheck && walldis == 1)
+                    hori = 0;
             }
             else if(hori > 0)
             {
+                animator.SetBool("WarkFlag", false);
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.AngleAxis(0f, new Vector3(0, 1, 0)), 0.6f);
+                if (wallcheck && walldis == -1)
+                    hori = 0;
+            }
+            else
+            {
+                animator.SetBool("WarkFlag", true);
             }
 
             if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump)
@@ -116,7 +134,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("IsCast" + hit.distance);
                 Debug.Log(hit.point);
-                //Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.5f);
+                Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.2f);
             }
             damage(1f);
         }
@@ -134,7 +152,7 @@ public class Player : MonoBehaviour
             }
         }
         // Playerの移動
-        if ( (hori != 0) && !wallcheck)
+        if ( (hori != 0))
         {
             float x= hori * moveSpeed;
             x = 1000 * (x - rb.velocity.x) * Time.deltaTime;
@@ -148,8 +166,13 @@ public class Player : MonoBehaviour
     {
         if (m_bIsJump)
         {
+            if (0 < transform.position.x - other.ClosestPointOnBounds(transform.position).x)
+                walldis = 1;
+            else
+                walldis = -1;
+
             wallcheck = true;
-              //Debug.Log("TriggerEnter");
+             // Debug.Log("TriggerEnter");
         }
         else
         {
@@ -158,7 +181,7 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-      //  Debug.Log("TriggerExit");
+        //Debug.Log("TriggerExit");
         wallcheck = false;
     }
 
