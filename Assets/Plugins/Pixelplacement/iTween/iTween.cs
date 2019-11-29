@@ -3168,8 +3168,11 @@ public class iTween : MonoBehaviour
 		if(GetComponent<Renderer>()){
 			colors = new Color[GetComponent<Renderer>().materials.Length,3];
 			for (int i = 0; i < GetComponent<Renderer>().materials.Length; i++) {
-				colors[i,0]=GetComponent<Renderer>().materials[i].GetColor(namedcolorvalue.ToString());
-				colors[i,1]=GetComponent<Renderer>().materials[i].GetColor(namedcolorvalue.ToString());
+                if (gameObject.GetComponent<Renderer>().materials[i].HasProperty(namedcolorvalue.ToString()))
+                {
+                    colors[i, 0] = GetComponent<Renderer>().materials[i].GetColor(namedcolorvalue.ToString());
+                    colors[i, 1] = GetComponent<Renderer>().materials[i].GetColor(namedcolorvalue.ToString());
+                }
 			}
 			//colors[0] = colors[1] = renderer.material.color;	
 		}else if(GetComponent<Light>()){
