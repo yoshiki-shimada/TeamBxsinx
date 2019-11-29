@@ -2369,14 +2369,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 100010, guid: ff6760e6fe8c6084eaca02c4e664ad19, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100012, guid: ff6760e6fe8c6084eaca02c4e664ad19, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: ff6760e6fe8c6084eaca02c4e664ad19, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.47
@@ -2420,6 +2412,14 @@ PrefabInstance:
     - target: {fileID: 400004, guid: ff6760e6fe8c6084eaca02c4e664ad19, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: ff6760e6fe8c6084eaca02c4e664ad19, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: ff6760e6fe8c6084eaca02c4e664ad19, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: ff6760e6fe8c6084eaca02c4e664ad19, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3016,6 +3016,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!95 &1454393104
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454393098}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 6d0929f6e30905540abf4d5c0c05569d, type: 3}
+  m_Controller: {fileID: 9100000, guid: 368173dc9c278eb429b675442dad5139, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1520250969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3618,15 +3637,15 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.14
       objectReference: {fileID: 0}
-    - target: {fileID: 8539737651608257286, guid: c485ac1ee771e184fab166b3bf27fb81,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.7
-      objectReference: {fileID: 0}
     - target: {fileID: 8539737651608297256, guid: c485ac1ee771e184fab166b3bf27fb81,
         type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539737651608257286, guid: c485ac1ee771e184fab166b3bf27fb81,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c485ac1ee771e184fab166b3bf27fb81, type: 3}
