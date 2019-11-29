@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     private bool wallcheck;
     private sbyte walldis = 1;
 
+    Animator animator;
+
     //RaycastHit hit;
 
     [SerializeField] private Rigidbody rb;          //! このオブジェクトについているもの
@@ -38,6 +40,10 @@ public class Player : MonoBehaviour
         m_bDethFlag = false;
         m_bInvincible = false;
         wallcheck = false;
+        animator = GetComponent<Animator>();
+        animator.SetBool("WarkFlag", true);
+        animator.SetBool("ChangeFlag", true);
+        animator.SetBool("JumpFlag", true);
     }
 
     // Update is called once per frame
@@ -85,6 +91,7 @@ public class Player : MonoBehaviour
 
             if (hori < 0)
             {
+                animator.SetBool("WarkFlag", false);
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.AngleAxis(180f, new Vector3(0, 1, 0)), 0.6f);
                 if (wallcheck && walldis == 1)
@@ -92,10 +99,15 @@ public class Player : MonoBehaviour
             }
             else if(hori > 0)
             {
+                animator.SetBool("WarkFlag", false);
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.AngleAxis(0f, new Vector3(0, 1, 0)), 0.6f);
                 if (wallcheck && walldis == -1)
                     hori = 0;
+            }
+            else
+            {
+                animator.SetBool("WarkFlag", true);
             }
 
             if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump)
