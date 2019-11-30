@@ -23,7 +23,9 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     float m_fFadeSpeed;
 
-    FadeManager m_fFlag;
+    public GameObject m_FadeObject;
+
+    FadeManager m_fFade;
 
     public bool m_bStageFlag;
 
@@ -34,35 +36,48 @@ public class GameSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_fFadeSpeed = 0.005f;
-        m_bStageFlag = false;
+        if (m_FadeObject)
+            m_fFade = m_FadeObject.GetComponent<FadeManager>();
+        m_bStageFlag = true;
         nPageCount = 0;
 
         m_ePhase = GamePhase.GAMEPHASE_INIT;
     }
 
     // Update is called once per frame
-   public void Update()
+    public void Update()
     {
+        bool bFlag = false;
         switch (m_ePhase)
         {
             case GamePhase.GAMEPHASE_INIT:
                 m_ePhase = GamePhase.GAMEPHASE_FADEIN;
                 break;
             case GamePhase.GAMEPHASE_FADEIN:
-                m_ePhase = GamePhase.GAMEPHASE_STAGE1;
+                bFlag = m_fFade.isFadeIn(m_fFadeSpeed);
+                if (bFlag)
+                {
+                    m_ePhase = GamePhase.GAMEPHASE_STAGE1;
+                    Objectugokuze.GetComponent<MoveObjects>().Stage1();
+                    m_bStageFlag = false;
+                }
                 break;
             case GamePhase.GAMEPHASE_STAGE1:
-                if (nPageCount == 0)
-                {
-                    nPageCount++;
-                    Objectugokuze.GetComponent<MoveObjects>().Stage1();
-                    //Destroy(Maruo);
-                }
+
                 if (m_bStageFlag)
                 {
+                    m_bStageFlag = false;
+                    Objectugokuze.GetComponent<MoveObjects>().Stage1();
+                    m_ePhase = GamePhase.GAMEPHASE_STAGE2;
+                    Objectugokuze.GetComponent<MoveObjects>().Stage2();
+                }
+                break;
+            case GamePhase.GAMEPHASE_STAGE2:
+                if (m_bStageFlag)
+                {
+                    m_bStageFlag = false;
+                    Objectugokuze.GetComponent<MoveObjects>().Stage2();
                     m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
-                    Debug.Log("やっぱり俺最強");
                 }
                 break;
             case GamePhase.GAMEPHASE_FADEOUT:
