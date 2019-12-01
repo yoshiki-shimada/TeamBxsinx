@@ -22,12 +22,12 @@ public class Player : MonoBehaviour
     private bool wallcheck;
     private sbyte walldis = 1;
 
-    Animator animator;
 
     //RaycastHit hit;
 
     [SerializeField] private Rigidbody rb;          //! このオブジェクトについているもの
     [SerializeField] private CapsuleCollider CapCol;//! このオブジェクトについているTriggerでないもの
+    [SerializeField] private Animator animator;
 
     [SerializeField] private LightManager lightManager;　//! LightManagerについているもの
     [SerializeField] private PlayerHP HP;
@@ -40,10 +40,6 @@ public class Player : MonoBehaviour
         m_bDethFlag = false;
         m_bInvincible = false;
         wallcheck = false;
-        animator = GetComponent<Animator>();
-        animator.SetBool("WarkFlag", true);
-        animator.SetBool("ChangeFlag", true);
-        animator.SetBool("JumpFlag", true);
     }
 
     // Update is called once per frame
@@ -55,13 +51,13 @@ public class Player : MonoBehaviour
         }
         if (m_iDamage >= 3)
         {
-            m_bDethFlag = true;
+            //m_bDethFlag = true;
         }
-        if (m_bDethFlag)
+       /* if (m_bDethFlag)
         {
             //ゲームオーバー処理
             transform.position = new Vector3(0, 0, 0);
-        }
+        }*/
 
     }
     public void UpdateP()
@@ -91,7 +87,7 @@ public class Player : MonoBehaviour
 
             if (hori < 0)
             {
-                animator.SetBool("WarkFlag", false);
+                //animator.SetBool("WarkFlag", false);
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.AngleAxis(180f, new Vector3(0, 1, 0)), 0.6f);
                 if (wallcheck && walldis == 1)
@@ -99,16 +95,18 @@ public class Player : MonoBehaviour
             }
             else if(hori > 0)
             {
-                animator.SetBool("WarkFlag", false);
+               // animator.SetBool("WarkFlag", false);
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.AngleAxis(0f, new Vector3(0, 1, 0)), 0.6f);
                 if (wallcheck && walldis == -1)
                     hori = 0;
             }
+            if(hori==0)
+                animator.SetBool("walk", false);
             else
-            {
-                animator.SetBool("WarkFlag", true);
-            }
+                animator.SetBool("walk", true);
+
+            
 
             if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump)
             {
@@ -137,6 +135,7 @@ public class Player : MonoBehaviour
                 Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.2f);
             }
             damage(1f);
+            animator.SetBool("walk", false);
         }
     }
 
@@ -152,13 +151,15 @@ public class Player : MonoBehaviour
             }
         }
         // Playerの移動
-        if ( (hori != 0))
+        if ((hori != 0))
         {
-            float x= hori * moveSpeed;
+            float x = hori * moveSpeed;
             x = 1000 * (x - rb.velocity.x) * Time.deltaTime;
             // Debug.Log(x);
-            rb.AddForce(x,0,0);
+            rb.AddForce(x, 0, 0);
         }
+       // else
+         
 
     }
 

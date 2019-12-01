@@ -12,13 +12,7 @@ public class BGAnimation : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        anim.SetBool("animFlag", false);
-    }
-
-    public void MapForest()
+    public void ForestBG()
     {
         anim.SetBool("animFlag", false);
     }

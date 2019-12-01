@@ -21,8 +21,7 @@ MonoBehaviour:
   OInitAnim:
   - {x: 0, y: -10, z: 0}
   ODereteAnim:
-  - {x: 0, y: 3, z: 1}
-  - {x: 0, y: 19.5, z: 0}
+  - {x: 0, y: 10, z: 1}
   OMoveAnim: []
   q: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
   q2: {x: 0, y: 1, z: 0, w: -0.00000004371139}

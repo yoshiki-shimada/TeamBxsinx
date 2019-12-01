@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Cinemachine.meta
 guid: ab1f4817831d447439cd8c22d789225b
+========
+guid: cf4a7d72a7e801b429b5a1cf7fc19792
+>>>>>>>> 077a333933b2ac5fcf78546302b7df6c55e484c9:Assets/Cinemachine/Base.meta
+=======
+guid: 3d0e1cf68bc61464ea4aa01be5673b26
+>>>>>>> 077a333933b2ac5fcf78546302b7df6c55e484c9
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
