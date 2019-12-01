@@ -21,7 +21,7 @@ public class BackLane : MonoBehaviour
 
     public void Delete()
     {
-        iTween.MoveBy(t, iTween.Hash("x", LaneData.ODereteAnim[0].x, "time", 2f, "delay", 1f));
+        iTween.MoveBy(t, iTween.Hash("x", LaneData.ODereteAnim[0].x, "time", 2f));
 
         Destroy(t);
     }

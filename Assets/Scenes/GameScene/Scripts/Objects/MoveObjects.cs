@@ -44,7 +44,7 @@ public class MoveObjects : MonoBehaviour
         else {
 
             OBackLane.GetComponent<BackLane>().Delete();
-            iTween.MoveBy(BackLane01, iTween.Hash("x", 0f, "time", 2f, "delay", 2f));
+            iTween.MoveBy(BackLane01, iTween.Hash("x", -25f, "time", 2f, "delay", 2f));
 
         }
     }
