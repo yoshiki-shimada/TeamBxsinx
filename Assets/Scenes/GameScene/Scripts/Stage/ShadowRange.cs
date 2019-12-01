@@ -107,7 +107,7 @@ public class ShadowRange : MonoBehaviour
 
     IEnumerator Shadow_enable(bool enable)
     {
-        yield return new WaitForSeconds(0.06f);
+        yield return new WaitForSeconds(0.1f);
         collider.enabled = enable;
     }
 
