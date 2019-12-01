@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-enum Scene{
+enum Scene
+{
     TEST,
     TITLE,
     RURLE,
@@ -30,26 +31,39 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         DontDestroyOnLoad(soundManager);
 
         sceneName = SceneManager.GetActiveScene().name;//SceneManager.sceneCount;
-        audioSource = GetComponent<AudioSource>();
 
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Stop();
         isBGM = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        string beforeScene = sceneName;
-        string activeScene = SceneManager.GetActiveScene().name;//sceneCount;
+        //string beforeScene = sceneName;
+        //string activeScene = SceneManager.GetActiveScene().name;//sceneCount;
 
-        if (beforeScene == activeScene)
-        {
+        //if (beforeScene == activeScene)
+        //{
             if (!isBGM)
             {
-                  //  Debug.Log(Scene.TEST);
-                    Debug.Log("sound" + activeScene);
+                switch (sceneName)
+                {
+                    case "test": audioSource.clip = title; break;
+                    case "TitleScene": audioSource.clip = title; break;
+                    case "RurleScene": audioSource.clip = title; break;
+                    case "MainScene": audioSource.clip = game; break;
+                    case "Pause": audioSource.clip = title; break;
+                    case "GameOver": audioSource.clip = gameover; break;
+                    case "GameClear": audioSource.clip = gameclear; break;
+                }
+                audioSource.Play();
+                isBGM = true;
+             /*    Debug.Log("sound" + activeScene);
                 if(activeScene=="test")//if (activeScene == (int)Scene.TEST)
                 {
                     audioSource.clip = title;
@@ -57,9 +71,11 @@ public class SoundManager : MonoBehaviour
                     isBGM = true;
                     beforeScene = activeScene;
                 }
+             */
             }
-            
-        }else if (sceneName != activeScene) { isBGM = false;audioSource.Stop(); }
+
+        //}
+        //else if (sceneName != activeScene) { isBGM = false; audioSource.Stop(); }
 
 
     }
