@@ -24,8 +24,10 @@ public class GameSceneManager : MonoBehaviour
     float m_fFadeSpeed;
 
     public GameObject m_FadeObject;
+    public GameObject m_CatInObject;
 
     FadeManager m_fFade;
+    //CatIn m_fCat;
 
     public bool m_bStageFlag;
 
@@ -38,6 +40,8 @@ public class GameSceneManager : MonoBehaviour
     {
         if (m_FadeObject)
             m_fFade = m_FadeObject.GetComponent<FadeManager>();
+      //  if (m_CatInObject)
+        //    m_fCat = m_CatInObject.GetComponent<CatInManager>();
         m_bStageFlag = true;
         nPageCount = 0;
 
@@ -48,6 +52,7 @@ public class GameSceneManager : MonoBehaviour
     public void Update()
     {
         bool bFlag = false;
+        //bool bCatInFlag = false;
         switch (m_ePhase)
         {
             case GamePhase.GAMEPHASE_INIT:
@@ -57,9 +62,13 @@ public class GameSceneManager : MonoBehaviour
                 bFlag = m_fFade.isFadeIn(m_fFadeSpeed);
                 if (bFlag)
                 {
-                    m_ePhase = GamePhase.GAMEPHASE_STAGE1;
-                    Objectugokuze.GetComponent<MoveObjects>().Stage1();
-                    m_bStageFlag = false;
+          //          bCatInFlag = 
+            //            if (bCatInFlag)
+              //      {
+                        m_ePhase = GamePhase.GAMEPHASE_STAGE1;
+                        Objectugokuze.GetComponent<MoveObjects>().Stage1();
+                        m_bStageFlag = false;
+                //    }
                 }
                 break;
             case GamePhase.GAMEPHASE_STAGE1:
