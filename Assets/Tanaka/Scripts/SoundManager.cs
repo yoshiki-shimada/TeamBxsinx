@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+enum Scene{
+    TEST,
+    TITLE,
+    RURLE,
+    GAME,
+    GAMEOVER,
+    GAMECLEAR
+};
+
 public class SoundManager : MonoBehaviour
 {
     public GameObject soundManager;
@@ -12,107 +21,92 @@ public class SoundManager : MonoBehaviour
     public AudioClip game;      //ゲーム
     public AudioClip gameover;  //ゲームオーバー
     public AudioClip gameclear; //ゲームクリア
+    public bool isBGM;
 
-    
 
     private AudioSource audioSource;
 
-
+    string sceneName;
     // Start is called before the first frame update
     void Awake()
     {
         DontDestroyOnLoad(soundManager);
 
+        sceneName = SceneManager.GetActiveScene().name;//SceneManager.sceneCount;
         audioSource = GetComponent<AudioSource>();
-    
 
+        isBGM = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //タイトルとルールは一緒
-        for(int i=0;i< SceneManager.sceneCount; i++)
+        string beforeScene = sceneName;
+        string activeScene = SceneManager.GetActiveScene().name;//sceneCount;
+
+        if (beforeScene == activeScene)
         {
-           //  a[] = SceneManager.GetSceneAt(i);
+            if (!isBGM)
+            {
+                  //  Debug.Log(Scene.TEST);
+                    Debug.Log("sound" + activeScene);
+                if(activeScene=="test")//if (activeScene == (int)Scene.TEST)
+                {
+                    audioSource.clip = title;
+                    audioSource.Play();
+                    isBGM = true;
+                    beforeScene = activeScene;
+                }
+            }
+            
+        }else if (sceneName != activeScene) { isBGM = false;audioSource.Stop(); }
 
-        }
 
-        audioSource.Stop();
-        string sceneName = SceneManager.GetActiveScene().name;
+    }
 
-        if (sceneName == "TitleScene") {
-            Debug.Log(title);
+
+    /*
+        //=====================================================
+        //Title
+        public void TitleBGM()
+        {
             audioSource.clip = title;
             audioSource.Play();
         }
-        else if (sceneName == "RurleScene") {
+        //=====================================================
+        //Rurle
+        public void RurleBGM()
+        {
             audioSource.clip = rurle;
             audioSource.Play();
         }
-        else if (sceneName == "MainScene") {
-            Debug.Log(game);
+        //=====================================================
+        //Game
+        public void GameBGM()
+        {
             audioSource.clip = game;
             audioSource.Play();
         }
-        else if (sceneName == "GameClear") {
+        //=====================================================
+        //GameClear
+        public void GameClearBGM()
+        {
             audioSource.clip = gameclear;
             audioSource.Play();
         }
-        else if (sceneName == "GameOver") {
+        //=====================================================
+        //GameOver
+        public void GameOverBGM()
+        {
             audioSource.clip = gameover;
             audioSource.Play();
         }
-        else if (sceneName == "test") {
-            Debug.Log(game);
+        //=====================================================
+        //test
+        public void testBGM()
+        {
             audioSource.clip = gameover;
             audioSource.Play();
         }
-    }
-
-
-/*
-    //=====================================================
-    //Title
-    public void TitleBGM()
-    {
-        audioSource.clip = title;
-        audioSource.Play();
-    }
-    //=====================================================
-    //Rurle
-    public void RurleBGM()
-    {
-        audioSource.clip = rurle;
-        audioSource.Play();
-    }
-    //=====================================================
-    //Game
-    public void GameBGM()
-    {
-        audioSource.clip = game;
-        audioSource.Play();
-    }
-    //=====================================================
-    //GameClear
-    public void GameClearBGM()
-    {
-        audioSource.clip = gameclear;
-        audioSource.Play();
-    }
-    //=====================================================
-    //GameOver
-    public void GameOverBGM()
-    {
-        audioSource.clip = gameover;
-        audioSource.Play();
-    }
-    //=====================================================
-    //test
-    public void testBGM()
-    {
-        audioSource.clip = gameover;
-        audioSource.Play();
-    }
-*/
+    */
 }
