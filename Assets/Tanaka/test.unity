@@ -2597,6 +2597,7 @@ MonoBehaviour:
   m_bDethFlag: 0
   rb: {fileID: 1371730627}
   CapCol: {fileID: 1371730625}
+  animator: {fileID: 0}
   lightManager: {fileID: 1073138779}
   HP: {fileID: 1498352084}
 --- !u!136 &1371730625
@@ -2741,6 +2742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22dff575bf9dfdf4a9eb58655d754d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneManager: {fileID: 0}
 --- !u!1 &1428577447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: c452f57bac500a2409a0ba70cb0712a5,
@@ -3352,6 +3354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ePhase: 0
   m_fFadeSpeed: 0.015
+  m_FadeObject: {fileID: 0}
+  m_CatInObject: {fileID: 0}
   m_bStageFlag: 0
   Objectugokuze: {fileID: 1404765141}
 --- !u!4 &1666152145
@@ -3400,6 +3404,7 @@ MonoBehaviour:
   m_bDethFlag: 0
   rb: {fileID: 1713132284}
   CapCol: {fileID: 1713132282}
+  animator: {fileID: 0}
   lightManager: {fileID: 1073138779}
   HP: {fileID: 384313845}
 --- !u!136 &1713132282
