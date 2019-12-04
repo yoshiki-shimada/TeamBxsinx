@@ -3,7 +3,13 @@ guid: 497c7d3d73031f8459c313d8e6244ac8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - soundManager: {instanceID: 0}
+  - title: {fileID: 8300000, guid: 688a704a40e5839419cc05e2b9d08186, type: 3}
+  - rurle: {fileID: 8300000, guid: 688a704a40e5839419cc05e2b9d08186, type: 3}
+  - game: {instanceID: 0}
+  - gameover: {instanceID: 0}
+  - gameclear: {fileID: 8300000, guid: 5eed8517b0595ea4ebcc09a1a4e46268, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

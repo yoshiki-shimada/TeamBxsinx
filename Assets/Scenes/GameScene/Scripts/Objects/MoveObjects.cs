@@ -29,7 +29,7 @@ public class MoveObjects : MonoBehaviour
 
     public void Stage1()
     {
-        if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
+        if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
         {
             BG.GetComponent<BGAnimation>().ForestBG();
 
@@ -39,18 +39,26 @@ public class MoveObjects : MonoBehaviour
             iTween.MoveBy(BackLane01, iTween.Hash("x", 25f, "time", 2f, "delay", 2f));
 
             OMaruo.GetComponent<Maruo>().Spawn();
-            OLope.GetComponent<Lope>().Spawn();
+            OLope.GetComponent<Lope>().SpawnFront();
+            SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
         else {
 
+            SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = true;
+            OBackLane.GetComponent<BackLane>().Move();
+            iTween.MoveBy(BackLane01, iTween.Hash("x", -25f, "time", 1f));      //  delay
+            OLope.GetComponent<Lope>().Delete();
             OBackLane.GetComponent<BackLane>().Delete();
-            iTween.MoveBy(BackLane01, iTween.Hash("x", 0f, "time", 2f, "delay", 2f));
-
         }
     }
 
     public void Stage2()
     {
+        if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
+        {
 
+            OLope.GetComponent<Lope>().SpawnFront();
+            SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
+        }
     }
 }

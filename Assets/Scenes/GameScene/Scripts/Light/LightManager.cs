@@ -14,6 +14,8 @@ public class LightManager : MonoBehaviour
     private Transform[] CenterObjects; //真ん中のオブジェクト
     private Rigidbody[] ShadowObjects; //影のオブジェクト
 
+    [SerializeField] private GameObject FLight;
+    [SerializeField] private GameObject BLight; 
     [SerializeField] private GameObject[] pointLights;    //spotLigth
     [SerializeField] private Light_Shadow[] light_s;
     [SerializeField] private GameObject[] Yui;
@@ -32,6 +34,7 @@ public class LightManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         GetCenterObj();
         light_on = ActiveLight.Front;
         lightFlag[0] = true;
@@ -161,18 +164,18 @@ public class LightManager : MonoBehaviour
         }
         else { pointlightOn = true; }
         //Front,Back  Upside
-/*        if (light_s[1].transform.localPosition.y >= LocalPosY[1]
-            && light_s[0].transform.localPosition.y >= LocalPosY[1])
-        {
-            pointlightOn = true;
-        }
-*/
+        /*        if (light_s[1].transform.localPosition.y >= LocalPosY[1]
+                    && light_s[0].transform.localPosition.y >= LocalPosY[1])
+                {
+                    pointlightOn = true;
+                }
+        */
         //Front
-        if (light_s[0].transform.localPosition.y > 1.5) { Yui[0].SetActive(false); }
-        else if (light_s[0].transform.localPosition.y <= 1.5) { Yui[0].SetActive(true); }
+        if (light_s[0].transform.localPosition.y > LocalPosY[0]) { FLight.SetActive(false); }
+        else if (light_s[0].transform.localPosition.y <= LocalPosY[0]) { FLight.SetActive(true); }
         //Back
-        if (light_s[1].transform.localPosition.y > 1.5) { Yui[1].SetActive(false); }
-        else if (light_s[1].transform.localPosition.y <= 1.5) { Yui[1].SetActive(true); }
+        if (light_s[1].transform.localPosition.y > LocalPosY[0]) { BLight.SetActive(false); }
+        else if (light_s[1].transform.localPosition.y <= LocalPosY[0]) { BLight.SetActive(true); }
 
         //処理
         if (pointlightOn)
