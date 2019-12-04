@@ -6,6 +6,9 @@ public class PlayerManager : MonoBehaviour
 {
     private Player[] player = new Player[2];
     private int PlayerIndex;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,7 @@ public class PlayerManager : MonoBehaviour
         foreach(Transform trans in transform)
         {
             player[i] = trans.GetComponent<Player>();
+            //Debug.Log(player[i].name);
             i++;
         }
     }
@@ -20,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         player[PlayerIndex].UpdateP();
 
         if (Input.GetButtonDown("GamePad1_LRTrigger"))
@@ -37,4 +42,5 @@ public class PlayerManager : MonoBehaviour
     {
         player[PlayerIndex].FixedUpdateP();
     }
+
 }
