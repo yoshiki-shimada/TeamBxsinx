@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum PlayerState:byte
+{
+    Idle,
+    Walk,
+    Jump,
+    Change,
+    Clear,
+}
+
 public class Player : MonoBehaviour
 {
     //   {SerializeField]はインスペクターでの編集を可能にする
@@ -15,14 +24,15 @@ public class Player : MonoBehaviour
     private bool m_bInvincible;
     private bool m_bJumpIn;
     private bool m_bIsJump;
-    
+    private bool m_bClear = false;
+
     private float hori;
     private float lightTime;
 
     private bool wallcheck;
     private sbyte walldis = 1;
 
-
+    private PlayerState State = PlayerState.Idle;
     //RaycastHit hit;
 
     [SerializeField] private Rigidbody rb;          //! このオブジェクトについているもの
@@ -41,15 +51,11 @@ public class Player : MonoBehaviour
         m_bInvincible = false;
         wallcheck = false;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-        if (CrushPlayer())
-        {
-            m_bDethFlag = true;
-        }
-        if (m_iDamage >= 3)
+        if (CrushPlayer() || m_iDamage >= 3)
         {
             //m_bDethFlag = true;
         }
@@ -68,7 +74,7 @@ public class Player : MonoBehaviour
                 CapCol.radius ,
                 Vector3.down,
                 out hit,
-                CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.2f,
+                CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.14f,
                Physics.AllLayers))
             {
                 //Debug.Log("IsCast" + hit.distance);
@@ -76,9 +82,16 @@ public class Player : MonoBehaviour
                 //Debug.Log(hit.point);
 
                 //if(hit.distance<=CapCol.height*0.5f)
+                if (m_bIsJump)
+                    State = PlayerState.Idle;
                 m_bIsJump = false;
             }
-            else { m_bIsJump = true; }
+            else
+            {
+                //if (!m_bIsJump)
+                    //State = PlayerState.Jump;
+                m_bIsJump = true;
+            }
         }
 
         if (!m_bInvincible && !m_bDethFlag)
@@ -101,20 +114,23 @@ public class Player : MonoBehaviour
                 if (wallcheck && walldis == -1)
                     hori = 0;
             }
-            if(hori==0)
-                animator.SetBool("walk", false);
-            else
-                animator.SetBool("walk", true);
-
+            if (!m_bIsJump) {
+                if (hori == 0)
+                    State = PlayerState.Idle;
+                else
+                    State = PlayerState.Walk;
+            }
             
 
             if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump)
             {
                 m_bJumpIn = true;
+                State = PlayerState.Jump;
             }
 
             if (Input.GetButtonDown("GamePad1_buttonX") && !m_bIsJump)
             {
+                State = PlayerState.Change;
                 lightManager.ChageLight(Playernum);
             }
             
@@ -132,11 +148,12 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("IsCast" + hit.distance);
                 Debug.Log(hit.point);
-                Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.2f);
+                Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.14f);
             }
             damage(1f);
-            animator.SetBool("walk", false);
         }
+
+        animator.SetInteger("State", (int)State);
     }
 
     public void FixedUpdateP()
@@ -224,6 +241,11 @@ public class Player : MonoBehaviour
     public void ReSpawn(Vector3 pos)
     {
         transform.position = pos;
+    }
+
+    public void StageClear()
+    {
+
     }
 
    /* void OnDrawGizmos()

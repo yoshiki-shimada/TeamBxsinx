@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour
         foreach(Transform trans in transform)
         {
             player[i] = trans.GetComponent<Player>();
+            //Debug.Log(player[i].name);
             i++;
         }
     }
