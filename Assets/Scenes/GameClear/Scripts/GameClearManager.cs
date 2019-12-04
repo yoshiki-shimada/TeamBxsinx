@@ -41,7 +41,6 @@ public class GameClearManager : MonoBehaviour
         FrontImage = (GameObject)Instantiate(Imeeeeji[0]);
         i = 0;
         m = Imeeeeji.Length;
-        //ImageChange();
         bImageFlag = false;
 
         //! フェードオブジェクト

@@ -13,6 +13,6 @@ public class Kanban : MonoBehaviour
         Debug.Log("よしき");
        
         //! animation
-        iTween.MoveBy(KANBAN, iTween.Hash("y", KanbanData.OInitAnim[1].y, "time", 1f, "delay", 2f));
+        iTween.MoveBy(KANBAN, iTween.Hash("y", KanbanData.OInitAnim[0].y, "time", 1f, "delay", 2f));
     }
 }
