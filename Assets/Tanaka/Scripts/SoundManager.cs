@@ -3,15 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-enum Scene
-{
-    TEST,
-    TITLE,
-    RURLE,
-    GAME,
-    GAMEOVER,
-    GAMECLEAR
-};
 
 public class SoundManager : MonoBehaviour
 {
@@ -88,12 +79,12 @@ public class SoundManager : MonoBehaviour
     public void changelightSE()
     {
         Debug.Log("changeLight");
-        audioSource.PlayOneShot(jump);
+        audioSource.PlayOneShot(changelight);
     }
-    public void changePlayerSE()
+    public void changeplayerSE()
     {
         Debug.Log("changePlayer");
-        audioSource.PlayOneShot(jump);
+        audioSource.PlayOneShot(changeplayer);
     }
     /*
     void SE()
@@ -126,13 +117,13 @@ public class SoundManager : MonoBehaviour
     }
     */
 
-        /*
+    /*
     //Playerのscriptの中で
     GameObject soundManager;
-    SoundManagerScript soundManagerScript;
 
-    SoundManager=GameObject.Find("SoundManager");
-    soundScript=SoundManager.GetComponent<SoundManagerScript>();
-        soundScript.jumpSE();
-        */
+    soundManager=GameObject.Find("SoundManager");
+    soundManager.GetCompornent<SoundManager>.jumpSE();
+    soundManager.GetCompornent<SoundManager>.changelightSE();
+    soundManager.GetCompornent<SoundManager>.changeplayerSE();
+    */
 }
