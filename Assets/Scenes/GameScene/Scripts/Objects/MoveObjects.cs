@@ -16,6 +16,11 @@ public class MoveObjects : MonoBehaviour
     GameObject BackLane01;
     GameObject KANBAN;
 
+    //! Stage2_2
+    GameObject Button;
+    GameObject Wall;
+    GameObject MoveWall;
+
     private void Start()
     {
         SceneManager = GameObject.Find("SceneManager");
@@ -25,6 +30,10 @@ public class MoveObjects : MonoBehaviour
         OLope = GameObject.Find("Lope");
         OBackLane = GameObject.Find("BackLane");
         KANBAN = GameObject.Find("KANBAN");
+
+        Button = GameObject.Find("Switch");
+        Wall = GameObject.Find("Wall");
+        MoveWall = GameObject.Find("MoveWall");
     }
 
     public void Stage1()
@@ -56,8 +65,8 @@ public class MoveObjects : MonoBehaviour
     {
         if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
         {
-
-            OLope.GetComponent<Lope>().SpawnFront();
+            OLope.GetComponent<Lope>().SpawnBack();
+            Button.GetComponent<Switch>().Spawn();
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
     }

@@ -37,6 +37,7 @@ public class CatInManager : MonoBehaviour
         {
             iTween.MoveBy(CreentCatIn, iTween.Hash("x", -100f, "time", 10.0f));
             i++;
+            InFlag = true;
             CreentCatIn = (GameObject)Instantiate(CatInPrefab[i]);
             return true;
         }
