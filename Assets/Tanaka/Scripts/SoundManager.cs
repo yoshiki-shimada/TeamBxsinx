@@ -17,15 +17,16 @@ public class SoundManager : MonoBehaviour
 {
     public GameObject soundManager;
 
-    public AudioClip title;     //タイトル
-    public AudioClip rurle;     //ルール
-    public AudioClip game;      //ゲーム
-    public AudioClip gameover;  //ゲームオーバー
-    public AudioClip gameclear; //ゲームクリア
-    public AudioClip jump; //ゲームクリア
-    public AudioClip changelight; //ゲームクリア
-    //public AudioClip gameclear; //ゲームクリア
-    //public AudioClip gameclear; //ゲームクリア
+    public AudioClip title;        //タイトル
+    public AudioClip rurle;        //ルール
+    public AudioClip game;         //ゲーム
+    public AudioClip gameover;     //ゲームオーバー
+    public AudioClip gameclear;    //ゲームクリア
+    public AudioClip jump;         //ジャンプ
+    public AudioClip changelight;  //ライトチェンジ
+    public AudioClip changeplayer; //プレイヤーチェンジ
+    //public AudioClip gameclear;  //
+    //public AudioClip gameclear;  //
 
 
     public bool isBGM;
@@ -52,8 +53,6 @@ public class SoundManager : MonoBehaviour
     void Update()
     {
         BGM();
-        SE();
-           
     }
 
     //=========================================================
@@ -64,14 +63,15 @@ public class SoundManager : MonoBehaviour
         {
             switch (sceneName)
             {
-                case "test2": audioSource.clip = title; Debug.Log(sceneName); break;
-                case "TitleScene": audioSource.clip = title; break;
+                case "test2": audioSource.clip = game; break;
+                case "TitleScene":// audioSource.clip = title; break;
                 case "RurleScene": audioSource.clip = title; break;
                 case "MainScene": audioSource.clip = game; break;
                 case "Pause": audioSource.clip = title; break;
                 case "GameOver": audioSource.clip = gameover; break;
                 case "GameClear": audioSource.clip = gameclear; break;
             }
+            Debug.Log(sceneName);
             audioSource.Play();
             isBGM = true;
         }
@@ -79,6 +79,23 @@ public class SoundManager : MonoBehaviour
 
     //=========================================================
     //SE
+
+    public void jumpSE()
+    {
+        Debug.Log("jump");
+        audioSource.PlayOneShot(jump);
+    }
+    public void changelightSE()
+    {
+        Debug.Log("changeLight");
+        audioSource.PlayOneShot(jump);
+    }
+    public void changePlayerSE()
+    {
+        Debug.Log("changePlayer");
+        audioSource.PlayOneShot(jump);
+    }
+    /*
     void SE()
     {
         switch (sceneName)
@@ -107,4 +124,15 @@ public class SoundManager : MonoBehaviour
             case "GameClear": audioSource.clip = gameclear; break;
         }
     }
+    */
+
+        /*
+    //Playerのscriptの中で
+    GameObject soundManager;
+    SoundManagerScript soundManagerScript;
+
+    SoundManager=GameObject.Find("SoundManager");
+    soundScript=SoundManager.GetComponent<SoundManagerScript>();
+        soundScript.jumpSE();
+        */
 }
