@@ -29,11 +29,11 @@ public class CatInManager : MonoBehaviour
         if (InFlag)
         {
             CreentCatIn.transform.SetParent(canvas.transform, false);
-            iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -21, "time", 3.0f));
+            iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -21, "time", 2.0f));
             InFlag = false;
         }
 
-        if (Input.GetButtonDown("GamePad1_buttonB"))
+        if (Input.GetButtonDown("GamePad1_buttonA"))
         {
             iTween.MoveBy(CreentCatIn, iTween.Hash("x", -100f, "time", 10.0f));
             i++;
