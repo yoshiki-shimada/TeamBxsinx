@@ -247,8 +247,7 @@ public class Player : MonoBehaviour
     }
     public void damage(float time)
     {
-        rb.AddForce((-transform.right + transform.up)*8,
-            ForceMode.Impulse);
+        //rb.AddForce((-transform.right + transform.up)*8,ForceMode.Impulse);
         m_iDamage++;
         m_bInvincible = true;
         Invoke("InvincibleEnd", time);
