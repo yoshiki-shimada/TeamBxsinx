@@ -31,6 +31,22 @@ public class Goal : MonoBehaviour
             Player player = collision.transform.GetComponent<Player>();
             if ((PlayerState)player.PState == PlayerState.Jump)
             {
+                Debug.Log(transform.position.x - player.transform.position.x);
+                float dis = transform.position.x - player.transform.position.x;
+                if ( dis < 0.7f)
+                {
+                    player.transform.position =
+                         new Vector3(transform.position.x - 0.9f,
+                         transform.position.y, player.transform.position.z);
+                    player.transform.localRotation = new Quaternion(0,0,0,0);
+                }
+                else if(dis > -0.7f)
+                {
+                    player.transform.position =
+                        new Vector3(transform.position.x + 0.9f,
+                        transform.position.y, player.transform.position.z);
+                    player.transform.localRotation = new Quaternion(0, 180, 0, 0);
+                }
                 player.Clear = true;
                 DownLope(player.gameObject);
             }
@@ -48,7 +64,7 @@ public class Goal : MonoBehaviour
                 "easeType", iTween.EaseType.spring));
         iTween.MoveTo(player,
             iTween.Hash(
-                "y", Destination[DesIndex],
+                "y", Destination[DesIndex]+0.3f,
                 "time", 0.6f,
                 "delay", 0.1f,
                 "easeType", iTween.EaseType.spring));
