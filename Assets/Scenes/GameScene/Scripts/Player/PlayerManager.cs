@@ -24,7 +24,8 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        for (int i = 0; i < 2; i++)
+            player[i].IsJump();
         player[PlayerIndex].UpdateP();
 
         if (Input.GetButtonDown("GamePad1_LRTrigger"))

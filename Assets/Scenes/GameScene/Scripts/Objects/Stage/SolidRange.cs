@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SolidRange : MonoBehaviour
 {
-    private Vector3 Range = Vector3.one;
+    [SerializeField] private Vector3 Range = Vector3.one;
     
     // 3Dの範囲内ならtrue
     public bool CheckSolidRange(Vector3 shadowpos)
