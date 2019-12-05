@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum PlayerState:byte
+{
+    Idle,
+    Walk,
+    Jump,
+    Change,
+    Clear,
+}
+
 public class Player : MonoBehaviour
 {
     //   {SerializeField]はインスペクターでの編集を可能にする
@@ -15,14 +24,23 @@ public class Player : MonoBehaviour
     private bool m_bInvincible;
     private bool m_bJumpIn;
     private bool m_bIsJump;
-    
+    private bool m_bClear = false;
+    public bool Clear
+    {
+        set { m_bClear = value; }
+    }
+
     private float hori;
-    private float lightTime;
+    
 
     private bool wallcheck;
     private sbyte walldis = 1;
 
-
+    private PlayerState State = PlayerState.Idle;
+    public int PState
+    {
+        get { return (int)State; }
+    }
     //RaycastHit hit;
 
     [SerializeField] private Rigidbody rb;          //! このオブジェクトについているもの
@@ -41,47 +59,60 @@ public class Player : MonoBehaviour
         m_bInvincible = false;
         wallcheck = false;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-        if (CrushPlayer())
+        if ((CrushPlayer() || m_iDamage >= 3) && !m_bClear)
         {
             m_bDethFlag = true;
         }
-        if (m_iDamage >= 3)
-        {
-            //m_bDethFlag = true;
-        }
-       /* if (m_bDethFlag)
+        if (m_bDethFlag)
         {
             //ゲームオーバー処理
-            transform.position = new Vector3(0, 0, 0);
-        }*/
-
+            //transform.position = new Vector3(0, 0, 0);
+            Debug.Log("You Lose");
+        }
     }
-    public void UpdateP()
-    {
-        {
-            RaycastHit hit;
-            if (Physics.SphereCast(this.transform.position + CapCol.center,
-                CapCol.radius ,
-                Vector3.down,
-                out hit,
-                CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.2f,
-               Physics.AllLayers))
-            {
-                //Debug.Log("IsCast" + hit.distance);
-                //Debug.Log(CapCol.center);
-                //Debug.Log(hit.point);
 
-                //if(hit.distance<=CapCol.height*0.5f)
-                m_bIsJump = false;
-            }
-            else { m_bIsJump = true; }
+    public void IsJump()
+    {
+        PlayerState Next = State;
+        RaycastHit hit;
+        if (Physics.SphereCast(CapCol.transform.position + CapCol.center,
+            CapCol.radius,
+            Vector3.down,
+            out hit,
+            CapCol.height * 0.5f - CapCol.radius + 0.01f,
+           Physics.AllLayers))
+        {
+            //Debug.Log("IsCast" + hit.distance);
+            //Debug.Log(CapCol.center);
+            //Debug.Log(hit.point);
+
+            //if (m_bIsJump)
+            Next = PlayerState.Idle;
+            m_bIsJump = false;
+        }
+        else
+        {
+            //if (!m_bIsJump)
+            //State = PlayerState.Jump;
+            m_bIsJump = true;
         }
 
-        if (!m_bInvincible && !m_bDethFlag)
+        if (State != Next)
+        {
+            State = Next;
+            animator.SetInteger("State", (int)State);
+        }
+    }
+
+    public void UpdateP()
+    {
+
+       
+        if (!m_bInvincible && !m_bDethFlag && !m_bClear)
         {
             hori = Input.GetAxisRaw("GamePad1_LeftStick_H");
 
@@ -101,29 +132,37 @@ public class Player : MonoBehaviour
                 if (wallcheck && walldis == -1)
                     hori = 0;
             }
-            if(hori==0)
-                animator.SetBool("walk", false);
-            else
-                animator.SetBool("walk", true);
-
+            if (!m_bIsJump) {
+                if (hori == 0)
+                    State = PlayerState.Idle;
+                else
+                    State = PlayerState.Walk;
+            }
             
 
             if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump)
             {
                 m_bJumpIn = true;
+                State = PlayerState.Jump;
             }
 
             if (Input.GetButtonDown("GamePad1_buttonX") && !m_bIsJump)
             {
+                State = PlayerState.Change;
                 lightManager.ChageLight(Playernum);
             }
-            
+
+        }
+        else if (m_bClear)
+        {
+            rb.isKinematic = true;
+            State = PlayerState.Clear;
         }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
             RaycastHit hit;
-            if (Physics.SphereCast(this.transform.position + CapCol.center,
+            if (Physics.SphereCast(CapCol.transform.position + CapCol.center,
                 CapCol.radius,
                 Vector3.down,
                 out hit,
@@ -132,11 +171,14 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("IsCast" + hit.distance);
                 Debug.Log(hit.point);
-                Debug.Log(CapCol.height * 0.5f - CapCol.radius * 0.5f + 0.2f);
+                Debug.Log(CapCol.height * 0.5f - CapCol.radius+0.01f);
             }
-            damage(1f);
-            animator.SetBool("walk", false);
+            //damage(1f);
+            //m_bClear = true;
         }
+
+        
+            animator.SetInteger("State", (int)State);
     }
 
     public void FixedUpdateP()
@@ -198,6 +240,8 @@ public class Player : MonoBehaviour
     }
     public void damage(float time)
     {
+        rb.AddForce((-transform.right + transform.up)*8,
+            ForceMode.Impulse);
         m_iDamage++;
         m_bInvincible = true;
         Invoke("InvincibleEnd", time);
@@ -215,10 +259,11 @@ public class Player : MonoBehaviour
             return false;
         float posplus = CapCol.height * 0.5f - CapCol.radius;
         Vector3 pos = transform.position + CapCol.center;
-        Vector3 pos2 = new Vector3(pos.x, pos.y + posplus - 0.1f, pos.z);
-        pos.y -= posplus + 0.1f;
+        Vector3 pos2 = new Vector3(pos.x, pos.y +posplus-0.1f , pos.z);
+        pos.y -= posplus+0.1f;
         return Physics.CheckCapsule(pos,pos2,
-            CapCol.radius - 0.01f, ~LayerMask.GetMask("Player", "Enemy", "Stage"));
+            CapCol.radius *0.5f, 
+            ~LayerMask.GetMask("Player", "Enemy", "Stage","GoalLope"));
     }
 
     public void ReSpawn(Vector3 pos)

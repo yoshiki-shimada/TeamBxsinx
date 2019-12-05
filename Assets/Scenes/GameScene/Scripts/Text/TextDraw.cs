@@ -52,38 +52,6 @@ public class TextDraw : MonoBehaviour
         }
     }
 
-    //void Update()
-    //{
-    //    // 文章の表示完了 / 未完了
-    //    if (IsDisplayComplete())
-    //    {
-    //        //最後の文章ではない & ボタンが押された
-    //        if (displayNum < Sentences.Length && Input.GetButtonDown("GamePad1_buttonA"))
-    //        {
-    //            SetNextSentence();
-    //        }
-    //    }
-    //    else
-    //    {
-    //        //ボタンが押された
-    //        if (Input.GetButtonDown("GamePad1_buttonA"))
-    //        {
-    //            timeUntilDisplay = 0; //※1
-    //        }
-    //    }
-
-    //    //表示される文字数を計算
-    //    int displayCharCount = (int)(Mathf.Clamp01((Time.time - timeBeganDisplay) / timeUntilDisplay) * stringdisplay.Length);
-    //    //表示される文字数が表示している文字数と違う
-    //    if (displayCharCount != lastUpdateCharCount)
-    //    {
-    //        uiText.text = stringdisplay.Substring(0, displayCharCount);
-    //        //表示している文字数の更新
-    //        lastUpdateCharCount = displayCharCount;
-    //    }
-    //}
-
-
     // 次の文章をセットする
     void SetNextSentence()
     {

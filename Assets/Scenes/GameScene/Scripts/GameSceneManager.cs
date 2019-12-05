@@ -27,11 +27,11 @@ public class GameSceneManager : MonoBehaviour
     public GameObject m_CatInObject;
 
     FadeManager m_fFade;
-    //CatIn m_fCat;
+    CatInManager m_fCat;
 
     public bool m_bStageFlag;
+    public bool m_bMoveFlag;
 
-    int nPageCount;
 
     public GameObject Objectugokuze;
 
@@ -40,10 +40,10 @@ public class GameSceneManager : MonoBehaviour
     {
         if (m_FadeObject)
             m_fFade = m_FadeObject.GetComponent<FadeManager>();
-      //  if (m_CatInObject)
-        //    m_fCat = m_CatInObject.GetComponent<CatInManager>();
+        if (m_CatInObject)
+            m_fCat = m_CatInObject.GetComponent<CatInManager>();
         m_bStageFlag = true;
-        nPageCount = 0;
+        m_bMoveFlag = true;
 
         m_ePhase = GamePhase.GAMEPHASE_INIT;
     }
@@ -52,7 +52,7 @@ public class GameSceneManager : MonoBehaviour
     public void Update()
     {
         bool bFlag = false;
-        //bool bCatInFlag = false;
+        bool bCatInFlag = false;
         switch (m_ePhase)
         {
             case GamePhase.GAMEPHASE_INIT:
@@ -62,30 +62,40 @@ public class GameSceneManager : MonoBehaviour
                 bFlag = m_fFade.isFadeIn(m_fFadeSpeed);
                 if (bFlag)
                 {
-          //          bCatInFlag = 
-            //            if (bCatInFlag)
-              //      {
+                    bCatInFlag = m_fCat.isCatIn();
+                    if (bCatInFlag)
+                    {
                         m_ePhase = GamePhase.GAMEPHASE_STAGE1;
                         Objectugokuze.GetComponent<MoveObjects>().Stage1();
                         m_bStageFlag = false;
-                //    }
+                        bCatInFlag = false;
+                    }
                 }
                 break;
             case GamePhase.GAMEPHASE_STAGE1:
 
                 if (m_bStageFlag)
                 {
-                    m_bStageFlag = false;
+                    bCatInFlag = m_fCat.isCatIn();
+                    m_bMoveFlag = false;
                     Objectugokuze.GetComponent<MoveObjects>().Stage1();
-                    m_ePhase = GamePhase.GAMEPHASE_STAGE2;
-                    Objectugokuze.GetComponent<MoveObjects>().Stage2();
+                    if (bCatInFlag)
+                    {
+                        Objectugokuze.GetComponent<MoveObjects>().Stage2();
+                        m_bStageFlag = false;
+                        m_ePhase = GamePhase.GAMEPHASE_STAGE2;
+                    }
                 }
                 break;
             case GamePhase.GAMEPHASE_STAGE2:
+
                 if (m_bStageFlag)
                 {
-                    m_bStageFlag = false;
+                    m_bMoveFlag = false;
                     Objectugokuze.GetComponent<MoveObjects>().Stage2();
+                    m_bMoveFlag = true;
+
+                    m_bStageFlag = false;
                     m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
                 }
                 break;

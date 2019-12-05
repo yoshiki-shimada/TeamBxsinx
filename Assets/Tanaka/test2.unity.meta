@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Base/Editor.meta
+guid: 8e7f5ac8cdb4b3248a934e58d5b8cf27
+folderAsset: yes
+=======
 guid: 5f7370c97134e5045a04d1775dd2790f
+>>>>>>> 93edb4255820c0573349ba8e1580e781af78cb5f:Assets/Tanaka/test2.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

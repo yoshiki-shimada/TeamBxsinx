@@ -6,13 +6,11 @@ public class Kanban : MonoBehaviour
 {
     public GameObject KANBAN;
 
-    public ObjectsData KanbanData;
-
     public void Move()
     {
         Debug.Log("よしき");
-       
+
         //! animation
-        iTween.MoveBy(KANBAN, iTween.Hash("y", KanbanData.OInitAnim[1].y, "time", 1f, "delay", 2f));
+        iTween.MoveBy(KANBAN, iTween.Hash("y", 10, "time", 1f, "delay", 2f));
     }
 }

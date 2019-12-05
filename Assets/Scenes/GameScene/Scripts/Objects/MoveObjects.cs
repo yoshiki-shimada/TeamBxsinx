@@ -16,6 +16,11 @@ public class MoveObjects : MonoBehaviour
     GameObject BackLane01;
     GameObject KANBAN;
 
+    //! Stage2_2
+    GameObject Button;
+    GameObject Wall;
+    GameObject MoveWall;
+
     private void Start()
     {
         SceneManager = GameObject.Find("SceneManager");
@@ -25,11 +30,15 @@ public class MoveObjects : MonoBehaviour
         OLope = GameObject.Find("Lope");
         OBackLane = GameObject.Find("BackLane");
         KANBAN = GameObject.Find("KANBAN");
+
+        Button = GameObject.Find("Switch");
+        Wall = GameObject.Find("Wall");
+        MoveWall = GameObject.Find("MoveWall");
     }
 
     public void Stage1()
     {
-        if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
+        if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
         {
             BG.GetComponent<BGAnimation>().ForestBG();
 
@@ -39,18 +48,26 @@ public class MoveObjects : MonoBehaviour
             iTween.MoveBy(BackLane01, iTween.Hash("x", 25f, "time", 2f, "delay", 2f));
 
             OMaruo.GetComponent<Maruo>().Spawn();
-            OLope.GetComponent<Lope>().Spawn();
+            OLope.GetComponent<Lope>().SpawnFront();
+            SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
         else {
 
+            SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = true;
+            OBackLane.GetComponent<BackLane>().Move();
+            iTween.MoveBy(BackLane01, iTween.Hash("x", -25f, "time", 1f));      //  delay
+            OLope.GetComponent<Lope>().Delete();
             OBackLane.GetComponent<BackLane>().Delete();
-            iTween.MoveBy(BackLane01, iTween.Hash("x", -25f, "time", 2f, "delay", 2f));
-
         }
     }
 
     public void Stage2()
     {
-
+        if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
+        {
+            OLope.GetComponent<Lope>().SpawnBack();
+            Button.GetComponent<Switch>().Spawn();
+            SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
+        }
     }
 }
