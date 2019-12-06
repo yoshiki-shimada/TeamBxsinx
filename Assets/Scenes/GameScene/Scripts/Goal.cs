@@ -33,14 +33,14 @@ public class Goal : MonoBehaviour
             {
                 Debug.Log(transform.position.x - player.transform.position.x);
                 float dis = transform.position.x - player.transform.position.x;
-                if ( dis < 0.7f)
+                if ( dis < 0.7f && dis >= 0)
                 {
                     player.transform.position =
                          new Vector3(transform.position.x - 0.9f,
                          transform.position.y, player.transform.position.z);
                     player.transform.localRotation = new Quaternion(0,0,0,0);
                 }
-                else if(dis > -0.7f)
+                else if(dis > -0.7f && dis < 0)
                 {
                     player.transform.position =
                         new Vector3(transform.position.x + 0.9f,
