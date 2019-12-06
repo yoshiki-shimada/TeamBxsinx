@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ePhase: 0
-  m_fFadeSpeed: 0.005
+  m_fFadeSpeed: 0.01
   m_FadeObject: {fileID: 844276221}
 --- !u!212 &2115246451
 SpriteRenderer:

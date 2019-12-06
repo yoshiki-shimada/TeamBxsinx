@@ -31,7 +31,6 @@ public class Scenemanager : MonoBehaviour
     {
         if (m_FadeObject)
             m_Fade = m_FadeObject.GetComponent<FadeManager>();
-        m_fFadeSpeed = 0.005f;
 
         m_ePhase = OverPhase.OVERPHASE_INIT;
     }
