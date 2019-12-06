@@ -18,7 +18,6 @@ public class LightManager : MonoBehaviour
     [SerializeField] private GameObject BLight; 
     [SerializeField] private GameObject[] pointLights;    //spotLigth
     [SerializeField] private Light_Shadow[] light_s;
-    [SerializeField] private GameObject[] Yui;
     ActiveLight light_on;
     private bool[] lightFlag = new bool[2];
     //[SerializeField]
@@ -63,7 +62,6 @@ public class LightManager : MonoBehaviour
     public void GetCenterObj()
     {
         GameObject[] Objects = GameObject.FindGameObjectsWithTag("CenterObject");
-        Yui[1].SetActive(false);
         //  Debug.Log(CenterObjects[0].name);
         CenterObjects = new Transform[Objects.Length];
         ShadowObjects = new Rigidbody[Objects.Length];

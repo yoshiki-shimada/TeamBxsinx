@@ -8,9 +8,9 @@ public class MoveObjects : MonoBehaviour
     public GameObject SceneManager;
 
     GameObject BG;
+    GameObject Maruo;
 
     //! Stage1_1
-    GameObject OMaruo;
     GameObject OLope;
     GameObject OBackLane;
     GameObject BackLane01;
@@ -25,12 +25,11 @@ public class MoveObjects : MonoBehaviour
     {
         SceneManager = GameObject.Find("SceneManager");
         BG = GameObject.Find("BG");
+        Maruo = GameObject.Find("MaruoSin");
         BackLane01 = GameObject.Find("BackLane01");
-        OMaruo = GameObject.Find("Maruo");
         OLope = GameObject.Find("Lope");
         OBackLane = GameObject.Find("BackLane");
         KANBAN = GameObject.Find("KANBAN");
-
         Button = GameObject.Find("Switch");
         Wall = GameObject.Find("Wall");
         MoveWall = GameObject.Find("MoveWall");
@@ -41,13 +40,10 @@ public class MoveObjects : MonoBehaviour
         if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
         {
             BG.GetComponent<BGAnimation>().ForestBG();
-
             KANBAN.GetComponent<Kanban>().Move();
-
             OBackLane.GetComponent<BackLane>().Spawn();
             iTween.MoveBy(BackLane01, iTween.Hash("x", 27f, "time", 2f, "delay", 2f));
-
-            OMaruo.GetComponent<Maruo>().Spawn();
+            Maruo.GetComponent<Maruo>().InObj();
             OLope.GetComponent<Lope>().SpawnBack();
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }

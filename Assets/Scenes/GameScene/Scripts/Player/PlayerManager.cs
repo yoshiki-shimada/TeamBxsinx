@@ -7,10 +7,13 @@ public class PlayerManager : MonoBehaviour
     //soundmanager呼び込み-------------------------------------
     GameObject soundManager;
 
+    [SerializeField]
+    ScrollObject Tanaka;
+
     private Player[] player = new Player[2];
     private int PlayerIndex;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +21,7 @@ public class PlayerManager : MonoBehaviour
         soundManager = GameObject.Find("SoundManager");
 
         int i = PlayerIndex = 0;
-        foreach(Transform trans in transform)
+        foreach (Transform trans in transform)
         {
             player[i] = trans.GetComponent<Player>();
             //Debug.Log(player[i].name);
@@ -31,7 +34,8 @@ public class PlayerManager : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
             player[i].IsJump();
-        player[PlayerIndex].UpdateP();
+        if (!Tanaka.pushYFlag)
+            player[PlayerIndex].UpdateP();
 
         if (Input.GetButtonDown("GamePad1_LRTrigger"))
         {

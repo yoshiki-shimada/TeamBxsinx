@@ -16,10 +16,10 @@ public class MoveWall : MonoBehaviour
     public void SpawnFront()
     {
         //! CloneInstance
-        t = Instantiate(MWallPrefab, MWallData.spawnPoints[2], MWallData.q2) as GameObject;
+        t = Instantiate(MWallPrefab, MWallData.spawnPoints[3], MWallData.q2) as GameObject;
 
         //! animation
-        iTween.MoveBy(t, iTween.Hash("y", MWallData.OInitAnim[2].y, "time", 1f, "delay", 3f));
+        iTween.MoveBy(t, iTween.Hash("y", MWallData.OInitAnim[3].y, "time", 1f, "delay", 3f));
     }
 
     public void SpawnBack()
