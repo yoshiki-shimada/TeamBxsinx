@@ -140,12 +140,15 @@ public class Player : MonoBehaviour
                 if (wallcheck && walldis == -1)
                     hori = 0;
             }
-            if (!m_bIsJump) {
+            if (!m_bIsJump)
+            {
                 if (hori == 0)
                     State = PlayerState.Idle;
                 else
                     State = PlayerState.Walk;
             }
+            else
+                hori *= 0.5f;
             
 
             if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump)
@@ -202,11 +205,15 @@ public class Player : MonoBehaviour
                 rb.AddForce(Vector3.up * jampSpeed, ForceMode.Impulse);
             }
         }
+        else if (m_bIsJump)
+        {
+            rb.AddForce(Vector3.down * 3f, ForceMode.Acceleration);
+        }
         // Playerの移動
         if ((hori != 0))
         {
             float x = hori * moveSpeed;
-            x = 1000 * (x - rb.velocity.x) * Time.deltaTime;
+            x = 500 * (x - rb.velocity.x) * Time.deltaTime;
             // Debug.Log(x);
             rb.AddForce(x, 0, 0);
         }
@@ -238,16 +245,7 @@ public class Player : MonoBehaviour
         wallcheck = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-        {
-            if (!m_bInvincible)
-            {
-                damage(1f);
-            }
-        }
-    }
+   
     public void damage(float time)
     {
         //rb.AddForce((-transform.right + transform.up)*8,ForceMode.Impulse);

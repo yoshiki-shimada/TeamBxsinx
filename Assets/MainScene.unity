@@ -741,6 +741,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fronthikari
       objectReference: {fileID: 0}
+    - target: {fileID: 8042994264047784354, guid: 72783d1e6fe3d8743a2396984eac2616,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8042994264047947138, guid: 72783d1e6fe3d8743a2396984eac2616,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -800,6 +805,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Range
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8042994264049717090, guid: 72783d1e6fe3d8743a2396984eac2616,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72783d1e6fe3d8743a2396984eac2616, type: 3}
@@ -1044,8 +1054,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
-  moveSpeed: 3
-  jampSpeed: 17
+  moveSpeed: 10
+  jampSpeed: 55
   m_iDamage: 0
   Playernum: 1
   m_bDethFlag: 0
@@ -1090,7 +1100,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608302430}
   serializedVersion: 2
-  m_Mass: 3
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -3470,6 +3480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1913435217425013358, guid: 51ca4dfb27cb18b48847c376b05b7ae0,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51ca4dfb27cb18b48847c376b05b7ae0, type: 3}
