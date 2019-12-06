@@ -1102,22 +1102,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera_02
       objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9984548
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.05557011
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1160,6 +1144,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9984548
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.05557011
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
+      propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: 2fe13dad1b4ed1444a098b6ab11b7f65, type: 3}
@@ -1922,19 +1922,19 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 100008, guid: c4230b1fe3b8d31408626aa71c9c22cc, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100010, guid: c4230b1fe3b8d31408626aa71c9c22cc, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 100012, guid: c4230b1fe3b8d31408626aa71c9c22cc, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 100014, guid: c4230b1fe3b8d31408626aa71c9c22cc, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: c4230b1fe3b8d31408626aa71c9c22cc, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: c4230b1fe3b8d31408626aa71c9c22cc, type: 3}
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
@@ -2225,6 +2225,7 @@ MonoBehaviour:
   Yui:
   - {fileID: 1637675716}
   - {fileID: 1637675716}
+  pointlightOn: 0
 --- !u!4 &1073138780
 Transform:
   m_ObjectHideFlags: 0
@@ -3859,7 +3860,7 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
+  BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
@@ -3946,8 +3947,8 @@ MonoBehaviour:
   soundManager: {fileID: 1710491526}
   title: {fileID: 8300000, guid: 688a704a40e5839419cc05e2b9d08186, type: 3}
   rurle: {fileID: 8300000, guid: 688a704a40e5839419cc05e2b9d08186, type: 3}
-  game: {fileID: 8300000, guid: fb219fed5a58ff84bbddfe8c74db2f84, type: 3}
-  gameover: {fileID: 0}
+  game: {fileID: 8300000, guid: 3e5ee090d5ee51b4687fcb21d93f2dac, type: 3}
+  gameover: {fileID: 8300000, guid: fb219fed5a58ff84bbddfe8c74db2f84, type: 3}
   gameclear: {fileID: 8300000, guid: 5eed8517b0595ea4ebcc09a1a4e46268, type: 3}
   jump: {fileID: 8300000, guid: 3c6ffe18cbbb7bb4fadd28919a638bfa, type: 3}
   changelight: {fileID: 8300000, guid: 7744b6c19233f91448d6b0e51fc15b33, type: 3}

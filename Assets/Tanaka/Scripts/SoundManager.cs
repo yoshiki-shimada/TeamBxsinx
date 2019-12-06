@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-    public GameObject soundManager;
+    [SerializeField] private GameObject soundManager;
 
     public AudioClip title;        //タイトル
     public AudioClip rurle;        //ルール
@@ -48,7 +48,7 @@ public class SoundManager : MonoBehaviour
 
     //=========================================================
     //BGM
-    void BGM()
+    private void BGM()
     {
         if (!isBGM)
         {
@@ -71,59 +71,44 @@ public class SoundManager : MonoBehaviour
     //=========================================================
     //SE
 
+    //jump-----------------------------------------------------
     public void jumpSE()
     {
         Debug.Log("jump");
         audioSource.PlayOneShot(jump);
     }
+
+    //changelight----------------------------------------------
     public void changelightSE()
     {
         Debug.Log("changeLight");
         audioSource.PlayOneShot(changelight);
     }
+
+    //changeplayer---------------------------------------------
     public void changeplayerSE()
     {
         Debug.Log("changePlayer");
         audioSource.PlayOneShot(changeplayer);
     }
-    /*
-    void SE()
-    {
-        switch (sceneName)
-        {
-            case "test2":
-                if (Input.GetButtonDown("GamePad1_buttonB"))
-                {
-                    Debug.Log("buttonB");
-                    audioSource.PlayOneShot(jump);
-                }
-                if (Input.GetButtonDown("GamePad1_buttonX"))
-                {
-                    Debug.Log("buttonX");
-                    audioSource.PlayOneShot(changelight);
-                }
-                if (Input.GetButtonDown("GamePad1_button_Start"))
-                {
-                    Debug.Log("button_Start");
-                }
-                break;
-            case "TitleScene": audioSource.clip = title; break;
-            case "RurleScene": audioSource.clip = title; break;
-            case "MainScene": audioSource.clip = game; break;
-            case "Pause": audioSource.clip = title; break;
-            case "GameOver": audioSource.clip = gameover; break;
-            case "GameClear": audioSource.clip = gameclear; break;
-        }
-    }
-    */
 
+
+
+
+
+
+
+
+
+    //---------------------------------------------------------
     /*
-    //Playerのscriptの中で
+    //triggerとなるscriptに書くPlayerのscriptの中で
     GameObject soundManager;
 
-    soundManager=GameObject.Find("SoundManager");
-    soundManager.GetCompornent<SoundManager>.jumpSE();
-    soundManager.GetCompornent<SoundManager>.changelightSE();
-    soundManager.GetCompornent<SoundManager>.changeplayerSE();
+    soundManager = GameObject.Find("SoundManager");
+    soundManager.GetComponent<SoundManager>.jumpSE();
+    soundManager.GetComponent<SoundManager>.changelightSE();
+    soundManager.GetComponent<SoundManager>.changeplayerSE();
     */
+    //---------------------------------------------------------
 }
