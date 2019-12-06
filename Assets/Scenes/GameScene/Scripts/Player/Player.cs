@@ -13,6 +13,10 @@ enum PlayerState:byte
 
 public class Player : MonoBehaviour
 {
+    //soundmanager呼び込み-------------------------------------
+    GameObject soundManager;
+
+
     //   {SerializeField]はインスペクターでの編集を可能にする
     [SerializeField] private Vector3 direction;
     [SerializeField] private float moveSpeed = 3.0f;        //! 移動速度
@@ -53,6 +57,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        soundManager=GameObject.Find("SoundManager");
         m_bJumpIn = false;
         m_bIsJump = false;
         m_bDethFlag = false;
@@ -144,12 +149,14 @@ public class Player : MonoBehaviour
             {
                 m_bJumpIn = true;
                 State = PlayerState.Jump;
+                soundManager.GetComponent<SoundManager>().jumpSE();
             }
 
             if (Input.GetButtonDown("GamePad1_buttonX") && !m_bIsJump)
             {
                 State = PlayerState.Change;
                 lightManager.ChageLight(Playernum);
+                soundManager.GetComponent<SoundManager>().changelightSE();
             }
 
         }
@@ -240,8 +247,7 @@ public class Player : MonoBehaviour
     }
     public void damage(float time)
     {
-        rb.AddForce((-transform.right + transform.up)*8,
-            ForceMode.Impulse);
+        //rb.AddForce((-transform.right + transform.up)*8,ForceMode.Impulse);
         m_iDamage++;
         m_bInvincible = true;
         Invoke("InvincibleEnd", time);

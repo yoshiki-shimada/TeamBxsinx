@@ -25,7 +25,7 @@ public class LightManager : MonoBehaviour
     private float[] LocalPosY = new float[2];
     private bool changeLight;
     //-------------------------------------------
-    bool pointlightOn;
+    public bool pointlightOn;
     //-------------------------------------------
     public bool changelight
     {
@@ -151,25 +151,13 @@ public class LightManager : MonoBehaviour
     void putOnPointlight()
     {
         //flag
-        /*if (light_s[0].transform.localPosition.y <= LocalPosY[0] 
-            || light_s[1].transform.localPosition.y <= LocalPosY[0])
-        {
-            pointlightOn = false;
-        }
-        */
         if (light_s[0].transform.localPosition.y < LocalPosY[1]
             || light_s[1].transform.localPosition.y < LocalPosY[1])
         {
             pointlightOn = false;
         }
         else { pointlightOn = true; }
-        //Front,Back  Upside
-        /*        if (light_s[1].transform.localPosition.y >= LocalPosY[1]
-                    && light_s[0].transform.localPosition.y >= LocalPosY[1])
-                {
-                    pointlightOn = true;
-                }
-        */
+       
         //Front
         if (light_s[0].transform.localPosition.y > LocalPosY[0]) { FLight.SetActive(false); }
         else if (light_s[0].transform.localPosition.y <= LocalPosY[0]) { FLight.SetActive(true); }
