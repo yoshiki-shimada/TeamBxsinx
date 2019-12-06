@@ -33,9 +33,9 @@ public class Goal : MonoBehaviour
             {
                 player.Clear = true;
                 DownLope(player.gameObject);
+                Invoke("ChangeScene", 0.5f);
             }
         }
-          //  SceneManager.GetComponent<GameSceneManager>().m_bStageFlag = true;
     }
 
     void DownLope(GameObject player)
@@ -52,5 +52,10 @@ public class Goal : MonoBehaviour
                 "time", 0.6f,
                 "delay", 0.1f,
                 "easeType", iTween.EaseType.spring));
+    }
+
+    void ChangeScene()
+    {
+        SceneManager.GetComponent<GameSceneManager>().m_bStageFlag = true;
     }
 }

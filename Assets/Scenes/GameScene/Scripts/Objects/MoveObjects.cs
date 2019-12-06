@@ -45,17 +45,17 @@ public class MoveObjects : MonoBehaviour
             KANBAN.GetComponent<Kanban>().Move();
 
             OBackLane.GetComponent<BackLane>().Spawn();
-            iTween.MoveBy(BackLane01, iTween.Hash("x", 25f, "time", 2f, "delay", 2f));
+            iTween.MoveBy(BackLane01, iTween.Hash("x", 27f, "time", 2f, "delay", 2f));
 
             OMaruo.GetComponent<Maruo>().Spawn();
-            OLope.GetComponent<Lope>().SpawnFront();
+            OLope.GetComponent<Lope>().SpawnBack();
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
         else {
 
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = true;
             OBackLane.GetComponent<BackLane>().Move();
-            iTween.MoveBy(BackLane01, iTween.Hash("x", -25f, "time", 1f));      //  delay
+            iTween.MoveBy(BackLane01, iTween.Hash("x", -28f, "time", 1f));      //  delay
             OLope.GetComponent<Lope>().Delete();
             OBackLane.GetComponent<BackLane>().Delete();
         }
@@ -65,9 +65,25 @@ public class MoveObjects : MonoBehaviour
     {
         if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
         {
-            OLope.GetComponent<Lope>().SpawnBack();
+            Wall.GetComponent<Wall>().SpawnBack();
+            MoveWall.GetComponent<MoveWall>().SpawnFront();
+            OLope.GetComponent<Lope>().SpawnFront();
             Button.GetComponent<Switch>().Spawn();
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
+        else
+        {
+
+            SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = true;
+            Wall.GetComponent<Wall>().Delete();
+            MoveWall.GetComponent<MoveWall>().Delete();
+            OLope.GetComponent<Lope>().Delete();
+            Button.GetComponent<Switch>().Delete();
+        }
+    }
+
+    public void Stage3()
+    {
+
     }
 }
