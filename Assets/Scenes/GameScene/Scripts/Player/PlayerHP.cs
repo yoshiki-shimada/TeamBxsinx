@@ -57,4 +57,12 @@ public class PlayerHP : MonoBehaviour
         copymat[damage].SetColor("_EmissionColor",
             copymat[damage].GetColor("_EmissionColor") * 1f);
     }
+
+    public void MoveHPLight(float y)
+    {
+        iTween.MoveTo(gameObject, iTween.Hash(
+            "y", y,
+            "time", 1f,
+            "easeType", iTween.EaseType.linear));
+    }
 }
