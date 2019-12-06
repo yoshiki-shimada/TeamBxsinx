@@ -7,12 +7,13 @@ enum GamePhase : short
 {
     GAMEPHASE_INIT = 0x00,
     GAMEPHASE_FADEIN = 0x01,
-    GAMEPHASE_STAGE1 = 0x02,
-    GAMEPHASE_STAGE2 = 0x03,
-    GAMEPHASE_STAGE3 = 0x04,
-    GAMEPHASE_STAGE4 = 0x05,
-    GAMEPHASE_FADEOUT = 0X06,
-    GAMEPHASE_DONE = 0x07
+    GAMEPHASE_FORESTSTATE = 0x02,
+    GAMEPHASE_STAGE1 = 0x03,
+    GAMEPHASE_STAGE2 = 0x04,
+    GAMEPHASE_STAGE3 = 0x05,
+    GAMEPHASE_STAGE4 = 0x06,
+    GAMEPHASE_FADEOUT = 0X07,
+    GAMEPHASE_DONE = 0x08
 }
 
 public class GameSceneManager : MonoBehaviour
@@ -35,6 +36,8 @@ public class GameSceneManager : MonoBehaviour
 
     public GameObject Objectugokuze;
 
+    int CatCount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,8 @@ public class GameSceneManager : MonoBehaviour
             m_fCat = m_CatInObject.GetComponent<CatInManager>();
         m_bStageFlag = true;
         m_bMoveFlag = true;
+
+        CatCount = 0;
 
         m_ePhase = GamePhase.GAMEPHASE_INIT;
     }
@@ -59,31 +64,51 @@ public class GameSceneManager : MonoBehaviour
                 m_ePhase = GamePhase.GAMEPHASE_FADEIN;
                 break;
             case GamePhase.GAMEPHASE_FADEIN:
+
                 bFlag = m_fFade.isFadeIn(m_fFadeSpeed);
                 if (bFlag)
                 {
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
                     {
-                        m_ePhase = GamePhase.GAMEPHASE_STAGE1;
-                        Objectugokuze.GetComponent<MoveObjects>().Stage1();
-                        m_bStageFlag = false;
+                        CatCount++;
                         bCatInFlag = false;
+                        if (CatCount >= 2)
+                        {
+                            m_ePhase = GamePhase.GAMEPHASE_FORESTSTATE;
+                            bCatInFlag = false;
+                            break;
+                        }
                     }
+                }
+                break;
+            case GamePhase.GAMEPHASE_FORESTSTATE:
+
+                bCatInFlag = m_fCat.isCatIn();
+                if (bCatInFlag)
+                {
+                    m_ePhase = GamePhase.GAMEPHASE_STAGE1;
+                    Objectugokuze.GetComponent<MoveObjects>().Stage1();
+                    m_bStageFlag = false;
+                    bCatInFlag = false;
+                    m_bMoveFlag = false;
                 }
                 break;
             case GamePhase.GAMEPHASE_STAGE1:
 
                 if (m_bStageFlag)
                 {
+                    if (!m_bMoveFlag)
+                        Objectugokuze.GetComponent<MoveObjects>().Stage1();
                     bCatInFlag = m_fCat.isCatIn();
-                    m_bMoveFlag = false;
-                    Objectugokuze.GetComponent<MoveObjects>().Stage1();
                     if (bCatInFlag)
                     {
                         Objectugokuze.GetComponent<MoveObjects>().Stage2();
                         m_bStageFlag = false;
+                        m_bMoveFlag = false;
+                        bCatInFlag = false;
                         m_ePhase = GamePhase.GAMEPHASE_STAGE2;
+                        break;
                     }
                 }
                 break;
@@ -91,12 +116,15 @@ public class GameSceneManager : MonoBehaviour
 
                 if (m_bStageFlag)
                 {
-                    m_bMoveFlag = false;
-                    Objectugokuze.GetComponent<MoveObjects>().Stage2();
-                    m_bMoveFlag = true;
-
-                    m_bStageFlag = false;
-                    m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
+                    if (!m_bMoveFlag)
+                        Objectugokuze.GetComponent<MoveObjects>().Stage2();
+                    bCatInFlag = m_fCat.isCatIn();
+                    if (bCatInFlag)
+                    {
+                        Objectugokuze.GetComponent<MoveObjects>().Stage3();
+                        m_bStageFlag = false;
+                        m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
+                    }
                 }
                 break;
             case GamePhase.GAMEPHASE_FADEOUT:

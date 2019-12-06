@@ -18,7 +18,7 @@ MonoBehaviour:
   - {x: 20, y: 1, z: 3}
   - {x: -20, y: 1.5, z: 3}
   OInitAnim:
-  - {x: 20, y: 0, z: 0}
+  - {x: 18, y: 0, z: 0}
   - {x: -20, y: 0, z: 0}
   ODereteAnim:
   - {x: 0, y: -10, z: 0}

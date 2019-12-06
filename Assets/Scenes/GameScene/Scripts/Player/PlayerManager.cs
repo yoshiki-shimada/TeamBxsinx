@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    //soundmanager呼び込み-------------------------------------
+    GameObject soundManager;
+
     private Player[] player = new Player[2];
     private int PlayerIndex;
 
@@ -12,6 +15,8 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = GameObject.Find("SoundManager");
+
         int i = PlayerIndex = 0;
         foreach(Transform trans in transform)
         {
@@ -31,6 +36,8 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetButtonDown("GamePad1_LRTrigger"))
         {
             PlayerIndex = (PlayerIndex + 1) % 2;
+            soundManager.GetComponent<SoundManager>().changeplayerSE();
+
         }
 
         if (Input.GetButtonDown("GamePad1_button_Start"))
