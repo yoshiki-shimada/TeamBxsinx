@@ -1220,5 +1220,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ePhase: 0
-  m_fFadeSpeed: 0.09
+  m_fFadeSpeed: 0.01
   m_FadeObject: {fileID: 1894261557}

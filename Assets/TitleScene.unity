@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ePhase: 0
-  m_fFadeSpeed: 0.015
+  m_fFadeSpeed: 0.01
   m_FadeObject: {fileID: 725015781}
 --- !u!1 &9055223
 GameObject:
