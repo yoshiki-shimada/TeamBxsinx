@@ -54,6 +54,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LightManager lightManager;　//! LightManagerについているもの
     [SerializeField] private PlayerHP HP;
 
+    Vector3 SetPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,6 +65,7 @@ public class Player : MonoBehaviour
         m_bDethFlag = false;
         m_bInvincible = false;
         wallcheck = false;
+        SetPos = transform.position;
     }
     
     // Update is called once per frame
@@ -275,6 +278,16 @@ public class Player : MonoBehaviour
     public void ReSpawn(Vector3 pos)
     {
         transform.position = pos;
+    }
+
+    public void ReSet()
+    {
+        m_bClear = false;
+        m_bDethFlag = false;
+        m_bInvincible = false;
+        State = PlayerState.Idle;
+        animator.SetInteger("State", (int)State);
+        transform.position = SetPos;
     }
 
    /* void OnDrawGizmos()
