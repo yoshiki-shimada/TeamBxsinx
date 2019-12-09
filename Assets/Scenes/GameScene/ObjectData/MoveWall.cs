@@ -19,7 +19,7 @@ public class MoveWall : MonoBehaviour
         t = Instantiate(MWallPrefab, MWallData.spawnPoints[3], MWallData.q2) as GameObject;
 
         //! animation
-        iTween.MoveBy(t, iTween.Hash("y", MWallData.OInitAnim[3].y, "time", 1f, "delay", 3f));
+        iTween.MoveBy(t, iTween.Hash("y", MWallData.OInitAnim[3].y, "time", 1f, "delay", 2.5f));
     }
 
     public void SpawnBack()
@@ -28,7 +28,7 @@ public class MoveWall : MonoBehaviour
         t = Instantiate(MWallPrefab, MWallData.spawnPoints[2], MWallData.q2) as GameObject;
 
         //! animation
-        iTween.MoveBy(t, iTween.Hash("y", MWallData.OInitAnim[2].y, "time", 1f, "delay", 3f));
+        iTween.MoveBy(t, iTween.Hash("y", MWallData.OInitAnim[2].y, "time", 1f, "delay", 2.5f));
     }
 
     public void Move()

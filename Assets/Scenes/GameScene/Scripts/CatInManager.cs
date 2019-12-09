@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CatInManager : MonoBehaviour
 {
@@ -31,14 +32,23 @@ public class CatInManager : MonoBehaviour
             CreentCatIn.transform.SetParent(canvas.transform, false);
             iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -21, "time", 2.0f));
             InFlag = false;
+
         }
 
         if (Input.GetButtonDown("GamePad1_buttonA"))
         {
-            iTween.MoveBy(CreentCatIn, iTween.Hash("x", -100f, "time", 10.0f));
+            iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -80f, "time", 10.0f,"oncomplete","NextCat","oncompletetarget",CreentCatIn));
             i++;
             InFlag = true;
             CreentCatIn = (GameObject)Instantiate(CatInPrefab[i]);
+            for (int timeCount = 100; timeCount >= 0; timeCount--)
+            {
+                if (timeCount <= 0)
+                {
+                    foreach (Transform child in canvas.transform)
+                        Destroy(child.gameObject);
+                }
+            }
             return true;
         }
         return false;
