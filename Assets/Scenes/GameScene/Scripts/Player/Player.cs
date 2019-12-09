@@ -45,7 +45,9 @@ public class Player : MonoBehaviour
     {
         get { return (int)State; }
     }
+
     //RaycastHit hit;
+    Transform RayPoint;
 
     [SerializeField] private Rigidbody rb;          //! このオブジェクトについているもの
     [SerializeField] private CapsuleCollider CapCol;//! このオブジェクトについているTriggerでないもの
@@ -66,6 +68,7 @@ public class Player : MonoBehaviour
         m_bInvincible = false;
         wallcheck = false;
         SetPos = transform.position;
+        RayPoint = transform.GetChild(2);
     }
     
     // Update is called once per frame
@@ -212,10 +215,24 @@ public class Player : MonoBehaviour
         // Playerの移動
         if ((hori != 0))
         {
-            float x = hori * moveSpeed;
-            x = 500 * (x - rb.velocity.x) * Time.deltaTime;
-            // Debug.Log(x);
-            rb.AddForce(x, 0, 0);
+            RaycastHit hit;
+            if (Physics.Raycast(RayPoint.position, transform.right, out hit, CapCol.radius))
+            {
+                Debug.Log("PointCast" + hit.normal);
+                // 平面に投影したいベクトルを作成
+                Vector3 inputVector = Vector3.zero;
+                inputVector.x = hori;
+                // 平面に沿ったベクトルを計算
+                Vector3 onPlane = Vector3.ProjectOnPlane(inputVector, hit.normal);
+                rb.AddForce( onPlane * moveSpeed * 5 ,ForceMode.Acceleration);
+            }
+            else
+            {
+                float x = hori * moveSpeed;
+                x = 500 * (x - rb.velocity.x) * Time.deltaTime;
+                // Debug.Log(x);
+                rb.AddForce(x, 0, 0);
+            }
         }
        // else
          

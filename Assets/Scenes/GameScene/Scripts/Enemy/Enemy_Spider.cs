@@ -2,62 +2,87 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum SpiderState
+{
+    TOP,
+    LEFT,
+    BOTTOM,
+    RIGHT,
+    ROTATE,
+}
+
 public class Enemy_Spider : MonoBehaviour
 {
-    CapsuleCollider Collider;
+    SphereCollider col;
     Rigidbody rb;
-    Transform Balance;
+    int Direction = 1;
+    SpiderState EState = SpiderState.TOP;
+
     // Start is called before the first frame update
     void Start()
     {
-        Collider = GetComponent<CapsuleCollider>();
+        col = GetComponent<SphereCollider>();
         rb = GetComponent<Rigidbody>();
-        Balance = transform.GetChild(0);
     }
 
     // Update is called once per frame
     void Update()
     {
         RaycastHit hit;
-
-        // Transformの真下の地形の法線を調べる
-        if (Physics.Raycast(
-                    Balance.position,
-                    -transform.up,
-                    out hit,
-                    float.PositiveInfinity))
+        if (EState == SpiderState.TOP)
         {
-            Vector3 vec = Vector3.ProjectOnPlane(transform.position, hit.normal);
-            transform.position = vec*3;
-            
-            // 傾きの差を求める
-            Quaternion q = Quaternion.FromToRotation(
-                        transform.up,
-                        hit.normal);
-
-            // 自分を回転させる
-            transform.rotation *= q;
-
-            // 地面から一定距離離れていたら落下
-           /* if (hit.distance > 0.05f)
+            if (Physics.Raycast(transform.position,
+                (transform.right * Direction) + (-transform.up),
+                out hit, 1))
             {
-                transform.position =
-                    transform.position +
-                    (-transform.up * Physics.gravity.magnitude * Time.fixedDeltaTime);
-            }*/
+                if (hit.distance >= 0.05)
+                    transform.position = hit.point;
+
+                Vector3 normal = hit.normal;
+                Quaternion quat = Quaternion.FromToRotation(Vector3.up, normal);
+                if (transform.rotation != quat)
+                {
+                    transform.rotation = quat;
+                    EState = SpiderState.LEFT;
+                }
+            }
+        }
+        else if (EState == SpiderState.LEFT)
+        {
+            if (Physics.Raycast(transform.position,
+                 -transform.right,
+                  out hit, 1))
+            {
+                if (hit.distance >= 0.05)
+                    transform.position = hit.point;
+
+                Vector3 normal = hit.normal;
+                Quaternion quat = Quaternion.FromToRotation(Vector3.up, normal);
+                if (transform.rotation != quat)
+                {
+                    transform.rotation = quat;
+                    EState = SpiderState.TOP;
+                }
+            }
+        }
+
+        if (EState != SpiderState.ROTATE)
+        {
+            rb.AddForce(-transform.right);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnDrawGizmos()
     {
-        
+        Gizmos.DrawRay(transform.position, 
+            (transform.right * Direction) + (-transform.up));
+        Gizmos.DrawRay(transform.position,
+                 -transform.right);
     }
-
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "ShadowObject")
         {
-            Collider.isTrigger = false;
             rb.isKinematic = false;
         }
     }
