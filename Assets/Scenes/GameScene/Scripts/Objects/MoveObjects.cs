@@ -61,10 +61,10 @@ public class MoveObjects : MonoBehaviour
     {
         if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
         {
+            Button.GetComponent<Switch>().Spawn();
             Wall.GetComponent<Wall>().SpawnBack();
             MoveWall.GetComponent<MoveWall>().SpawnFront();
             OLope.GetComponent<Lope>().SpawnFront();
-            Button.GetComponent<Switch>().Spawn();
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
         else

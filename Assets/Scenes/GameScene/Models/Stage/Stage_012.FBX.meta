@@ -1,35 +1,56 @@
 fileFormatVersion: 2
-guid: 7aff436825dec2543833792ca155bfe6
+guid: f402f03a78e402b4387b033eacebb132
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Box002
-    100002: //RootNode
-    100004: Star001
-    100006: Star002
-    100008: Star003
-    400000: Box002
-    400002: //RootNode
-    400004: Star001
-    400006: Star002
-    400008: Star003
-    2100000: 'Material #26'
-    2100002: 'Material #25'
-    2300000: Box002
-    2300002: //RootNode
-    2300004: Star001
-    2300006: Star002
-    2300008: Star003
-    3300000: Box002
-    3300002: //RootNode
-    3300004: Star001
-    3300006: Star002
-    3300008: Star003
-    4300000: Box001
-    4300002: Box002
-    4300004: Star003
-    4300006: Star001
-    4300008: Star002
+    100000: 01Curtain
+    100002: 02Curtain
+    100004: 03Curtain
+    100006: BackLane01
+    100008: Baran
+    100010: CenterLane
+    100012: FrontLane
+    100014: GearLane
+    100016: //RootNode
+    400000: 01Curtain
+    400002: 02Curtain
+    400004: 03Curtain
+    400006: BackLane01
+    400008: Baran
+    400010: CenterLane
+    400012: FrontLane
+    400014: GearLane
+    400016: //RootNode
+    2100000: 'Material #4'
+    2100002: 'Material #6'
+    2100004: 'Material #10'
+    2100006: 'Material #11'
+    2100008: 'Material #3'
+    2100010: 'Material #27'
+    2300000: 01Curtain
+    2300002: 02Curtain
+    2300004: 03Curtain
+    2300006: BackLane01
+    2300008: Baran
+    2300010: CenterLane
+    2300012: FrontLane
+    2300014: GearLane
+    3300000: 01Curtain
+    3300002: 02Curtain
+    3300004: 03Curtain
+    3300006: BackLane01
+    3300008: Baran
+    3300010: CenterLane
+    3300012: FrontLane
+    3300014: GearLane
+    4300000: CenterLane
+    4300002: 01Curtain
+    4300004: 02Curtain
+    4300006: BackLane01
+    4300008: 03Curtain
+    4300010: FrontLane
+    4300012: Baran
+    4300014: GearLane
   externalObjects: {}
   materials:
     importMaterials: 1
