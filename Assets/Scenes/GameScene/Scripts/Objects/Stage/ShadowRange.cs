@@ -11,7 +11,7 @@ public class ShadowRange : MonoBehaviour
     private ParticleSystem Solidps;
 
     // 0:薄い影の範囲 1:3D影の範囲
-    private float shadowRange = 1f;
+    private float shadowRange = 1.2f;
     public float Shadowrange
     {
         set { shadowRange = value; }

@@ -18,9 +18,6 @@ public class Enemy_Spider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position =
-                        transform.position +
-                        (-transform.right * 3 * Time.fixedDeltaTime);
         RaycastHit hit;
 
         // Transformの真下の地形の法線を調べる
@@ -30,6 +27,9 @@ public class Enemy_Spider : MonoBehaviour
                     out hit,
                     float.PositiveInfinity))
         {
+            Vector3 vec = Vector3.ProjectOnPlane(transform.position, hit.normal);
+            transform.position = vec*3;
+            
             // 傾きの差を求める
             Quaternion q = Quaternion.FromToRotation(
                         transform.up,
@@ -39,12 +39,12 @@ public class Enemy_Spider : MonoBehaviour
             transform.rotation *= q;
 
             // 地面から一定距離離れていたら落下
-            if (hit.distance > 0.05f)
+           /* if (hit.distance > 0.05f)
             {
                 transform.position =
                     transform.position +
                     (-transform.up * Physics.gravity.magnitude * Time.fixedDeltaTime);
-            }
+            }*/
         }
     }
 
