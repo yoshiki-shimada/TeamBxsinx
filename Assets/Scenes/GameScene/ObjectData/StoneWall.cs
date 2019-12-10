@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wall : MonoBehaviour
+public class StoneWall : MonoBehaviour
 {
     public GameObject WallPrefab;
 
@@ -25,7 +25,7 @@ public class Wall : MonoBehaviour
         t = Instantiate(WallPrefab, WallData.spawnPoints[1], WallData.q2) as GameObject;
 
         //! animation
-        iTween.MoveBy(t, iTween.Hash("y", WallData.OInitAnim[1].y, "time", 1f, "delay", 3f));
+        iTween.MoveBy(t, iTween.Hash("y", WallData.OInitAnim[1].y, "time", 1f, "delay", 1f));
     }
 
     public void Delete()

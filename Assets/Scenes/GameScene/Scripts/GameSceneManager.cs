@@ -29,6 +29,8 @@ public class GameSceneManager : MonoBehaviour
 
     FadeManager m_fFade;
     CatInManager m_fCat;
+    [SerializeField]
+    PlayerManager m_fPlayer;
 
     public bool m_bStageFlag;
     public bool m_bMoveFlag;
@@ -99,7 +101,10 @@ public class GameSceneManager : MonoBehaviour
                 if (m_bStageFlag)
                 {
                     if (!m_bMoveFlag)
+                    {
                         Objectugokuze.GetComponent<MoveObjects>().Stage1();
+                        m_fPlayer.ResetPlayer();
+                    }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
                     {
