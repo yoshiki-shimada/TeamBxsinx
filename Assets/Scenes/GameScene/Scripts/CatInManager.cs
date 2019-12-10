@@ -37,18 +37,14 @@ public class CatInManager : MonoBehaviour
 
         if (Input.GetButtonDown("GamePad1_buttonA"))
         {
-            iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -80f, "time", 10.0f,"oncomplete","NextCat","oncompletetarget",CreentCatIn));
+            iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -80f, "time", 10.0f, "oncomplete", "NextCat", "oncompletetarget", CreentCatIn));
             i++;
             InFlag = true;
             CreentCatIn = (GameObject)Instantiate(CatInPrefab[i]);
-            for (int timeCount = 100; timeCount >= 0; timeCount--)
-            {
-                if (timeCount <= 0)
-                {
-                    foreach (Transform child in canvas.transform)
-                        Destroy(child.gameObject);
-                }
-            }
+
+            foreach (Transform child in canvas.transform)
+                Destroy(child.gameObject);
+
             return true;
         }
         return false;
