@@ -14,6 +14,9 @@ public class ScrollObject : MonoBehaviour
     public float endPosition;
     public bool pushYFlag;
 
+    [SerializeField] private Animator Lanimator;
+    [SerializeField] private Animator Ranimator;
+
     private float hori;
     // Start is called before the first frame update
     void Start()
@@ -45,6 +48,8 @@ public class ScrollObject : MonoBehaviour
 
         if (pushYFlag)
         {
+            Lanimator.SetBool("LolFlag", true);
+            Ranimator.SetBool("RolFlag", true);
             if (hori < 0)
             {
                 for (int i = 0; i < obj.Length; i++)
@@ -63,12 +68,16 @@ public class ScrollObject : MonoBehaviour
             }
             ScrollEnd();
         }
+        else
+        {
+            Lanimator.SetBool("LolFlag", false);
+            Ranimator.SetBool("RolFlag", false);
+        }
     }
 
     //オブジェクトが決められた位置まで到達したときの処理
     void ScrollEnd()
     {
-
         for (int i = 0; i < obj.Length; i++)
         {
             Vector3 Pos = obj[i].transform.position;
