@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 352406661764077929}
   - component: {fileID: 352406661762750795}
   - component: {fileID: 352406661761653643}
-  - component: {fileID: 4736558116061282755}
+  - component: {fileID: 3233583813233971561}
   m_Layer: 13
   m_Name: Cylinder001
   m_TagString: Untagged
@@ -78,7 +78,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &4736558116061282755
+--- !u!114 &3233583813233971561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,11 +87,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 352406661763843401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60cd6500de029d24995faa95b04483e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 756555ff2d01b1c48ad6b7c136ed209b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonPrefab: {fileID: 0}
-  ButtonData: {fileID: 0}
+  anim: {fileID: 352406661756565131}
 --- !u!1 &352406661763843403
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +101,6 @@ GameObject:
   m_Component:
   - component: {fileID: 352406661764077931}
   - component: {fileID: 352406661756565131}
-  - component: {fileID: 114624339019951864}
   m_Layer: 13
   m_Name: botann
   m_TagString: Untagged
@@ -145,19 +143,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114624339019951864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352406661763843403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 756555ff2d01b1c48ad6b7c136ed209b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 352406661756565131}
 --- !u!1 &352406661763843407
 GameObject:
   m_ObjectHideFlags: 0
