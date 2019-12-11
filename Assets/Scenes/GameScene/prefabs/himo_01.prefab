@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 6330708792995860268}
   - component: {fileID: 8586254754036009474}
   - component: {fileID: 8586254754034878658}
-  m_Layer: 0
+  - component: {fileID: 64355227991646014}
+  - component: {fileID: 114566820996622468}
+  m_Layer: 13
   m_Name: himo_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,6 +80,35 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &64355227991646014
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225785960874086475}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 365fb0e12ef811e42b1b18069927a2d5, type: 3}
+--- !u!114 &114566820996622468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5225785960874086475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2d1d63c6adc9e5408e7b481ed78617d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Destination:
+  - 2.8
+  - 0.8
 --- !u!1 &6557440433143246086
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6557440433143246084}
   - component: {fileID: 6557440433143246085}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
