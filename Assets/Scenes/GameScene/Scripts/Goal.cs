@@ -31,7 +31,7 @@ public class Goal : MonoBehaviour
             Player player = collision.transform.GetComponent<Player>();
             if ((PlayerState)player.PState == PlayerState.Jump)
             {
-                Debug.Log(transform.position.x - player.transform.position.x);
+                //Debug.Log(transform.position.x - player.transform.position.x);
                 float dis = transform.position.x - player.transform.position.x;
                 if ( dis < 0.7f && dis >= 0)
                 {

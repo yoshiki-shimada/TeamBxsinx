@@ -93,7 +93,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Destination:
   - -1.4
-  - 2.8
+  - 2.6
 --- !u!64 &5806566398383943826
 MeshCollider:
   m_ObjectHideFlags: 0

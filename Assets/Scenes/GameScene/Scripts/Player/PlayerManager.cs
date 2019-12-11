@@ -57,6 +57,7 @@ public class PlayerManager : MonoBehaviour
 
     public void ResetPlayer()
     {
+        //Debug.Log("IsReset");
         for(int i = 0;i < 2; i++)
         {
             player[i].ReSet();
