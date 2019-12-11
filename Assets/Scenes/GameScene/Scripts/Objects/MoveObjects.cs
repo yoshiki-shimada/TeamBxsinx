@@ -35,9 +35,44 @@ public class MoveObjects : MonoBehaviour
         MoveWall = GameObject.Find("MoveWall");
     }
 
+    public void One()
+    {
+        if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
+        {
+            OLope.GetComponent<Lope>().SpawnFront();
+        }
+        else
+        {
+            OLope.GetComponent<Lope>().Delete();
+        }
+    }
 
+    public void two()
+    {
+        if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
+        {
+            OLope.GetComponent<Lope>().SpawnBack();
+            Maruo.GetComponent<Maruo>().InObj();
+        }
+        else
+        {
+            OLope.GetComponent<Lope>().Delete();
+        }
+    }
 
-    public void Stage1()
+    public void three()
+    {
+        if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
+        {
+            OLope.GetComponent<Lope>().SpawnFront();
+        }
+        else
+        {
+            OLope.GetComponent<Lope>().Delete();
+        }
+    }
+
+public void Stage1()
     {
         if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
         {
@@ -48,7 +83,8 @@ public class MoveObjects : MonoBehaviour
             OLope.GetComponent<Lope>().SpawnBack();
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
-        else {
+        else
+        {
 
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = true;
             OBackLane.GetComponent<BackLane>().Move();
@@ -84,28 +120,4 @@ public class MoveObjects : MonoBehaviour
 
     }
 
-    public void OnEnable()
-    {
-        if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
-        {
-            OLope.GetComponent<Lope>().SpawnFront();
-        }
-        else
-        {
-            OLope.GetComponent<Lope>().Delete();
-        }
-    }
-
-    public void two()
-    {
-        if (SceneManager.GetComponent<GameSceneManager>().m_bStageFlag)
-        {
-            OLope.GetComponent<Lope>().SpawnBack();
-            Maruo.GetComponent<Maruo>().InObj();
-        }
-        else
-        {
-            OLope.GetComponent<Lope>().Delete();
-        }
-    }
 }

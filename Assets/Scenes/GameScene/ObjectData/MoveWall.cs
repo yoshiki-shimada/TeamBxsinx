@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class MoveWall : MonoBehaviour
 {
-    private PlayableDirector playableDirector;
-
     public GameObject MWallPrefab;
 
     public ObjectsData MWallData;
@@ -29,11 +26,6 @@ public class MoveWall : MonoBehaviour
 
         //! animation
         iTween.MoveBy(t, iTween.Hash("y", MWallData.OInitAnim[2].y, "time", 1f, "delay", 2.5f));
-    }
-
-    public void Move()
-    {
-        playableDirector.Play();
     }
 
     public void Delete()
