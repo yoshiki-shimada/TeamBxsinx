@@ -12,11 +12,11 @@ public class Goal : MonoBehaviour
 
     [SerializeField] float[] Destination = new float[2];
     int DesIndex;
-
     public int Desindex
     {
         set { DesIndex = value; }
     }
+    Player player = null;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class Goal : MonoBehaviour
         Debug.Log("おれさいきょう");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Player player = collision.transform.GetComponent<Player>();
+            player = collision.transform.GetComponent<Player>();
             if ((PlayerState)player.PState == PlayerState.Jump)
             {
                 //Debug.Log(transform.position.x - player.transform.position.x);
@@ -39,40 +39,44 @@ public class Goal : MonoBehaviour
                     player.transform.position =
                          new Vector3(transform.position.x - 0.9f,
                          transform.position.y, player.transform.position.z);
-                    player.transform.localRotation = new Quaternion(0,0,0,0);
+                    player.transform.localRotation = Quaternion.Euler(0,0,0);
                 }
                 else if(dis > -0.7f && dis < 0)
                 {
                     player.transform.position =
                         new Vector3(transform.position.x + 0.9f,
                         transform.position.y, player.transform.position.z);
-                    player.transform.localRotation = new Quaternion(0, 180, 0, 0);
+                    player.transform.localRotation = Quaternion.Euler(0, 180, 0);
                 }
                 player.Clear = true;
                 DownLope(player.gameObject);
-                Invoke("ChangeScene", 0.5f);
+                StartCoroutine(ChangeScene());
             }
         }
     }
 
     void DownLope(GameObject player)
     {
+        iTween.MoveTo(player,
+    iTween.Hash(
+        "y", Destination[DesIndex] + 0.3f,
+        "time", 0.6f,
+        "delay", 0.1f,
+        "easeType", iTween.EaseType.spring,
+        "oncomplete","ResetPlayer",
+        "oncompletetarget",player.transform.parent.gameObject));
+
         iTween.MoveTo(this.gameObject,
             iTween.Hash(
                 "y", Destination[DesIndex],
                 "time", 0.6f,
                 "delay",0.1f,
                 "easeType", iTween.EaseType.spring));
-        iTween.MoveTo(player,
-            iTween.Hash(
-                "y", Destination[DesIndex]+0.3f,
-                "time", 0.6f,
-                "delay", 0.1f,
-                "easeType", iTween.EaseType.spring));
     }
 
-    void ChangeScene()
+    IEnumerator ChangeScene()
     {
+        yield return new WaitForSeconds(0.5f);
         SceneManager.GetComponent<GameSceneManager>().m_bStageFlag = true;
     }
 }

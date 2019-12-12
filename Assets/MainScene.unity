@@ -3853,7 +3853,6 @@ MonoBehaviour:
   m_fFadeSpeed: 0.01
   m_FadeObject: {fileID: 321197783}
   m_CatInObject: {fileID: 284765221}
-  m_fPlayer: {fileID: 625951323}
   m_bStageFlag: 0
   m_bMoveFlag: 0
   Objectugokuze: {fileID: 1404765141}

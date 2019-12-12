@@ -27,6 +27,7 @@ public class Enemy_Spider : MonoBehaviour
     float[] xRange = new float[2];  // [0]->左 [1]->右   の間を往復
     byte Dir = 0;
 
+    Vector3 onPlane = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,8 +53,8 @@ public class Enemy_Spider : MonoBehaviour
                 Debug.Log(hit2.distance);
             }
             Debug.Log(EState);
-            Debug.Log(State);
-            
+            //Debug.Log(State);           
+            Debug.Log(transform.rotation + "<->" + quat);
         }
 
         if (EState == SpiderState.SHADOW)
@@ -74,7 +75,7 @@ public class Enemy_Spider : MonoBehaviour
 
             if (transform.position.x <= xRange[0])
             {
-                quat = Quaternion.Euler(0, -180, 0);
+                quat = Quaternion.Euler(0, 180, 0);
                 Dir = 1;
                 EState = SpiderState.ROTATE;
             }
@@ -87,13 +88,15 @@ public class Enemy_Spider : MonoBehaviour
         }
         if (EState==SpiderState.ROTATE)
         {
-            //if (quatPos != Vector3.zero)
-              //  transform.position = quatPos;
+            if (quatPos != Vector3.zero)
+                transform.position = quatPos;
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, quat, 0.2f);
+            transform.localRotation = 
+                Quaternion.Slerp(transform.localRotation, quat, 0.2f);
 
-            if (transform.rotation == quat)
+            if (transform.localRotation == quat)
             {
+                Debug.Log("RotComplete");
                 EState = SpiderState.WALK;
             }
         }
@@ -112,9 +115,13 @@ public class Enemy_Spider : MonoBehaviour
         {
             //Debug.Log("Efored" + hit.distance);
             Vector3 normal = hit.normal;
-            normal.z *= Xnormal();
-            quat = Quaternion.FromToRotation(Vector3.up, normal);
             
+           // onPlane = Vector3.ProjectOnPlane(transform.right, normal);
+            quat = Quaternion.FromToRotation(Vector3.up, normal);
+            Debug.Log(quat);
+            quat.eulerAngles = AngleSet(quat.eulerAngles);
+            Debug.Log(quat);
+
             if (transform.rotation != quat)
             {
                 if (hit.distance >= 0.001f)
@@ -138,10 +145,12 @@ public class Enemy_Spider : MonoBehaviour
                 //Debug.Log(hit.distance);
 
                 Vector3 normal = hit.normal;
-                normal.z *= Xnormal();
-                quat = Quaternion.FromToRotation(Vector3.up, normal);
 
-                if (transform.rotation != quat)
+               // onPlane = Vector3.ProjectOnPlane(transform.right, normal);
+                quat = Quaternion.FromToRotation(Vector3.up, normal);
+                quat.eulerAngles = AngleSet(quat.eulerAngles);
+
+                if (transform.localRotation != quat)
                 {
                     if (hit.distance >= 0.001f)
                     {
@@ -157,12 +166,17 @@ public class Enemy_Spider : MonoBehaviour
         return false;
     }
 
-    float Xnormal()
+    Vector3 AngleSet (Vector3 angle)
     {
-        if (Dir == 0)
-            return -1f;
+        if (transform.rotation.eulerAngles.y <= 90)
+        {
+            return angle;
+        }
         else
-            return 1f;
+        {
+            angle.x = 180;
+            return angle;
+        }
     }
 
     private void OnDrawGizmos()

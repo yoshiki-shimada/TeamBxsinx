@@ -55,9 +55,10 @@ public class PlayerManager : MonoBehaviour
         player[PlayerIndex].FixedUpdateP();
     }
 
-    public void ResetPlayer()
+    public IEnumerator ResetPlayer()
     {
         //Debug.Log("IsReset");
+        yield return new WaitForSeconds(1f);
         for(int i = 0;i < 2; i++)
         {
             player[i].ReSet();

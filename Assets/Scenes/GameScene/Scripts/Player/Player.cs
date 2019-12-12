@@ -88,9 +88,9 @@ public class Player : MonoBehaviour
         {
             //ゲームオーバー処理
             //transform.position = new Vector3(0, 0, 0);
-            //Debug.Log("You Lose");
+            Debug.Log("You Lose");
             
-                SceneManager.LoadScene("GameOver");
+               // SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -287,7 +287,7 @@ public class Player : MonoBehaviour
 
     bool CrushPlayer()
     {
-        if (lightManager.changelight)
+        if (lightManager.changelight || m_bClear)
             return false;
         float posplus = CapCol.height * 0.5f - CapCol.radius;
         Vector3 pos = transform.position + CapCol.center;
@@ -305,6 +305,7 @@ public class Player : MonoBehaviour
 
     public void ReSet()
     {
+        transform.position = SetPos;
         m_bClear = false;
         m_bDethFlag = false;
         m_bInvincible = false;
@@ -312,7 +313,7 @@ public class Player : MonoBehaviour
         rb.isKinematic = false;
         State = PlayerState.Idle;
         animator.SetInteger("State", (int)State);
-        transform.position = SetPos;
+        Debug.Log("PlayReset" + Playernum);
     }
 
    /* void OnDrawGizmos()
