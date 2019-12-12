@@ -11,6 +11,11 @@ public class CatInManager : MonoBehaviour
     [SerializeField]
     GameObject canvas;
 
+    [SerializeField]
+    PlayerHP FHP;
+    [SerializeField]
+    PlayerHP BHP;   
+
     private GameObject CreentCatIn;
 
     int i;
@@ -29,14 +34,17 @@ public class CatInManager : MonoBehaviour
     {
         if (InFlag)
         {
+            FHP.MoveHPLight(-2f);
+            BHP.MoveHPLight(-2f);
             CreentCatIn.transform.SetParent(canvas.transform, false);
             iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -21, "time", 2.0f));
             InFlag = false;
-
         }
 
         if (Input.GetButtonDown("GamePad1_buttonA"))
         {
+            FHP.MoveHPLight(0f);
+            BHP.MoveHPLight(0f);
             iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -80f, "time", 10.0f, "oncomplete", "NextCat", "oncompletetarget", CreentCatIn));
             i++;
             InFlag = true;

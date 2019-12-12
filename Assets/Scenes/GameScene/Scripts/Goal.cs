@@ -12,6 +12,7 @@ public class Goal : MonoBehaviour
 
     [SerializeField] float[] Destination = new float[2];
     int DesIndex;
+
     public int Desindex
     {
         set { DesIndex = value; }

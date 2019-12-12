@@ -7,13 +7,13 @@ public class PushButton : MonoBehaviour
     public Animator anim;
 
     [SerializeField]
-    MoveWall m_fMWall;
+    GameObject MObj;
 
     void OnTriggerEnter(Collider pther)
     {
-            Debug.Log("SwicthON");
-            anim.enabled = true;
-            anim.Play("botann");
-            m_fMWall.GetComponent<MoveWall>().Move();
+        Debug.Log("SwicthON");
+        anim.enabled = true;
+        anim.Play("Down");
+        MObj.GetComponent<WallAnim>().Move();
     }
 }
