@@ -50,7 +50,7 @@ public class Enemy_Spider : MonoBehaviour
                 -transform.right, //-transform.up, //
                 out hit2, 2f))
             {
-                Debug.Log(hit2.distance);
+                //Debug.Log(hit2.distance);
             }
             Debug.Log(EState);
             //Debug.Log(State);           
@@ -211,7 +211,7 @@ public class Enemy_Spider : MonoBehaviour
             rb.isKinematic = true;
             for (int i = 0; i < 2; i++)
                 col[i].isTrigger = true;
-            Debug.Log("ShadowEnter");
+            
         }
     }
 
@@ -242,5 +242,6 @@ public class Enemy_Spider : MonoBehaviour
             EState = State;
             flag = false;
         }
+        Debug.Log(other.bounds.size);
     }
 }
