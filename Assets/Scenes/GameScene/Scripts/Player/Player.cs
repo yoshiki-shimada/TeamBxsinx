@@ -224,7 +224,7 @@ public class Player : MonoBehaviour
         if ((hori != 0))
         {
             RaycastHit hit;
-            if (Physics.Raycast(RayPoint.position, transform.right, out hit, CapCol.radius))
+            /*if (Physics.Raycast(RayPoint.position, transform.right, out hit, CapCol.radius))
             {
                 Debug.Log("PointCast" + hit.normal);
                 // 平面に投影したいベクトルを作成
@@ -232,9 +232,9 @@ public class Player : MonoBehaviour
                 inputVector.x = hori;
                 // 平面に沿ったベクトルを計算
                 Vector3 onPlane = Vector3.ProjectOnPlane(inputVector, hit.normal);
-                rb.AddForce( onPlane * moveSpeed * 5 ,ForceMode.Acceleration);
+                rb.AddForce( onPlane * moveSpeed * 2f ,ForceMode.Acceleration);
             }
-            else
+            else*/
             {
                 float x = hori * moveSpeed;
                 x = 500 * (x - rb.velocity.x) * Time.deltaTime;

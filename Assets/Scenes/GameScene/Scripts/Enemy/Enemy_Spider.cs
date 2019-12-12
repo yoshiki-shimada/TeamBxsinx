@@ -14,7 +14,6 @@ public class Enemy_Spider : MonoBehaviour
 {
     MeshCollider[] col=new MeshCollider[2];
     Rigidbody rb;
-    int Direction = -1;
     SpiderState EState = SpiderState.WALK;
     SpiderState State = SpiderState.WALK;
     bool flag = false;
@@ -25,7 +24,6 @@ public class Enemy_Spider : MonoBehaviour
 
     [SerializeField]
     float[] xRange = new float[2];  // [0]->左 [1]->右   の間を往復
-    byte Dir = 0;
 
     Vector3 onPlane = Vector3.zero;
     // Start is called before the first frame update
@@ -54,7 +52,7 @@ public class Enemy_Spider : MonoBehaviour
             }
             Debug.Log(EState);
             //Debug.Log(State);           
-            Debug.Log(transform.rotation + "<->" + quat);
+            //Debug.Log(transform.rotation + "<->" + quat);
         }
 
         if (EState == SpiderState.SHADOW)
@@ -76,25 +74,23 @@ public class Enemy_Spider : MonoBehaviour
             if (transform.position.x <= xRange[0])
             {
                 quat = Quaternion.Euler(0, 180, 0);
-                Dir = 1;
                 EState = SpiderState.ROTATE;
             }
             else if (transform.position.x >= xRange[1])
             {
                 quat = Quaternion.Euler(0, 0, 0);
-                Dir = 0;
                 EState = SpiderState.ROTATE;
             }
         }
         if (EState==SpiderState.ROTATE)
         {
             if (quatPos != Vector3.zero)
-                transform.position = quatPos;
+                 rb.MovePosition(quatPos);
 
             transform.localRotation = 
-                Quaternion.Slerp(transform.localRotation, quat, 0.2f);
+                Quaternion.Slerp(transform.localRotation, quat, 0.3f);
 
-            if (transform.localRotation == quat)
+            if (transform.localRotation.eulerAngles == quat.eulerAngles)
             {
                 Debug.Log("RotComplete");
                 EState = SpiderState.WALK;
@@ -108,7 +104,7 @@ public class Enemy_Spider : MonoBehaviour
         
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position + transform.up * 0.5f,
+        if (Physics.Raycast(transform.position + transform.up * 0.65f,
             -transform.right,
             out hit, 0.33f,
             LayerMask.GetMask("Stage")))
@@ -118,16 +114,16 @@ public class Enemy_Spider : MonoBehaviour
             
            // onPlane = Vector3.ProjectOnPlane(transform.right, normal);
             quat = Quaternion.FromToRotation(Vector3.up, normal);
-            Debug.Log(quat);
+           // Debug.Log(quat);
             quat.eulerAngles = AngleSet(quat.eulerAngles);
-            Debug.Log(quat);
+            //Debug.Log(quat);
 
             if (transform.rotation != quat)
             {
                 if (hit.distance >= 0.001f)
                 {
-                    Debug.Log(hit.point);
-                    quatPos = hit.point;
+                   // Debug.Log(hit.point);
+                   quatPos = Vector3.zero;
                 }
 
                 EState = SpiderState.ROTATE;
@@ -137,7 +133,7 @@ public class Enemy_Spider : MonoBehaviour
         }
 
         if(!Physics.Raycast(transform.position+transform.up*0.01f,
-            -transform.up,0.02f))
+            -transform.up,out hit , 0.01f))
             if (Physics.Raycast(transform.position,
                 (transform.right) + (-transform.up),
                 out hit, 1.5f))
@@ -148,14 +144,16 @@ public class Enemy_Spider : MonoBehaviour
 
                // onPlane = Vector3.ProjectOnPlane(transform.right, normal);
                 quat = Quaternion.FromToRotation(Vector3.up, normal);
-                quat.eulerAngles = AngleSet(quat.eulerAngles);
 
                 if (transform.localRotation != quat)
                 {
-                    if (hit.distance >= 0.001f)
+                   quat.eulerAngles = AngleSet(quat.eulerAngles);
+
+                if (hit.distance >= 0.001f)
                     {
+                        //quatPos =  hit.point;
                         quatPos = Vector3.zero;
-                        transform.position = hit.point;
+                        rb.MovePosition(hit.point);
                     }
                     EState = SpiderState.ROTATE;
                     //Debug.Log("down");
@@ -168,15 +166,21 @@ public class Enemy_Spider : MonoBehaviour
 
     Vector3 AngleSet (Vector3 angle)
     {
-        if (transform.rotation.eulerAngles.y <= 90)
+        if (transform.localRotation.eulerAngles.y < 90 &&
+            transform.localRotation.eulerAngles.y > -90)
         {
             return angle;
         }
-        else
+        else if(transform.localRotation.eulerAngles.y >= 90 ||
+            transform.localRotation.eulerAngles.y <= -90)
         {
-            angle.x = 180;
-            return angle;
+            //angle.x = angle.x + 180;
+            angle.y = 180;
+            angle.z *= -1;
+            return   angle;
         }
+        Debug.Log("Error");
+        return Vector3.up;
     }
 
     private void OnDrawGizmos()
@@ -185,7 +189,7 @@ public class Enemy_Spider : MonoBehaviour
             new Vector3( xRange[1],2.5f,transform.position.z));
         Gizmos.DrawRay(transform.position, 
             (transform.right) + (-transform.up));
-        Gizmos.DrawRay(transform.position + transform.up*0.5f,
+        Gizmos.DrawRay(transform.position + transform.up*0.65f,
             -transform.right);
     }
 
@@ -195,7 +199,7 @@ public class Enemy_Spider : MonoBehaviour
         {
             
             collision.rigidbody.AddForce(
-                (-collision.transform.right + collision.transform.up) * 3f,
+                (-collision.transform.right + collision.transform.up) * 1.5f,
                 ForceMode.VelocityChange);
             collision.transform.GetComponent<Player>().damage(1f);
         }
