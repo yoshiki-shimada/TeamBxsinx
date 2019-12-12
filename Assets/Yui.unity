@@ -236,6 +236,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300002, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
+--- !u!114 &36341553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36341548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61049229d8092704699296017fc7953a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &51439031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,7 +1348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335732374}
   m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
-  m_LocalPosition: {x: -21.9, y: -1.42, z: 4.71}
+  m_LocalPosition: {x: -16.1, y: -1.55, z: 4.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 994989842}
@@ -2605,6 +2617,8 @@ MonoBehaviour:
   startPosition: 50
   endPosition: -50
   pushYFlag: 0
+  Lanimator: {fileID: 0}
+  Ranimator: {fileID: 0}
 --- !u!4 &845883133
 Transform:
   m_ObjectHideFlags: 0
@@ -2814,13 +2828,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_01
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.8
+      value: 6.77
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.66
+      value: 1.95
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2828,15 +2854,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000021855694
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000015099579
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -3.3001179e-15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ba5f10f566bf8d4439f37d7bd1e64d1d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4226,6 +4252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47220445dc218734da688c357a6cd1e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  xRange:
+  - -2
+  - 9.8
 --- !u!54 &1822711034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4234,10 +4263,10 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822711027}
   serializedVersion: 2
-  m_Mass: 0.1
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
@@ -4714,6 +4743,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2230563720298827852, guid: 7fcb76efa9be7634c8c0c194c053fce9,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230563720298827852, guid: 7fcb76efa9be7634c8c0c194c053fce9,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4236566565420987282, guid: 7fcb76efa9be7634c8c0c194c053fce9,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -4792,7 +4831,17 @@ PrefabInstance:
     - target: {fileID: 2230563720298827853, guid: 7fcb76efa9be7634c8c0c194c053fce9,
         type: 3}
       propertyPath: m_Mass
-      value: 0.1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230563720298827853, guid: 7fcb76efa9be7634c8c0c194c053fce9,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230563720298827853, guid: 7fcb76efa9be7634c8c0c194c053fce9,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fcb76efa9be7634c8c0c194c053fce9, type: 3}

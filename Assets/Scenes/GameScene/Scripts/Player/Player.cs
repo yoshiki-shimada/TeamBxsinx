@@ -75,7 +75,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((CrushPlayer() || m_iDamage >= 3) && !m_bClear)
+        if (CrushPlayer())
+        {
+            damage(1.5f);
+            transform.position = SetPos;
+        }
+        if ((m_iDamage >= 3) && !m_bClear)
         {
             m_bDethFlag = true;
         }
@@ -83,8 +88,9 @@ public class Player : MonoBehaviour
         {
             //ゲームオーバー処理
             //transform.position = new Vector3(0, 0, 0);
-            Debug.Log("You Lose");
-            SceneManager.LoadScene("GameOver");
+            //Debug.Log("You Lose");
+            
+                SceneManager.LoadScene("GameOver");
         }
     }
 

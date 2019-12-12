@@ -5,109 +5,228 @@ using UnityEngine;
 // どの方向に進んでいるか
 enum SpiderState
 {
-    SIDE,
-    UP,
-    DOWN,
+    WALK,
     ROTATE,
+    SHADOW,
 }
 
 public class Enemy_Spider : MonoBehaviour
 {
-    SphereCollider col;
+    MeshCollider[] col=new MeshCollider[2];
     Rigidbody rb;
-    int Direction = 1;
-    SpiderState EState = SpiderState.SIDE;
-    SpiderState NextState;
+    int Direction = -1;
+    SpiderState EState = SpiderState.WALK;
+    SpiderState State = SpiderState.WALK;
+    bool flag = false;
+    Collider ShadowCol;
+
     Quaternion quat;
+    Vector3 quatPos;
+
+    [SerializeField]
+    float[] xRange = new float[2];  // [0]->左 [1]->右   の間を往復
+    byte Dir = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        col = GetComponent<SphereCollider>();
+        SpiderInit();
+    }
+    void SpiderInit()
+    {
+        col[0] = GetComponent<MeshCollider>();
+        col[1] = transform.GetChild(1).GetComponent<MeshCollider>();
         rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
             RaycastHit hit2;
             if (Physics.Raycast(transform.position+transform.up*0.1f,
-                -transform.up,//(transform.right * Direction) + (-transform.up),
-                out hit2, 1.5f))
+                -transform.right, //-transform.up, //
+                out hit2, 2f))
             {
-
                 Debug.Log(hit2.distance);
             }
-
+            Debug.Log(EState);
+            Debug.Log(State);
+            
         }
 
-        if (EState != SpiderState.ROTATE)
+        if (EState == SpiderState.SHADOW)
         {
-
-            RaycastHit hit;
-            if (EState <= SpiderState.SIDE)
+            if (!ShadowCol.enabled)
             {
-                if (Physics.Raycast(transform.position,
-                    (transform.right) + (-transform.up),
-                    out hit, 2f))
-                {
-                    Debug.Log(hit.distance);
-                    if (hit.distance >= 0.01)
-                        transform.position = hit.point;
+                rb.isKinematic = false;
+                for (int i = 0; i < 2; i++)
+                    col[i].isTrigger = false;
+                EState = State;
+                flag = false;
+            }
+        }
 
-                    Vector3 normal = hit.normal;
-                    Quaternion quat = Quaternion.FromToRotation(Vector3.up, normal);
-                    if (transform.rotation != quat)
+        if (EState == SpiderState.WALK && !CheckCollide())
+        {
+            rb.MovePosition(-transform.right * Time.deltaTime + transform.position);
+
+            if (transform.position.x <= xRange[0])
+            {
+                quat = Quaternion.Euler(0, -180, 0);
+                Dir = 1;
+                EState = SpiderState.ROTATE;
+            }
+            else if (transform.position.x >= xRange[1])
+            {
+                quat = Quaternion.Euler(0, 0, 0);
+                Dir = 0;
+                EState = SpiderState.ROTATE;
+            }
+        }
+        if (EState==SpiderState.ROTATE)
+        {
+            //if (quatPos != Vector3.zero)
+              //  transform.position = quatPos;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, quat, 0.2f);
+
+            if (transform.rotation == quat)
+            {
+                EState = SpiderState.WALK;
+            }
+        }
+
+    }
+
+    private bool CheckCollide()
+    {
+        
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position + transform.up * 0.5f,
+            -transform.right,
+            out hit, 0.33f,
+            LayerMask.GetMask("Stage")))
+        {
+            //Debug.Log("Efored" + hit.distance);
+            Vector3 normal = hit.normal;
+            normal.z *= Xnormal();
+            quat = Quaternion.FromToRotation(Vector3.up, normal);
+            
+            if (transform.rotation != quat)
+            {
+                if (hit.distance >= 0.001f)
+                {
+                    Debug.Log(hit.point);
+                    quatPos = hit.point;
+                }
+
+                EState = SpiderState.ROTATE;
+                //Debug.Log("forward");
+                return true;
+            }
+        }
+
+        if(!Physics.Raycast(transform.position+transform.up*0.01f,
+            -transform.up,0.02f))
+            if (Physics.Raycast(transform.position,
+                (transform.right) + (-transform.up),
+                out hit, 1.5f))
+            {
+                //Debug.Log(hit.distance);
+
+                Vector3 normal = hit.normal;
+                normal.z *= Xnormal();
+                quat = Quaternion.FromToRotation(Vector3.up, normal);
+
+                if (transform.rotation != quat)
+                {
+                    if (hit.distance >= 0.001f)
                     {
-                        transform.rotation = quat;
-                        EState = SpiderState.DOWN;
+                        quatPos = Vector3.zero;
+                        transform.position = hit.point;
                     }
+                    EState = SpiderState.ROTATE;
+                    //Debug.Log("down");
+                    return true;
                 }
             }
-            if (EState == SpiderState.DOWN)
-            {
-                if (Physics.Raycast(transform.position,
-                     -transform.right,
-                      out hit, 0.01f))
-                {
-                    if (hit.distance >= 0.01)
-                        transform.position = hit.point;
+        
+        return false;
+    }
 
-                    Vector3 normal = hit.normal;
-                    Quaternion quat = Quaternion.FromToRotation(Vector3.up, normal);
-                    if (transform.rotation != quat)
-                    {
-                        transform.rotation = quat;
-                        EState = SpiderState.UP;
-                    }
-                }
-            }
-
-            //Debug.Log(transform.right);
-            rb.MovePosition(-transform.right * 0.05f + transform.position);
-        }
-
-        if(EState==SpiderState.ROTATE)
-        {
-
-        }
-
+    float Xnormal()
+    {
+        if (Dir == 0)
+            return -1f;
+        else
+            return 1f;
     }
 
     private void OnDrawGizmos()
     {
+        Gizmos.DrawLine(new Vector3( xRange[0],2.5f,transform.position.z),
+            new Vector3( xRange[1],2.5f,transform.position.z));
         Gizmos.DrawRay(transform.position, 
-            (transform.right * Direction) + (-transform.up));
-        Gizmos.DrawRay(transform.position + transform.up,
+            (transform.right) + (-transform.up));
+        Gizmos.DrawRay(transform.position + transform.up*0.5f,
             -transform.right);
     }
-    private void OnCollisionExit(Collision collision)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "ShadowObject")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            rb.isKinematic = false;
+            
+            collision.rigidbody.AddForce(
+                (-collision.transform.right + collision.transform.up) * 3f,
+                ForceMode.VelocityChange);
+            collision.transform.GetComponent<Player>().damage(1f);
+        }
+        else if(collision.transform.tag=="ShadowObject")
+        {
+            if (!flag)
+            {
+                ShadowCol = collision.collider;
+                State = EState;
+                flag = true;
+            }
+            EState = SpiderState.SHADOW;
+            rb.isKinematic = true;
+            for (int i = 0; i < 2; i++)
+                col[i].isTrigger = true;
+            Debug.Log("ShadowEnter");
+        }
+    }
+
+   /* private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.transform.tag=="ShadowObject")
+        {
+            if (!flag)
+            {
+                State = EState;
+                flag = true;
+            }
+            EState = SpiderState.SHADOW;
+            rb.isKinematic = true;
+            for (int i = 0; i < 2; i++)
+                col[i].isTrigger = true;
+            Debug.Log("ShadowEnter");
+        }
+    }*/
+
+    private void OnTriggerExit(Collider other)
+    {
+        rb.isKinematic = false;
+        for (int i = 0; i < 2; i++)
+            col[i].isTrigger = false;
+        if (flag)
+        {
+            EState = State;
+            flag = false;
         }
     }
 }
