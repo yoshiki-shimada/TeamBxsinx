@@ -17,10 +17,13 @@ MonoBehaviour:
   spawnPoints:
   - {x: 15, y: 2, z: 0}
   - {x: 20, y: 1.5, z: 6}
+  - {x: 20, y: 0.5, z: 0}
   OInitAnim:
   - {x: -10, y: 1.5, z: 6}
+  - {x: 11, y: 0, z: 6}
   ODereteAnim:
   - {x: 5, y: 0, z: 0}
+  - {x: 10, y: 0, z: 0}
   OMoveAnim: []
   q: {x: 0, y: 0.70710677, z: 0, w: 0.70710677}
   q2: {x: 0, y: 1, z: 0, w: -0.00000004371139}

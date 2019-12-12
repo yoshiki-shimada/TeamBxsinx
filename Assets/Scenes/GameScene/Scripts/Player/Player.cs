@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 enum PlayerState:byte
 {
@@ -74,7 +75,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((CrushPlayer() || m_iDamage >= 3) && !m_bClear)
+        if (CrushPlayer())
+        {
+            damage(1.5f);
+            transform.position = SetPos;
+        }
+        if ((m_iDamage >= 3) && !m_bClear)
         {
             m_bDethFlag = true;
         }
@@ -82,7 +88,9 @@ public class Player : MonoBehaviour
         {
             //ゲームオーバー処理
             //transform.position = new Vector3(0, 0, 0);
-            Debug.Log("You Lose");
+            //Debug.Log("You Lose");
+            if(transform.GetComponentInParent<PlayerManager>().Fade.isFadeOut(0.01f))
+                SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -91,10 +99,10 @@ public class Player : MonoBehaviour
         PlayerState Next = State;
         RaycastHit hit;
         if (Physics.SphereCast(CapCol.transform.position + CapCol.center,
-            CapCol.radius,
+            CapCol.radius*0.8f,
             Vector3.down,
             out hit,
-            CapCol.height * 0.5f - CapCol.radius + 0.01f,
+            CapCol.height * 0.5f - CapCol.radius*0.8f + 0.01f,
            Physics.AllLayers))
         {
             //Debug.Log("IsCast" + hit.distance);
@@ -179,7 +187,7 @@ public class Player : MonoBehaviour
         {
             RaycastHit hit;
             if (Physics.SphereCast(CapCol.transform.position + CapCol.center,
-                CapCol.radius,
+                CapCol.radius*0.8f,
                 Vector3.down,
                 out hit,
                 10,
@@ -187,10 +195,10 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("IsCast" + hit.distance);
                 Debug.Log(hit.point);
-                Debug.Log(CapCol.height * 0.5f - CapCol.radius+0.01f);
+                Debug.Log(CapCol.height * 0.5f - CapCol.radius*0.8f+0.01f);
             }
             //damage(1f);
-            //m_bClear = true;
+            ReSet();
         }
 
         
@@ -279,7 +287,7 @@ public class Player : MonoBehaviour
 
     bool CrushPlayer()
     {
-        if (lightManager.changelight)
+        if (lightManager.changelight || m_bClear)
             return false;
         float posplus = CapCol.height * 0.5f - CapCol.radius;
         Vector3 pos = transform.position + CapCol.center;
@@ -297,12 +305,15 @@ public class Player : MonoBehaviour
 
     public void ReSet()
     {
+        transform.position = SetPos;
         m_bClear = false;
         m_bDethFlag = false;
         m_bInvincible = false;
+        transform.rotation= Quaternion.AngleAxis(0f, new Vector3(0, 1, 0));
+        rb.isKinematic = false;
         State = PlayerState.Idle;
         animator.SetInteger("State", (int)State);
-        transform.position = SetPos;
+        Debug.Log("PlayReset" + Playernum);
     }
 
    /* void OnDrawGizmos()
