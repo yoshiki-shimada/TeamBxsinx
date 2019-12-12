@@ -6,9 +6,13 @@ public class ShadowRange : MonoBehaviour
 {
     private Renderer plane;
     private MeshCollider collider;
-    private SolidRange Solid;
+    private SolidRange[] Solid;
 
     private ParticleSystem Solidps;
+    public ParticleSystem enemyps
+    {
+        get { return Solidps; }
+    }
 
     // 0:薄い影の範囲 1:3D影の範囲
     private float shadowRange = 1.2f;
@@ -40,19 +44,22 @@ public class ShadowRange : MonoBehaviour
             collider.transform.localPosition.y >= -1.5f)
         {
             NowMode = ShadowMode.Plane;
-                                
-            if (Solid.CheckSolidRange(collider.transform.position))
-            {
-                NowMode = ShadowMode.Solid;
-                if (PrevMode != ShadowMode.Solid)
-                {
-                    ChangeShadowPhase(0.7f, 0.1f, collider.gameObject);
-                    ChangeShadowPhase(0f, 0.1f, plane.gameObject);
-                    Solidps.Play();
-                    StartCoroutine(Shadow_enable(true));
-                    //Debug.Log("SolidRangeIn");
-                }
 
+            for (int i = 0; i < Solid.Length; i++)
+            {
+                if (Solid[i].CheckSolidRange(collider.transform.position))
+                {
+                    NowMode = ShadowMode.Solid;
+                    if (PrevMode != ShadowMode.Solid)
+                    {
+                        ChangeShadowPhase(0.7f, 0.1f, collider.gameObject);
+                        ChangeShadowPhase(0f, 0.1f, plane.gameObject);
+                        Solidps.Play();
+                        StartCoroutine(Shadow_enable(true));
+                        //Debug.Log("SolidRangeIn");
+                    }
+                    break;
+                }
             }
             if (NowMode == ShadowMode.Plane)
             {
@@ -89,8 +96,12 @@ public class ShadowRange : MonoBehaviour
     {
         collider = this.transform.GetChild(0).GetComponent<MeshCollider>();
         plane = collider.transform.GetChild(0).GetComponent<Renderer>();
-        Solid = GameObject.FindGameObjectWithTag("Shadow3DRange")
-            .GetComponent<SolidRange>();
+
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Shadow3DRange");
+        Solid = new SolidRange[obj.Length];
+        for(int i=0;i<obj.Length;i++)
+        Solid[i] = obj[i].GetComponent<SolidRange>();
+
         Solidps = collider.transform.GetComponentInChildren<ParticleSystem>();
     }
 

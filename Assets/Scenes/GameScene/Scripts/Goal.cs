@@ -11,7 +11,7 @@ public class Goal : MonoBehaviour
     GameObject SceneManager;
 
     [SerializeField] float[] Destination = new float[2];
-    int DesIndex;
+    int DesIndex;           //! 0が手前、1が奥
     public int Desindex
     {
         set { DesIndex = value; }
@@ -21,7 +21,7 @@ public class Goal : MonoBehaviour
     private void Start()
     {
         SceneManager = GameObject.Find("SceneManager");
-        DesIndex = 1;
+        
     }
 
     private void OnCollisionEnter(Collision collision)
