@@ -45,6 +45,7 @@ public class MoveObjects : MonoBehaviour
     {
         if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
         {
+            BG.GetComponent<BGAnimation>().ForestBG();
             OLope.GetComponent<Lope>().SpawnFront();
             Maruta.GetComponent<PublicObj>().SpawnFront();
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
@@ -90,7 +91,6 @@ public void Stage1()
     {
         if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
         {
-            BG.GetComponent<BGAnimation>().ForestBG();
             KANBAN.GetComponent<Kanban>().Move();
             OBackLane.GetComponent<BackLane>().Spawn();
             iTween.MoveBy(BackLane01, iTween.Hash("x", 27f, "time", 2f, "delay", 2f));
