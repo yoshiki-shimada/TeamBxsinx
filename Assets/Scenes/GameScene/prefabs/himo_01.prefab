@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Destination:
-  - 3.2
+  - 2.8
   - 0.8
 --- !u!1 &6557440433143246086
 GameObject:
