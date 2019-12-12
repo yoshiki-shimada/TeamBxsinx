@@ -185,7 +185,7 @@ public class GameSceneManager : MonoBehaviour
                         m_fPlayer.ResetPlayer();
                         Objectugokuze.GetComponent<MoveObjects>().Stage3();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
-                        m_ePhase = GamePhase.GAMEPHASE_STAGE3;
+                        m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
                         break;
                     }
                 }
@@ -210,7 +210,11 @@ public class GameSceneManager : MonoBehaviour
                 break;
             case GamePhase.GAMEPHASE_FADEOUT:
                 Debug.Log("やっぱり俺最強");
-                m_ePhase = GamePhase.GAMEPHASE_DONE;
+                bFlag = m_fFade.isFadeOut(m_fFadeSpeed);
+                if (bFlag)
+                {
+                    m_ePhase = GamePhase.GAMEPHASE_DONE;
+                }
                 break;
             case GamePhase.GAMEPHASE_DONE:
 
