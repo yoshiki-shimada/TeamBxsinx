@@ -13,7 +13,12 @@ public class PlayerManager : MonoBehaviour
     private Player[] player = new Player[2];
     private int PlayerIndex;
 
-
+    [SerializeField]
+    FadeManager fade;
+    public FadeManager Fade
+    {
+        get { return fade; }
+    }
 
     // Start is called before the first frame update
     void Start()

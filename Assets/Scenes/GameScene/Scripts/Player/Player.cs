@@ -88,9 +88,9 @@ public class Player : MonoBehaviour
         {
             //ゲームオーバー処理
             //transform.position = new Vector3(0, 0, 0);
-            Debug.Log("You Lose");
-            
-               // SceneManager.LoadScene("GameOver");
+            //Debug.Log("You Lose");
+            if(transform.GetComponentInParent<PlayerManager>().Fade.isFadeOut(0.01f))
+                SceneManager.LoadScene("GameOver");
         }
     }
 
