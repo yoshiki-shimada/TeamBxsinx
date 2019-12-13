@@ -11,7 +11,7 @@ public class Enemy_Spider_Head : MonoBehaviour
         {
 
             collision.rigidbody.AddForce(
-                (-collision.transform.right + collision.transform.up) * 3f,
+                (-collision.transform.right + collision.transform.up) * 1.5f,
                 ForceMode.VelocityChange);
             collision.transform.GetComponent<Player>().damage(1f);
         }
