@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     [SerializeField] private ActiveLight Playernum;                 //! Playerの番号
 
     public bool m_bDethFlag;
-    private bool m_bInvincible;
+    public bool m_bInvincible;
     private bool m_bJumpIn;
     private bool m_bIsJump;
     private bool m_bClear = false;
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         m_bJumpIn = false;
         m_bIsJump = false;
         m_bDethFlag = false;
-        m_bInvincible = false;
+        m_bInvincible = true;
         wallcheck = false;
         SetPos = transform.position;
         RayPoint = transform.GetChild(2);
@@ -79,11 +79,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CrushPlayer())
+        /*if (CrushPlayer())
         {
             damage(1.5f);
             transform.position = SetPos;
-        }
+        }*/
         if ((m_iDamage >= 3) && !m_bClear)
         {
             m_bDethFlag = true;
@@ -96,6 +96,9 @@ public class Player : MonoBehaviour
             if(transform.GetComponentInParent<PlayerManager>().Fade.isFadeOut(0.01f))
                 SceneManager.LoadScene("GameOver");
         }
+
+        if (State != PlayerState.Jump && m_bIsJump)
+            Debug.Log("Error" + Playernum);
     }
 
     public void IsJump()
@@ -191,7 +194,7 @@ public class Player : MonoBehaviour
         {
             RaycastHit hit;
             if (Physics.SphereCast(CapCol.transform.position + CapCol.center,
-                CapCol.radius*0.8f,
+                CapCol.radius*0.99f,
                 Vector3.down,
                 out hit,
                 10,
@@ -199,7 +202,7 @@ public class Player : MonoBehaviour
             {
                 Debug.Log("IsCast" + hit.distance);
                 Debug.Log(hit.point);
-                Debug.Log(CapCol.height * 0.5f - CapCol.radius*0.8f+0.01f);
+                Debug.Log(CapCol.height * 0.5f - CapCol.radius*0.99f+0.01f);
             }
             //damage(1f);
             ReSet();
@@ -237,7 +240,7 @@ public class Player : MonoBehaviour
                 inputVector.x = hori;
                 // 平面に沿ったベクトルを計算
                 Vector3 onPlane = Vector3.ProjectOnPlane(inputVector, hit.normal);
-                rb.AddForce( onPlane * moveSpeed * 3f ,ForceMode.Acceleration);
+                rb.AddForce( onPlane * moveSpeed * 4f ,ForceMode.Acceleration);
             }
             else
             {
@@ -289,7 +292,7 @@ public class Player : MonoBehaviour
         HP.Off(m_iDamage-1);
     }
 
-    void InvincibleEnd()
+    public void InvincibleEnd()
     {
         m_bInvincible = false;
     }
@@ -317,12 +320,12 @@ public class Player : MonoBehaviour
         transform.position = SetPos;
         m_bClear = false;
         m_bDethFlag = false;
-        m_bInvincible = false;
+        m_bInvincible = true;
         transform.rotation= Quaternion.AngleAxis(0f, new Vector3(0, 1, 0));
         rb.isKinematic = false;
         State = PlayerState.Idle;
         animator.SetInteger("State", (int)State);
-        Debug.Log("PlayReset" + Playernum);
+        //Debug.Log("PlayReset" + Playernum);
     }
 
    /* void OnDrawGizmos()

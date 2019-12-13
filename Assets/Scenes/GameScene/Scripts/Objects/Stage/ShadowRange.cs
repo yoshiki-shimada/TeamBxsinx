@@ -7,7 +7,7 @@ public class ShadowRange : MonoBehaviour
     SoundManager PopShadow;
 
     private Renderer plane;
-    private CapsuleCollider collider;
+    private Collider[] collider;
     private SolidRange[] Solid;
 
     private ParticleSystem Solidps;
@@ -17,7 +17,7 @@ public class ShadowRange : MonoBehaviour
     }
 
     // 0:薄い影の範囲 1:3D影の範囲
-    private float shadowRange = 1.2f;
+    [SerializeField] private float shadowRange = 1.2f;
     public float Shadowrange
     {
         set { shadowRange = value; }
@@ -42,20 +42,20 @@ public class ShadowRange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(collider.transform.localPosition.x<=shadowRange &&
-            collider.transform.localPosition.x >= -shadowRange &&
-            collider.transform.localPosition.y >= -1.5f)
+        if(collider[0].transform.localPosition.x<=shadowRange &&
+            collider[0].transform.localPosition.x >= -shadowRange &&
+            collider[0].transform.localPosition.y >= -1.5f)
         {
             NowMode = ShadowMode.Plane;
 
             for (int i = 0; i < Solid.Length; i++)
             {
-                if (Solid[i].CheckSolidRange(collider.transform.position))
+                if (Solid[i].CheckSolidRange(collider[0].transform.position))
                 {
                     NowMode = ShadowMode.Solid;
                     if (PrevMode != ShadowMode.Solid)
                     {
-                        ChangeShadowPhase(0.7f, 0.1f, collider.gameObject);
+                        ChangeShadowPhase(0.7f, 0.1f, collider[0].gameObject);
                         ChangeShadowPhase(0f, 0.1f, plane.gameObject);
 
                         Solidps.Play();
@@ -74,7 +74,7 @@ public class ShadowRange : MonoBehaviour
                 }
                 else if (PrevMode == ShadowMode.Solid)
                 {
-                    ChangeShadowPhase(0f, 0.1f, collider.gameObject);
+                    ChangeShadowPhase(0f, 0.1f, collider[0].gameObject);
                     ChangeShadowPhase(0.7f, 0.1f, plane.gameObject);
                     StartCoroutine(Shadow_enable(false));
                     //Debug.Log("SolidRangeOut");
@@ -88,7 +88,8 @@ public class ShadowRange : MonoBehaviour
                 ChangeShadowPhase(0f, 0.4f,plane.gameObject);
             }else if (PrevMode == ShadowMode.Solid)
             {
-                ChangeShadowPhase(0f, 0.1f, collider.gameObject);
+                
+                ChangeShadowPhase(0f, 0.1f, collider[0].gameObject);
                 ChangeShadowPhase(0f, 0.1f, plane.gameObject);
                 StartCoroutine(Shadow_enable(false));
             }
@@ -99,15 +100,15 @@ public class ShadowRange : MonoBehaviour
 
     public void GetShadow()
     {
-        collider = this.transform.GetChild(0).GetComponent<CapsuleCollider>();
-        plane = collider.transform.GetChild(0).GetComponent<Renderer>();
+        collider = this.transform.GetChild(0).GetComponents<Collider>();
+        plane = collider[0].transform.GetChild(0).GetComponent<Renderer>();
 
         GameObject[] obj = GameObject.FindGameObjectsWithTag("Shadow3DRange");
         Solid = new SolidRange[obj.Length];
         for(int i=0;i<obj.Length;i++)
         Solid[i] = obj[i].GetComponent<SolidRange>();
 
-        Solidps = collider.transform.GetComponentInChildren<ParticleSystem>();
+        Solidps = collider[0].transform.GetComponentInChildren<ParticleSystem>();
     }
 
 
@@ -124,7 +125,8 @@ public class ShadowRange : MonoBehaviour
     IEnumerator Shadow_enable(bool enable)
     {
         yield return new WaitForSeconds(0.1f);
-        collider.enabled = enable;
+        for(int i=0;i<collider.Length;i++)
+            collider[i].enabled = enable;
     }
 
     private void OnDrawGizmos()
