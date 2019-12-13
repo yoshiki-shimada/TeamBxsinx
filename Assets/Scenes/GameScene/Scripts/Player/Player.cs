@@ -97,8 +97,6 @@ public class Player : MonoBehaviour
                 SceneManager.LoadScene("GameOver");
         }
 
-        if (State != PlayerState.Jump && m_bIsJump)
-            Debug.Log("Error" + Playernum);
     }
 
     public void IsJump()
@@ -122,16 +120,16 @@ public class Player : MonoBehaviour
         }
         else
         {
-            if (!m_bIsJump)
+            //if (!m_bIsJump)
                 State = PlayerState.Jump;
             m_bIsJump = true;
         }
 
-        //if (State != )
+        /*if (State != )
         {
             //State = Next;
             animator.SetInteger("State", (int)State);
-        }
+        }*/
     }
 
     public void UpdateP()
@@ -208,8 +206,10 @@ public class Player : MonoBehaviour
             ReSet();
         }
 
-        
-            animator.SetInteger("State", (int)State);
+        if (State != PlayerState.Jump && m_bIsJump)
+            Debug.Log("Error" + Playernum);
+
+        animator.SetInteger("State", (int)State);
     }
 
     public void FixedUpdateP()
@@ -323,6 +323,7 @@ public class Player : MonoBehaviour
         m_bInvincible = true;
         transform.rotation= Quaternion.AngleAxis(0f, new Vector3(0, 1, 0));
         rb.isKinematic = false;
+        hori = 0;
         State = PlayerState.Idle;
         animator.SetInteger("State", (int)State);
         //Debug.Log("PlayReset" + Playernum);

@@ -10,6 +10,9 @@ public class MoveObjects : MonoBehaviour
     GameObject BG;
     GameObject Maruo;
 
+    [SerializeField] CenterObjManager center;
+    GameObject[] Range3D=new GameObject[2];
+
     //! Tyuto1
     GameObject Maruta;
 
@@ -65,6 +68,11 @@ public class MoveObjects : MonoBehaviour
         {
             OLope.GetComponent<Lope>().SpawnBack();
             Maruo.GetComponent<Maruo>().InObj();
+            // 生成：[0]
+            GameObject range = (GameObject)Resources.Load("Prefabs/3DRange");
+            Range3D[0] = Instantiate(range, new Vector3(5.4f, 1.8f, 6.1f), Quaternion.identity);
+            Range3D[0].GetComponent<SolidRange>().SetRange(5, 1);
+            center.UpdateAllRange();
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
         else
@@ -79,6 +87,8 @@ public class MoveObjects : MonoBehaviour
         if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
         {
             OLope.GetComponent<Lope>().SpawnFront();
+            Range3D[0].transform.position = new Vector3(6, 0.5f, 0.3f);
+            Range3D[0].GetComponent<SolidRange>().SetRange(3, 1);
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
         else
@@ -95,6 +105,8 @@ public void Stage1()
             OBackLane.GetComponent<BackLane>().Spawn();
             iTween.MoveBy(BackLane01, iTween.Hash("x", 27f, "time", 2f, "delay", 2f));
             OLope.GetComponent<Lope>().SpawnBack();
+            Range3D[0].transform.position = new Vector3(4.65f, 1.8f, 6.1f);
+            Range3D[0].GetComponent<SolidRange>().SetRange(5.35f, 1);
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
         else
@@ -116,6 +128,13 @@ public void Stage1()
             OWall.GetComponent<StoneWall>().SpawnBack();
             MoveWall.GetComponent<MoveWall>().SpawnFront();
             OLope.GetComponent<Lope>().SpawnFront();
+            Range3D[0].transform.position = new Vector3(-0.4f, 1.8f, 6.1f);
+            Range3D[0].GetComponent<SolidRange>().SetRange(4, 1);
+            // 生成：「1」
+            GameObject range = (GameObject)Resources.Load("Prefabs/3DRange");
+            Range3D[1] = Instantiate(range, new Vector3(7.7f, 0.5f, 0.3f), Quaternion.identity);
+            Range3D[1].GetComponent<SolidRange>().SetRange(3, 1);
+            center.UpdateAllRange();
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = false;
         }
         else
