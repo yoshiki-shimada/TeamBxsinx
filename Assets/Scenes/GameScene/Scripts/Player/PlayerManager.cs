@@ -39,10 +39,10 @@ public class PlayerManager : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
             player[i].IsJump();
-        if (!Tanaka.pushYFlag)
-            player[PlayerIndex].UpdateP();
 
-        if (Input.GetButtonDown("GamePad1_LRTrigger"))
+        player[PlayerIndex].UpdateP();
+
+        if (Input.GetButtonDown("GamePad1_buttonY"))
         {
             PlayerIndex = (PlayerIndex + 1) % 2;
             soundManager.GetComponent<SoundManager>().changeplayerSE();
@@ -64,7 +64,7 @@ public class PlayerManager : MonoBehaviour
     {
         //Debug.Log("IsReset");
         yield return new WaitForSeconds(1f);
-        for(int i = 0;i < 2; i++)
+        for (int i = 0; i < 2; i++)
         {
             player[i].ReSet();
         }

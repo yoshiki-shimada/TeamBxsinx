@@ -10,6 +10,12 @@ public class Goal : MonoBehaviour
     //public GameObject SceneManager;
     GameObject SceneManager;
 
+    GameObject TA;
+    GameObject TD;
+
+    [SerializeField]
+    private string NoneText;
+
     [SerializeField] float[] Destination = new float[2];
     int DesIndex;           //! 0が手前、1が奥
     public int Desindex
@@ -21,7 +27,8 @@ public class Goal : MonoBehaviour
     private void Start()
     {
         SceneManager = GameObject.Find("SceneManager");
-        
+        TA = GameObject.Find("TextAction");
+        TD = GameObject.Find("HintText");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -50,6 +57,8 @@ public class Goal : MonoBehaviour
                 }
                 player.Clear = true;
                 DownLope(player.gameObject);
+                TA.GetComponent<TextAction>().TextFlag = true;
+                TD.GetComponent<TextDraw>().stringdisplay = NoneText;
                 StartCoroutine(ChangeScene());
             }
         }

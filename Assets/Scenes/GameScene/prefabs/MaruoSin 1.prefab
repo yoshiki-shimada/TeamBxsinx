@@ -130,11 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7506550025779319638}
     m_Modifications:
-    - target: {fileID: 8421698061730572599, guid: 9fe5791f2ac7f104ba74efcb63c9e4ed,
-        type: 3}
-      propertyPath: m_Name
-      value: SchattenSolid
-      objectReference: {fileID: 0}
     - target: {fileID: 8421698061730572596, guid: 9fe5791f2ac7f104ba74efcb63c9e4ed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -204,6 +199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.2857144
+      objectReference: {fileID: 0}
+    - target: {fileID: 8421698061730572599, guid: 9fe5791f2ac7f104ba74efcb63c9e4ed,
+        type: 3}
+      propertyPath: m_Name
+      value: SchattenSolid
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fe5791f2ac7f104ba74efcb63c9e4ed, type: 3}

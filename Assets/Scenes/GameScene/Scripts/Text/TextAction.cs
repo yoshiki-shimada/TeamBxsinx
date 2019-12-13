@@ -21,10 +21,13 @@ public class TextAction : MonoBehaviour
     [SerializeField]
     private float m_fAlpha;
 
+    public bool TextFlag;
+
     // Start is called before the first frame update
     void Start()
     {
         bFlag = false;
+        TextFlag = true;
         IKON.GetComponent<Image>().color = new Color(r, g, b, m_fAlpha);
         TextImage = GameObject.Find("TextImage").GetComponent<RectTransform>();
         m_fAlpha = 0.0f;
@@ -52,9 +55,10 @@ public class TextAction : MonoBehaviour
 
         IKON.GetComponent<Image>().color = new Color(r, g, b, m_fAlpha);
 
-        if (bFlag == true && Input.GetButtonDown("GamePad1_buttonA"))
+        if (TextFlag && bFlag && Input.GetButtonDown("GamePad1_buttonA"))
         {
             Debug.Log("SuccessofbuttonA");
+            TextFlag = false;
             //! Itweenで枠を移動
 
             //! ImageのWidthを広げる

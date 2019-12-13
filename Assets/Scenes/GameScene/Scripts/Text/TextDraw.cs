@@ -17,7 +17,7 @@ public class TextDraw : MonoBehaviour
     float intervalForCharDisplay = 0.05f;
 
     private int displayNum = 0;                     //  現在の表示文字の番号
-    private string stringdisplay = string.Empty;    //  現在の文字列
+    public string stringdisplay = string.Empty;    //  現在の文字列
     private float timeUntilDisplay = 0;             //  表示にかかる時間
     private float timeBeganDisplay = 1;             //  文字列の表示を始めた時間
     private int lastUpdateCharCount = -1;           //  表示中の文字数
@@ -34,6 +34,7 @@ public class TextDraw : MonoBehaviour
         if (displayNum < Sentences.Length)
         {
             Debug.Log("InDrawText");
+
             // CrearFlagがたったら
             //　Textを消す
             //  テキストにAlphaがあるならそれをいじる

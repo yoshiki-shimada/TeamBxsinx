@@ -12,10 +12,9 @@ public class ScrollObject : MonoBehaviour
     public float speedX;
     public float startPosition;
     public float endPosition;
-    public bool pushYFlag;
+    //public bool pushYFlag;
 
-    [SerializeField] private Animator Lanimator;
-    [SerializeField] private Animator Ranimator;
+    [SerializeField] private Animator[] animator;
 
     private float hori;
     // Start is called before the first frame update
@@ -23,34 +22,36 @@ public class ScrollObject : MonoBehaviour
     {
         GetComponent<GameObject>();
         GetComponent<Transform>();
-        pushYFlag = false;
+        //pushYFlag = false;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        buttonflag();
+        //buttonflag();
         Move();
     }
 
     //”Y"ボタン操作
-    void buttonflag()
-    {
-        if (Input.GetButtonDown("GamePad1_buttonY") && !pushYFlag) { pushYFlag = true; }
-        else if (Input.GetButtonDown("GamePad1_buttonY") && pushYFlag) { pushYFlag = false; }
-    }
+    //void buttonflag()
+    //{
+    //    if (Input.GetButtonDown("GamePad1_buttonY") && !pushYFlag) { pushYFlag = true; }
+    //    else if (Input.GetButtonDown("GamePad1_buttonY") && pushYFlag) { pushYFlag = false; }
+    //}
 
     //アタッチしたオブジェクトの移動操作
     void Move()
     {
-        hori = Input.GetAxisRaw("GamePad1_LeftStick_H");
+        float tri = Input.GetAxis("GamePad1_LRTrigger");
 
-        if (pushYFlag)
+        if (tri != 0)
         {
-            Lanimator.SetBool("LolFlag", true);
-            Ranimator.SetBool("RolFlag", true);
-            if (hori < 0)
+            for (int i = 0; i < animator.Length; i++)
+            {
+                animator[i].SetBool("RolFlag", true);
+            }
+            if (tri < 0)
             {
                 for (int i = 0; i < obj.Length; i++)
                 {
@@ -58,7 +59,7 @@ public class ScrollObject : MonoBehaviour
                         obj[i].transform.position -= new Vector3(speedX * Time.deltaTime, 0, 0);
                 }
             }
-            else if (hori > 0)
+            else if (tri > 0)
             {
                 for (int i = 0; i < obj.Length; i++)
                 {
@@ -70,8 +71,10 @@ public class ScrollObject : MonoBehaviour
         }
         else
         {
-            Lanimator.SetBool("LolFlag", false);
-            Ranimator.SetBool("RolFlag", false);
+            for (int i = 0; i < animator.Length; i++)
+            {
+                animator[i].SetBool("RolFlag", false);
+            }
         }
     }
 
