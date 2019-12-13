@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0039957035, g: 0.00021792635, b: 0.000000051515347,
+  m_IndirectSpecularColor: {r: 0.0039957035, g: 0.00021792634, b: 0.000000051515347,
     a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -674,6 +674,7 @@ GameObject:
   - component: {fileID: 1203660210}
   - component: {fileID: 1203660212}
   - component: {fileID: 1203660211}
+  - component: {fileID: 1203660213}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -735,6 +736,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203660209}
   m_CullTransparentMesh: 0
+--- !u!114 &1203660213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203660209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942914a0a4ec6aa4690b720fdd2c2386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1203660211}
+  fSpeed: 0.03
 --- !u!1 &1312955293
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1103,7 @@ GameObject:
   - component: {fileID: 2102344169}
   - component: {fileID: 2102344171}
   - component: {fileID: 2102344170}
+  - component: {fileID: 2102344172}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1149,6 +1165,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102344168}
   m_CullTransparentMesh: 0
+--- !u!114 &2102344172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102344168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942914a0a4ec6aa4690b720fdd2c2386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 2102344170}
+  fSpeed: 0.03
 --- !u!1 &2126311180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,4 +1237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ePhase: 0
   m_fFadeSpeed: 0.01
+  m_eSelect: 0
+  Contenue: {fileID: 2102344170}
+  Title: {fileID: 1203660211}
   m_FadeObject: {fileID: 1894261557}
