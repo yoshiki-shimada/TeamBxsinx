@@ -114,16 +114,15 @@ public class Enemy_Spider : MonoBehaviour
             
            // onPlane = Vector3.ProjectOnPlane(transform.right, normal);
             quat = Quaternion.FromToRotation(Vector3.up, normal);
-           // Debug.Log(quat);
-            quat.eulerAngles = AngleSet(quat.eulerAngles);
-            //Debug.Log(quat);
-
+            
             if (transform.rotation != quat)
             {
+                quat.eulerAngles = AngleSet(quat.eulerAngles);
                 if (hit.distance >= 0.001f)
                 {
-                   // Debug.Log(hit.point);
-                   quatPos = Vector3.zero;
+                    // Debug.Log(hit.point);
+                    //quatPos = hit.point;
+                    rb.MovePosition(hit.point);
                 }
 
                 EState = SpiderState.ROTATE;
@@ -147,9 +146,9 @@ public class Enemy_Spider : MonoBehaviour
 
                 if (transform.localRotation != quat)
                 {
-                   quat.eulerAngles = AngleSet(quat.eulerAngles);
+                    quat.eulerAngles = AngleSet(quat.eulerAngles);
 
-                if (hit.distance >= 0.001f)
+                    if (hit.distance >= 0.001f)
                     {
                         //quatPos =  hit.point;
                         quatPos = Vector3.zero;
