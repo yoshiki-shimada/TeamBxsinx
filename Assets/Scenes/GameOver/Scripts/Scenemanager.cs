@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 enum OverPhase : short
 {
@@ -12,6 +13,12 @@ enum OverPhase : short
     OVERPHASE_DONE = 0x04
 }
 
+enum SelectButton : short
+{
+    SELECT_CONTENUE = 0x00,
+    SELECT_RETURNTITLE = 0x01
+}
+
 public class Scenemanager : MonoBehaviour
 {
     [SerializeField]
@@ -20,9 +27,20 @@ public class Scenemanager : MonoBehaviour
     [SerializeField]
     float m_fFadeSpeed;
 
+    [SerializeField]
+    private SelectButton m_eSelect;
+
+    [SerializeField]
+    private Image Contenue;
+    [SerializeField]
+    private Image Title;
+
     public GameObject m_FadeObject;
 
     FadeManager m_Fade;
+
+    //! 連続入力防止用フラグ
+    private bool m_bFlag;
 
     string sNext;
 
@@ -32,13 +50,16 @@ public class Scenemanager : MonoBehaviour
         if (m_FadeObject)
             m_Fade = m_FadeObject.GetComponent<FadeManager>();
 
+        m_eSelect = SelectButton.SELECT_CONTENUE;
         m_ePhase = OverPhase.OVERPHASE_INIT;
+        m_bFlag = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         bool bFlag = false;
+        float hori = Input.GetAxisRaw("GamePad1_LeftStick_H");
 
         switch (m_ePhase)
         {
@@ -54,6 +75,37 @@ public class Scenemanager : MonoBehaviour
                 break;
             case OverPhase.OVERPHASE_RUN:
 
+                if (!m_bFlag)
+                {
+                    switch (m_eSelect)
+                    {
+                        case SelectButton.SELECT_CONTENUE:
+
+                            Title.GetComponent<TextHilight>().None();
+                            Contenue.GetComponent<TextHilight>().Flash();
+                            if (hori < -0.5f || hori > 0.5f)
+                            {
+                                m_eSelect = SelectButton.SELECT_RETURNTITLE;
+                                m_bFlag = true;
+                            }
+                            break;
+                        case SelectButton.SELECT_RETURNTITLE:
+
+                            Contenue.GetComponent<TextHilight>().None();
+                            Title.GetComponent<TextHilight>().Flash();
+                            if (hori < -0.5f || hori > 0.5f)
+                            {
+                                m_eSelect = SelectButton.SELECT_CONTENUE;
+                                m_bFlag = true;
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    if (hori < 0.5f && hori > -0.5f)
+                        m_bFlag = false;
+                }
                 if (Input.GetButtonDown("GamePad1_buttonB"))
                     m_ePhase = OverPhase.OVERPHASE_FADEOUT;
 
@@ -66,14 +118,19 @@ public class Scenemanager : MonoBehaviour
                 break;
             case OverPhase.OVERPHASE_DONE:
 
+                switch (m_eSelect)
+                {
+                    case SelectButton.SELECT_CONTENUE:
+
+                        SceneManager.LoadScene("MainScene");
+                        break;
+                    case SelectButton.SELECT_RETURNTITLE:
+
+                        SceneManager.LoadScene("TitleScene");
+                        break;
+                }
                 SceneManager.LoadScene(sNext);
                 break;
         }
     }
-
-    public void StringArgFunction(string s)
-    {
-        sNext = s;
-    }
-
 }

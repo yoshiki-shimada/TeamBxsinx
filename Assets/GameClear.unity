@@ -425,7 +425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a96e89d9adbe67244bf3d2c19ca3e5b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e31e3fbf5e8b6fe4c8a6cf2aeeb01edd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -623,9 +623,8 @@ MonoBehaviour:
   m_fFadeSpeed: 0.015
   m_FadeObject: {fileID: 1333375633}
   Imeeeeji:
-  - {fileID: 6152765921165111109, guid: e93af3c5634ee184da1d70c2ec035b79, type: 3}
-  - {fileID: 3893813364370427437, guid: d2c475bb712eb1e42afb6c7effb50a39, type: 3}
-  - {fileID: 8936979062725524146, guid: f5afec497d3f83248a65ca6c4f53ca1b, type: 3}
+  - {fileID: 4965536034203254266, guid: f994c8ae95c6ea041b62ee836fc100ca, type: 3}
+  - {fileID: 3149797887890503493, guid: 3e485b76a37f74248957c33122fb3953, type: 3}
   canvas: {fileID: 1322636784}
 --- !u!4 &2129424396
 Transform:
