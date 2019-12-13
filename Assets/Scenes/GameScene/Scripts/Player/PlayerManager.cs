@@ -11,6 +11,10 @@ public class PlayerManager : MonoBehaviour
     ScrollObject Tanaka;
 
     private Player[] player = new Player[2];
+    public Player[] Players
+    {
+        get { return player; }
+    }
     private int PlayerIndex;
 
     [SerializeField]

@@ -27,6 +27,9 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     float m_fFadeSpeed;
 
+    [SerializeField]
+    PlayerManager MPlayer;
+
     public GameObject m_FadeObject;
     public GameObject m_CatInObject;
 
@@ -94,6 +97,8 @@ public class GameSceneManager : MonoBehaviour
                     m_ePhase = GamePhase.GAMEPHASE_TYUTO1;
                     Objectugokuze.GetComponent<MoveObjects>().One();
                     m_bStageFlag = false; bCatInFlag = false;
+                    for (int i = 0; i < 2; i++)
+                        MPlayer.Players[i].m_bInvincible = false;
                 }
                 break;
             case GamePhase.GAMEPHASE_TYUTO1:
@@ -110,6 +115,8 @@ public class GameSceneManager : MonoBehaviour
                         Objectugokuze.GetComponent<MoveObjects>().two();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
                         m_ePhase = GamePhase.GAMEPHASE_TYUTO2;
+                        for (int i = 0; i < 2; i++)
+                            MPlayer.Players[i].m_bInvincible = false;
                         break;
                     }
                 }
@@ -128,6 +135,8 @@ public class GameSceneManager : MonoBehaviour
                         Objectugokuze.GetComponent<MoveObjects>().three();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
                         m_ePhase = GamePhase.GAMEPHASE_TYUTO3;
+                        for (int i = 0; i < 2; i++)
+                            MPlayer.Players[i].m_bInvincible = false;
                         break;
                     }
                 }
@@ -146,6 +155,8 @@ public class GameSceneManager : MonoBehaviour
                         Objectugokuze.GetComponent<MoveObjects>().Stage1();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
                         m_ePhase = GamePhase.GAMEPHASE_STAGE1;
+                        for (int i = 0; i < 2; i++)
+                            MPlayer.Players[i].m_bInvincible = false;
                         break;
                     }
                 }
@@ -165,6 +176,8 @@ public class GameSceneManager : MonoBehaviour
                         Objectugokuze.GetComponent<MoveObjects>().Stage2();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
                         m_ePhase = GamePhase.GAMEPHASE_STAGE2;
+                        for (int i = 0; i < 2; i++)
+                            MPlayer.Players[i].m_bInvincible = false;
                         break;
                     }
                 }
@@ -184,6 +197,8 @@ public class GameSceneManager : MonoBehaviour
                         Objectugokuze.GetComponent<MoveObjects>().Stage3();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
                         m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
+                        for (int i = 0; i < 2; i++)
+                            MPlayer.Players[i].m_bInvincible = false;
                         break;
                     }
                 }
@@ -202,6 +217,8 @@ public class GameSceneManager : MonoBehaviour
                         //Objectugokuze.GetComponent<MoveObjects>().Stage4();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
                         m_ePhase = GamePhase.GAMEPHASE_STAGE3;
+                        for (int i = 0; i < 2; i++)
+                            MPlayer.Players[i].m_bInvincible = false;
                         break;
                     }
                 }
