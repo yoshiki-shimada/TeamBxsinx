@@ -33,4 +33,9 @@ public class MoveWall : MonoBehaviour
         iTween.MoveBy(t, iTween.Hash("x", MWallData.ODereteAnim[2].y, "time", 1f, "delay", 1f));
         Destroy(t);
     }
+
+    public void Move()
+    {
+        iTween.MoveBy(t, iTween.Hash("y", 10, "time", 1f, "delay", 2.5f));
+    }
 }

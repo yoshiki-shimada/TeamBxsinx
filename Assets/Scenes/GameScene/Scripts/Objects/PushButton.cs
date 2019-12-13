@@ -14,6 +14,7 @@ public class PushButton : MonoBehaviour
         Debug.Log("SwicthON");
         anim.enabled = true;
         anim.Play("Down");
-        MObj.GetComponent<WallAnim>().Move();
+        MObj.GetComponent<MoveWall>().Move();
+        //MObj.GetComponent<WallAnim>().Move();
     }
 }

@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 1229542957068896350}
   - component: {fileID: 8236644283013770224}
   - component: {fileID: 5325672882527119977}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,4 +343,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 352406661756565131}
-  MObj: {fileID: 8516605164353941905, guid: 68be2806b4a0d1b41b56254e16da23ad, type: 3}
+  MObj: {fileID: 0}
