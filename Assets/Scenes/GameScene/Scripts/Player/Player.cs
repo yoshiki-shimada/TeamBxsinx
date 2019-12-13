@@ -204,6 +204,7 @@ public class Player : MonoBehaviour
             }
             //damage(1f);
             ReSet();
+            InvincibleEnd();
         }
 
         if (State != PlayerState.Jump && m_bIsJump)
