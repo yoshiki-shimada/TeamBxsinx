@@ -156,6 +156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ePhase: 0
+  m_eSelect: 0
+  Game: {fileID: 1532579914}
+  Rurle: {fileID: 1916363010}
+  Exit: {fileID: 1995037373}
   m_fFadeSpeed: 0.01
   m_FadeObject: {fileID: 725015781}
 --- !u!1 &9055223
@@ -373,7 +377,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 469071036}
   m_OnClick:
     m_PersistentCalls:
@@ -766,8 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1532579914}
-  fSpeed: 0.01
-  thisButton: {fileID: 1861822804}
+  fSpeed: 0.05
 --- !u!114 &1532579914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,7 +962,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1648207470}
   m_OnClick:
     m_PersistentCalls:
@@ -1064,7 +1067,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1861822806}
   m_OnClick:
     m_PersistentCalls:
@@ -1186,8 +1189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1916363010}
-  fSpeed: 0.01
-  thisButton: {fileID: 1648207467}
+  fSpeed: 0.05
 --- !u!114 &1916363010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1274,8 +1276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 1995037373}
-  fSpeed: 0.01
-  thisButton: {fileID: 469071034}
+  fSpeed: 0.05
 --- !u!114 &1995037373
 MonoBehaviour:
   m_ObjectHideFlags: 0
