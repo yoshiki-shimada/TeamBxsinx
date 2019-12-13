@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ShadowRange : MonoBehaviour
 {
+    SoundManager PopShadow;
+
     private Renderer plane;
-    private MeshCollider collider;
+    private CapsuleCollider collider;
     private SolidRange[] Solid;
 
     private ParticleSystem Solidps;
@@ -34,6 +36,7 @@ public class ShadowRange : MonoBehaviour
     void Start()
     {
         GetShadow();
+        PopShadow = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
@@ -54,7 +57,9 @@ public class ShadowRange : MonoBehaviour
                     {
                         ChangeShadowPhase(0.7f, 0.1f, collider.gameObject);
                         ChangeShadowPhase(0f, 0.1f, plane.gameObject);
+
                         Solidps.Play();
+                        PopShadow.popshadowSE();
                         StartCoroutine(Shadow_enable(true));
                         //Debug.Log("SolidRangeIn");
                     }
@@ -94,7 +99,7 @@ public class ShadowRange : MonoBehaviour
 
     public void GetShadow()
     {
-        collider = this.transform.GetChild(0).GetComponent<MeshCollider>();
+        collider = this.transform.GetChild(0).GetComponent<CapsuleCollider>();
         plane = collider.transform.GetChild(0).GetComponent<Renderer>();
 
         GameObject[] obj = GameObject.FindGameObjectsWithTag("Shadow3DRange");

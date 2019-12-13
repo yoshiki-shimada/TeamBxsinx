@@ -55,6 +55,7 @@ public class Goal : MonoBehaviour
                         transform.position.y, player.transform.position.z);
                     player.transform.localRotation = Quaternion.Euler(0, 180, 0);
                 }
+                player.SoundManager.GetComponent<SoundManager>().stinrgswitchSE();
                 player.Clear = true;
                 DownLope(player.gameObject);
                 TA.GetComponent<TextAction>().TextFlag = true;

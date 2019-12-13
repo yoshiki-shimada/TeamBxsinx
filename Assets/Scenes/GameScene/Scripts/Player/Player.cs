@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
 {
     //soundmanager呼び込み-------------------------------------
     GameObject soundManager;
+    public GameObject SoundManager
+    {
+        get { return soundManager; }
+    }
 
 
     //   {SerializeField]はインスペクターでの編集を可能にする
@@ -96,33 +100,33 @@ public class Player : MonoBehaviour
 
     public void IsJump()
     {
-        PlayerState Next = State;
+        //PlayerState Next = State;
         RaycastHit hit;
         if (Physics.SphereCast(CapCol.transform.position + CapCol.center,
-            CapCol.radius*0.8f,
+            CapCol.radius*0.99f,
             Vector3.down,
             out hit,
-            CapCol.height * 0.5f - CapCol.radius*0.8f + 0.01f,
+            CapCol.height * 0.5f - CapCol.radius*0.99f + 0.01f,
            Physics.AllLayers))
         {
             //Debug.Log("IsCast" + hit.distance);
             //Debug.Log(CapCol.center);
             //Debug.Log(hit.point);
 
-            //if (m_bIsJump)
-            Next = PlayerState.Idle;
+            if (m_bIsJump)
+            State = PlayerState.Idle;
             m_bIsJump = false;
         }
         else
         {
-            //if (!m_bIsJump)
-            //State = PlayerState.Jump;
+            if (!m_bIsJump)
+                State = PlayerState.Jump;
             m_bIsJump = true;
         }
 
-        if (State != Next)
+        //if (State != )
         {
-            State = Next;
+            //State = Next;
             animator.SetInteger("State", (int)State);
         }
     }
@@ -160,9 +164,9 @@ public class Player : MonoBehaviour
             }
             else
                 hori *= 0.5f;
-            
 
-            if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump)
+
+            if (Input.GetButtonDown("GamePad1_buttonB") && !m_bIsJump && !m_bJumpIn)
             {
                 m_bJumpIn = true;
                 State = PlayerState.Jump;
@@ -207,7 +211,11 @@ public class Player : MonoBehaviour
 
     public void FixedUpdateP()
     {
-        if (m_bJumpIn)
+        if (m_bIsJump)
+        {
+            rb.AddForce(Vector3.down * 3f, ForceMode.Acceleration);
+        }
+        else if (m_bJumpIn)
         {
             m_bJumpIn = false;
             if (!m_bIsJump)
@@ -216,15 +224,12 @@ public class Player : MonoBehaviour
                 rb.AddForce(Vector3.up * jampSpeed, ForceMode.Impulse);
             }
         }
-        else if (m_bIsJump)
-        {
-            rb.AddForce(Vector3.down * 3f, ForceMode.Acceleration);
-        }
+        
         // Playerの移動
         if ((hori != 0))
         {
             RaycastHit hit;
-            /*if (Physics.Raycast(RayPoint.position, transform.right, out hit, CapCol.radius))
+            if (Physics.Raycast(RayPoint.position, transform.right, out hit, CapCol.radius))
             {
                 Debug.Log("PointCast" + hit.normal);
                 // 平面に投影したいベクトルを作成
@@ -232,9 +237,9 @@ public class Player : MonoBehaviour
                 inputVector.x = hori;
                 // 平面に沿ったベクトルを計算
                 Vector3 onPlane = Vector3.ProjectOnPlane(inputVector, hit.normal);
-                rb.AddForce( onPlane * moveSpeed * 2f ,ForceMode.Acceleration);
+                rb.AddForce( onPlane * moveSpeed * 3f ,ForceMode.Acceleration);
             }
-            else*/
+            else
             {
                 float x = hori * moveSpeed;
                 x = 500 * (x - rb.velocity.x) * Time.deltaTime;
@@ -274,8 +279,12 @@ public class Player : MonoBehaviour
     public void damage(float time)
     {
         //rb.AddForce((-transform.right + transform.up)*8,ForceMode.Impulse);
+        if (m_bInvincible)
+            return;
+
         m_iDamage++;
         m_bInvincible = true;
+        soundManager.GetComponent<SoundManager>().damageSE();       //damage
         Invoke("InvincibleEnd", time);
         HP.Off(m_iDamage-1);
     }

@@ -51,21 +51,10 @@ public class ScrollObject : MonoBehaviour
             {
                 animator[i].SetBool("RolFlag", true);
             }
-            if (tri < 0)
+
+            for(int i = 0; i < obj.Length; i++)
             {
-                for (int i = 0; i < obj.Length; i++)
-                {
-                    if (obj[i].transform.position.x >= endPosition)
-                        obj[i].transform.position -= new Vector3(speedX * Time.deltaTime, 0, 0);
-                }
-            }
-            else if (tri > 0)
-            {
-                for (int i = 0; i < obj.Length; i++)
-                {
-                    if (obj[i].transform.position.x >= endPosition)
-                        obj[i].transform.position += new Vector3(speedX * Time.deltaTime, 0, 0);
-                }
+                obj[i].transform.position += new Vector3(tri * speedX * Time.deltaTime, 0, 0);
             }
             ScrollEnd();
         }
