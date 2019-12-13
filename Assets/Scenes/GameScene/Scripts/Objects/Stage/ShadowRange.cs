@@ -36,6 +36,7 @@ public class ShadowRange : MonoBehaviour
     void Start()
     {
         GetShadow();
+        GetRange();
         PopShadow = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
@@ -98,19 +99,23 @@ public class ShadowRange : MonoBehaviour
         PrevMode = NowMode;
     }
 
-    public void GetShadow()
+    void GetShadow()
     {
         collider = this.transform.GetChild(0).GetComponents<Collider>();
         plane = collider[0].transform.GetChild(0).GetComponent<Renderer>();
 
-        GameObject[] obj = GameObject.FindGameObjectsWithTag("Shadow3DRange");
-        Solid = new SolidRange[obj.Length];
-        for(int i=0;i<obj.Length;i++)
-        Solid[i] = obj[i].GetComponent<SolidRange>();
-
-        Solidps = collider[0].transform.GetComponentInChildren<ParticleSystem>();
     }
 
+    public void GetRange()
+    {
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Shadow3DRange");
+        Solid = new SolidRange[obj.Length];
+        for (int i = 0; i < obj.Length; i++)
+            Solid[i] = obj[i].GetComponent<SolidRange>();
+
+        Solidps = collider[0].transform.GetComponentInChildren<ParticleSystem>();
+
+    }
 
     void ChangeShadowPhase(float a,float time,GameObject game)
     {
