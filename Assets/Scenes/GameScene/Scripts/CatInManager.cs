@@ -14,16 +14,19 @@ public class CatInManager : MonoBehaviour
     [SerializeField]
     PlayerHP FHP;
     [SerializeField]
-    PlayerHP BHP;   
+    PlayerHP BHP;
 
     private GameObject CreentCatIn;
 
     int i;
     bool InFlag;
+    //! 連打防止
+    private bool b_Flag;
 
     // Start is called before the first frame update
     void Start()
     {
+        b_Flag = false;
         i = 0;
         InFlag = true;
         CreentCatIn = (GameObject)Instantiate(CatInPrefab[i]);
@@ -37,11 +40,11 @@ public class CatInManager : MonoBehaviour
             FHP.MoveHPLight(-2f);
             BHP.MoveHPLight(-2f);
             CreentCatIn.transform.SetParent(canvas.transform, false);
-            iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -21, "time", 2.0f));
+            iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -21, "time", 2.0f, "oncomplete", "OncompleteHandler","oncompletetarget", gameObject));
             InFlag = false;
         }
 
-        if (Input.GetButtonDown("GamePad1_buttonA"))
+        if (b_Flag && Input.GetButtonDown("GamePad1_buttonA"))
         {
             FHP.MoveHPLight(0f);
             BHP.MoveHPLight(0f);
@@ -56,5 +59,11 @@ public class CatInManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    void OncompleteHandler()
+    {
+        Debug.Log("OncompleteHandler");
+        b_Flag = true;
     }
 }

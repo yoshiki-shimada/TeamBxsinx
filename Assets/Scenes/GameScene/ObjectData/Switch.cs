@@ -16,6 +16,11 @@ public class Switch : MonoBehaviour
         iTween.MoveBy(t, iTween.Hash("z",ButtonData.OInitAnim[0].x, "time", 1f));
     }
 
+    public void Init()
+    {
+        iTween.MoveBy(ButtonPrefab, iTween.Hash("z", 10, "time", 1f));
+    }
+
     public void Delete()
     {
         iTween.MoveBy(t, iTween.Hash("z", ButtonData.ODereteAnim[0].x, "time", 1f, "delay", 1f));

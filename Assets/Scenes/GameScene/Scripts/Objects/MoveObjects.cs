@@ -39,7 +39,7 @@ public class MoveObjects : MonoBehaviour
         OLope = GameObject.Find("Lope");
         OBackLane = GameObject.Find("BackLane");
         KANBAN = GameObject.Find("KANBAN");
-        Button = GameObject.Find("Switch");
+        Button = GameObject.Find("botann");
         OWall = GameObject.Find("StoneWall");
         MoveWall = GameObject.Find("MoveWall");
     }
@@ -124,7 +124,7 @@ public void Stage1()
     {
         if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
         {
-            Button.GetComponent<Switch>().Spawn();
+            Button.GetComponent<Switch>().Init();
             OWall.GetComponent<StoneWall>().SpawnBack();
             MoveWall.GetComponent<MoveWall>().SpawnFront();
             OLope.GetComponent<Lope>().SpawnFront();

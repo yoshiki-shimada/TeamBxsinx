@@ -175,7 +175,7 @@ public class GameSceneManager : MonoBehaviour
                         //m_fPlayer.ResetPlayer();
                         Objectugokuze.GetComponent<MoveObjects>().Stage2();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
-                        m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
+                        m_ePhase = GamePhase.GAMEPHASE_STAGE2;
                         for (int i = 0; i < 2; i++)
                             MPlayer.Players[i].m_bInvincible = false;
                         break;
@@ -216,7 +216,7 @@ public class GameSceneManager : MonoBehaviour
                         //m_fPlayer.ResetPlayer();
                         //Objectugokuze.GetComponent<MoveObjects>().Stage4();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
-                        m_ePhase = GamePhase.GAMEPHASE_STAGE3;
+                        m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
                         for (int i = 0; i < 2; i++)
                             MPlayer.Players[i].m_bInvincible = false;
                         break;
