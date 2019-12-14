@@ -22,6 +22,8 @@ enum ButtonSelect : short
 
 public class TitleScene : MonoBehaviour
 {
+    GameObject SoundObj;
+
     [SerializeField]
     private TitlePhase m_ePhase;
 
@@ -55,6 +57,8 @@ public class TitleScene : MonoBehaviour
         m_eSelect = ButtonSelect.BUTTON_GAME;
         m_ePhase = TitlePhase.TITLEPHASE_INIT;
         m_bFlag = false;
+        SoundObj = GameObject.Find("SoundManager");
+        SoundObj.GetComponent<SoundManager>().State();
     }
 
     // Update is called once per frame
@@ -123,7 +127,7 @@ public class TitleScene : MonoBehaviour
                                 m_eSelect = ButtonSelect.BUTTON_GAME;
                                 m_bFlag = true;
                             }
-                            else if(Vertical > 0.5f)
+                            else if (Vertical > 0.5f)
                             {
                                 m_eSelect = ButtonSelect.BUTTON_RULE;
                                 m_bFlag = true;

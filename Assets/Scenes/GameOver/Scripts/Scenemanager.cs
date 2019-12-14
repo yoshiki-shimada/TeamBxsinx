@@ -35,6 +35,8 @@ public class Scenemanager : MonoBehaviour
     [SerializeField]
     private Image Title;
 
+    GameObject SoundObj;
+
     public GameObject m_FadeObject;
 
     FadeManager m_Fade;
@@ -53,6 +55,8 @@ public class Scenemanager : MonoBehaviour
         m_eSelect = SelectButton.SELECT_CONTENUE;
         m_ePhase = OverPhase.OVERPHASE_INIT;
         m_bFlag = false;
+        SoundObj = GameObject.Find("SoundManager");
+        SoundObj.GetComponent<SoundManager>().State();
     }
 
     // Update is called once per frame

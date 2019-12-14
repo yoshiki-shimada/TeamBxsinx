@@ -20,6 +20,8 @@ public class GameClearManager : MonoBehaviour
     [SerializeField]
     float m_fFadeSpeed;
 
+    GameObject SoundObj;
+
     public GameObject m_FadeObject;
 
     FadeManager m_Fade;
@@ -49,6 +51,8 @@ public class GameClearManager : MonoBehaviour
         m_fFadeSpeed = 0.005f;
 
         m_ePhase = ClearPhase.CLEARPHASE_INIT;
+        SoundObj = GameObject.Find("SoundManager");
+        SoundObj.GetComponent<SoundManager>().State();
     }
 
     // Update is called once per frame

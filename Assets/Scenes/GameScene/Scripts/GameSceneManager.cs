@@ -30,6 +30,8 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField]
     PlayerManager MPlayer;
 
+    GameObject SoundObj;
+
     public GameObject m_FadeObject;
     public GameObject m_CatInObject;
 
@@ -58,6 +60,8 @@ public class GameSceneManager : MonoBehaviour
         CatCount = 0;
 
         m_ePhase = GamePhase.GAMEPHASE_INIT;
+        SoundObj = GameObject.Find("SoundManager");
+        SoundObj.GetComponent<SoundManager>().State();
     }
 
     // Update is called once per frame

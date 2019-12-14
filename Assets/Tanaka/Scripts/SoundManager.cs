@@ -29,11 +29,22 @@ public class SoundManager : MonoBehaviour
 
     string sceneName;
 
+    private void Start()
+    {
+        Debug.Log("SoundState");
+        DontDestroyOnLoad(soundManager);
+
+        sceneName = SceneManager.GetActiveScene().name;//SceneManager.sceneCount;
+
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Stop();
+        isBGM = false;
+    }
 
     // Start is called before the first frame update
-    void Start()
+    public void State()
     {
-
+        Debug.Log("SoundState");
         DontDestroyOnLoad(soundManager);
 
         sceneName = SceneManager.GetActiveScene().name;//SceneManager.sceneCount;

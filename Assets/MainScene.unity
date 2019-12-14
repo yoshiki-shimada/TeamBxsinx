@@ -4231,10 +4231,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1053912029540926949, guid: 5a14c2398b69ff34b950962d98a6bda6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1053912029540926955, guid: 5a14c2398b69ff34b950962d98a6bda6,
         type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053912029540926955, guid: 5a14c2398b69ff34b950962d98a6bda6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a14c2398b69ff34b950962d98a6bda6, type: 3}
