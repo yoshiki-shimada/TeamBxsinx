@@ -258,6 +258,7 @@ MonoBehaviour:
   - "\u4ECA\u307E\u3067\u3092\u601D\u3044\u51FA\u3057\u3066\u9811\u5F35\u3063\u3066\u307F\u308B\u306E\u3058\u3083"
   uiText: {fileID: 35621437}
   intervalForCharDisplay: 0.05
+  displayNum: 0
   stringdisplay: 
 --- !u!1 &39939572 stripped
 GameObject:
@@ -4298,7 +4299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: c452f57bac500a2409a0ba70cb0712a5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: c452f57bac500a2409a0ba70cb0712a5, type: 3}
       propertyPath: m_LocalRotation.x
