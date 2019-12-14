@@ -198,7 +198,7 @@ public class Enemy_Spider : MonoBehaviour
         {
             
             collision.rigidbody.AddForce(
-                (-collision.transform.right + collision.transform.up) * 1.5f,
+                (-collision.transform.right + collision.transform.up) * 3f,
                 ForceMode.VelocityChange);
             collision.transform.GetComponent<Player>().damage(1f);
         }
