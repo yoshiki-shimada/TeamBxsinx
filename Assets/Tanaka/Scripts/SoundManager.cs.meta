@@ -7,9 +7,17 @@ MonoImporter:
   - soundManager: {instanceID: 0}
   - title: {fileID: 8300000, guid: 688a704a40e5839419cc05e2b9d08186, type: 3}
   - rurle: {fileID: 8300000, guid: 688a704a40e5839419cc05e2b9d08186, type: 3}
-  - game: {instanceID: 0}
+  - game: {fileID: 8300000, guid: 3e5ee090d5ee51b4687fcb21d93f2dac, type: 3}
   - gameover: {instanceID: 0}
   - gameclear: {fileID: 8300000, guid: 5eed8517b0595ea4ebcc09a1a4e46268, type: 3}
+  - jump: {fileID: 8300000, guid: 3c6ffe18cbbb7bb4fadd28919a638bfa, type: 3}
+  - changelight: {fileID: 8300000, guid: 7744b6c19233f91448d6b0e51fc15b33, type: 3}
+  - changeplayer: {fileID: 8300000, guid: 7744b6c19233f91448d6b0e51fc15b33, type: 3}
+  - popshadow: {fileID: 8300000, guid: afad10092cef1d4479e47cf1e3a67f52, type: 3}
+  - damage: {instanceID: 0}
+  - openpage: {fileID: 8300000, guid: da84bc6b614c1b14691f9114a63a61cf, type: 3}
+  - objscroll: {instanceID: 0}
+  - stringswitch: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
