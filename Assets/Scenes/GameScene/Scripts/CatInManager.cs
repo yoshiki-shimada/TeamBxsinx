@@ -46,6 +46,7 @@ public class CatInManager : MonoBehaviour
 
         if (b_Flag && Input.GetButtonDown("GamePad1_buttonA"))
         {
+            b_Flag = false;
             FHP.MoveHPLight(0f);
             BHP.MoveHPLight(0f);
             iTween.MoveAdd(CreentCatIn, iTween.Hash("y", -80f, "time", 10.0f, "oncomplete", "NextCat", "oncompletetarget", CreentCatIn));
