@@ -37,6 +37,7 @@ public class GameSceneManager : MonoBehaviour
 
     FadeManager m_fFade;
     CatInManager m_fCat;
+    TextDraw TD;
 
 
     public bool m_bStageFlag;
@@ -111,6 +112,7 @@ public class GameSceneManager : MonoBehaviour
                     if (!m_bMoveFlag)
                     {
                         Objectugokuze.GetComponent<MoveObjects>().One();
+                        TD.displayNum = 1;
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -131,6 +133,7 @@ public class GameSceneManager : MonoBehaviour
                     if (!m_bMoveFlag)
                     {
                         Objectugokuze.GetComponent<MoveObjects>().two();
+                        TD.displayNum = 2;
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -151,6 +154,7 @@ public class GameSceneManager : MonoBehaviour
                     if (!m_bMoveFlag)
                     {
                         Objectugokuze.GetComponent<MoveObjects>().three();
+                        TD.displayNum = 3;
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -172,6 +176,7 @@ public class GameSceneManager : MonoBehaviour
                     if (!m_bMoveFlag)
                     {
                         Objectugokuze.GetComponent<MoveObjects>().Stage1();
+                        TD.displayNum = 4;
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -193,6 +198,9 @@ public class GameSceneManager : MonoBehaviour
                     if (!m_bMoveFlag)
                     {
                         Objectugokuze.GetComponent<MoveObjects>().Stage2();
+                        TD.displayNum = 5;
+                        m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
+                        break;
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -213,6 +221,7 @@ public class GameSceneManager : MonoBehaviour
                     if (!m_bMoveFlag)
                     {
                         Objectugokuze.GetComponent<MoveObjects>().Stage3();
+                        TD.displayNum = 6;
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)

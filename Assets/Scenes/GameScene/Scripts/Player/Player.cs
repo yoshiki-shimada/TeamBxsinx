@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
             //Debug.Log(CapCol.center);
             //Debug.Log(hit.point);
 
-            if (m_bIsJump)
+           // if (m_bIsJump)
             State = PlayerState.Idle;
             m_bIsJump = false;
         }
@@ -286,6 +286,7 @@ public class Player : MonoBehaviour
         if (m_bInvincible)
             return;
 
+        hori = 0;
         m_iDamage++;
         m_bInvincible = true;
         soundManager.GetComponent<SoundManager>().damageSE();       //damage
