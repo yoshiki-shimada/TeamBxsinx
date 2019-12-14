@@ -10,7 +10,7 @@ public class FallDamage : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Player player = other.GetComponent<Player>();
-            player.damage(3f);
+            player.damage(1f);
             player.ReSpawn(GameObject.FindGameObjectWithTag("ReSpawn").transform.position);
         }
     }

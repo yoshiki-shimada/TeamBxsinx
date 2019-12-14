@@ -16,7 +16,7 @@ public class TextDraw : MonoBehaviour
     [Range(0.001f, 0.3f)]
     float intervalForCharDisplay = 0.05f;
 
-    private int displayNum = 0;                     //  現在の表示文字の番号
+    public int displayNum = 0;                     //  現在の表示文字の番号
     public string stringdisplay = string.Empty;    //  現在の文字列
     private float timeUntilDisplay = 0;             //  表示にかかる時間
     private float timeBeganDisplay = 1;             //  文字列の表示を始めた時間

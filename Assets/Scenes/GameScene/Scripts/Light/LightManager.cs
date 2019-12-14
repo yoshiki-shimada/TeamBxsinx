@@ -137,7 +137,7 @@ public class LightManager : MonoBehaviour
     {
         foreach (Rigidbody shadow in ShadowObjects)
         {
-            shadow.transform.localPosition = new Vector3(0, -2, 0);
+            shadow.transform.localPosition = new Vector3(0, -6, 0);
         }
     }
 
