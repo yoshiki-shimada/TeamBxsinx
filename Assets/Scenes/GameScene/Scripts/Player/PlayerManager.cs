@@ -49,6 +49,7 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetButtonDown("GamePad1_buttonY"))
         {
             PlayerIndex = (PlayerIndex + 1) % 2;
+            player[PlayerIndex].RayPoint.GetComponent<ParticleSystem>().Play();
             soundManager.GetComponent<SoundManager>().changeplayerSE();
 
         }

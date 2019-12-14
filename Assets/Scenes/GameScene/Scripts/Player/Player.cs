@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
     }
 
     //RaycastHit hit;
-    Transform RayPoint;
+    public Transform RayPoint;
 
     [SerializeField] private Rigidbody rb;          //! このオブジェクトについているもの
     [SerializeField] private CapsuleCollider CapCol;//! このオブジェクトについているTriggerでないもの
@@ -128,8 +128,9 @@ public class Player : MonoBehaviour
         /*if (State != )
         {
             //State = Next;
-            animator.SetInteger("State", (int)State);
+           
         }*/
+        animator.SetInteger("State", (int)State);
     }
 
     public void UpdateP()
