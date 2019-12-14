@@ -31,7 +31,7 @@ public class SoundManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
 
         DontDestroyOnLoad(soundManager);
