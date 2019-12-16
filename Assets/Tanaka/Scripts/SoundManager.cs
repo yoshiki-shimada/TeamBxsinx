@@ -32,8 +32,9 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("SoundState");
+        int soundPlay = FindObjectsOfType<SoundManager>().Length;
         DontDestroyOnLoad(soundManager);
-
+        if (soundPlay > 1){Destroy(gameObject);}
         sceneName = SceneManager.GetActiveScene().name;//SceneManager.sceneCount;
 
         audioSource = GetComponent<AudioSource>();
