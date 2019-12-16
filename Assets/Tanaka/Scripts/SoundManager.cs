@@ -21,11 +21,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip openpage;      //ページをめくる、紙を動かすとき
     [SerializeField] private AudioClip objscroll;     //centerのobjを動かすとき
     [SerializeField] private AudioClip stringswitch;  //ゴールの紐
+    [SerializeField] private AudioClip buttonswitch;  //ゴールの紐
 
 
     public bool isBGM;
 
-    private AudioSource audioSource;
+    private AudioSource[] audioSource;
 
     string sceneName;
 
@@ -35,10 +36,7 @@ public class SoundManager : MonoBehaviour
         int soundPlay = FindObjectsOfType<SoundManager>().Length;
         DontDestroyOnLoad(soundManager);
         if (soundPlay > 1){Destroy(gameObject);}
-        sceneName = SceneManager.GetActiveScene().name;//SceneManager.sceneCount;
-
-        audioSource = GetComponent<AudioSource>();
-        audioSource.Stop();
+        audioSource = GetComponents<AudioSource>();
         isBGM = false;
     }
 
@@ -50,8 +48,8 @@ public class SoundManager : MonoBehaviour
 
         sceneName = SceneManager.GetActiveScene().name;//SceneManager.sceneCount;
 
-        audioSource = GetComponent<AudioSource>();
-        audioSource.Stop();
+        audioSource = GetComponents<AudioSource>();
+        audioSource[0].Stop();
         isBGM = false;
     }
 
@@ -69,16 +67,15 @@ public class SoundManager : MonoBehaviour
         {
             switch (sceneName)
             {
-                case "test4": audioSource.clip = game; break;
-                case "TitleScene":// audioSource.clip = title; break;
-                case "RurleScene": audioSource.clip = title; break;
-                case "MainScene": audioSource.clip = game; break;
-                case "Pause": audioSource.clip = title; break;
-                case "GameOver": audioSource.clip = gameover; break;
-                case "GameClear": audioSource.clip = gameclear; break;
+                case "TitleScene":// audioSource[0].clip = title; break;
+                case "RurleScene": audioSource[0].clip = title; break;
+                case "MainScene": audioSource[0].clip = game; break;
+                case "Pause": audioSource[0].clip = title; break;
+                case "GameOver": audioSource[0].clip = gameover; break;
+                case "GameClear": audioSource[0].clip = gameclear; break;
             }
             Debug.Log("BGM"+sceneName);
-            audioSource.Play();
+            audioSource[0].Play();
             isBGM = true;
         }
     }
@@ -90,56 +87,63 @@ public class SoundManager : MonoBehaviour
     public void jumpSE()
     {
         Debug.Log("jumpSE");
-        audioSource.PlayOneShot(jump);
+        audioSource[1].PlayOneShot(jump);
     }
 
     //changelight----------------------------------------------
     public void changelightSE()
     {
         Debug.Log("changeLightSE");
-        audioSource.PlayOneShot(changelight);
+        audioSource[1].PlayOneShot(changelight);
     }
 
     //changeplayer---------------------------------------------
     public void changeplayerSE()
     {
         Debug.Log("changePlayerSE");
-        audioSource.PlayOneShot(changeplayer);
+        audioSource[1].PlayOneShot(changeplayer);
     }
 
     //popshadow---------------------------------------------
     public void popshadowSE()
     {
         Debug.Log("changePlayerSE");
-        audioSource.PlayOneShot(popshadow);
+        audioSource[1].PlayOneShot(popshadow);
     }
 
     //damage---------------------------------------------
     public void damageSE()
     {
         Debug.Log("changePlayerSE");
-        audioSource.PlayOneShot(damage);
+        audioSource[1].PlayOneShot(damage);
     }
 
     //openpage,紙をめくるとき---------------------------
     public void openpageSE()
     {
         Debug.Log("openpageSE");
-        audioSource.PlayOneShot(openpage);
+        audioSource[1].PlayOneShot(openpage);
     }
 
     //openpage,紙をめくるとき---------------------------
     public void objscrollSE()
     {
         Debug.Log("objSE");
-        audioSource.PlayOneShot(objscroll);
+        audioSource[1].PlayOneShot(objscroll);
     }
 
     //stringswitch,紐を引っ張ったとき---------------------------
     public void stinrgswitchSE()
     {
         Debug.Log("stringswitchSE");
-        audioSource.PlayOneShot(stringswitch);
+        audioSource[1].PlayOneShot(stringswitch);
+    }
+
+    //stringswitch,紐を引っ張ったとき---------------------------
+    public void buttonswitchSE()
+    {
+        Debug.Log("buttonswitchSE");
+        audioSource[1].PlayOneShot(buttonswitch);
     }
     //---------------------------------------------------------
     /*
