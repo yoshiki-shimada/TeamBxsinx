@@ -35,7 +35,7 @@ public class CatInManager : MonoBehaviour
         CreentCatIn = (GameObject)Instantiate(CatInPrefab[i]);
         m_fAlpha = 0.0f;
         iPhase = 0;
-        fSpeed = 0.1f;
+        fSpeed = 0.05f;
     }
 
     private void Update()
