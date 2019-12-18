@@ -59,7 +59,7 @@ public class TextDraw : MonoBehaviour
         stringdisplay = Sentences[displayNum];
         timeUntilDisplay = stringdisplay.Length * intervalForCharDisplay;
         timeBeganDisplay = Time.time;
-        displayNum++;
+        //displayNum++;
         lastUpdateCharCount = 0;
     }
 

@@ -10,6 +10,6 @@ public class Maruo : MonoBehaviour
     {
         //! animation
         Debug.Log("せんたーれーｍｎ");
-        iTween.MoveBy(this.gameObject, iTween.Hash("x", ShadowObjectData.OInitAnim[0].x, "time", 1f, "delay", 3f));
+        iTween.MoveTo(this.gameObject, iTween.Hash("x", ShadowObjectData.OInitAnim[0].x, "time", 1f, "delay", 3f));
     }
 }
