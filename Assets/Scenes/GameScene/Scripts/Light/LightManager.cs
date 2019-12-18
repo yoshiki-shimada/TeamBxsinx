@@ -82,7 +82,7 @@ public class LightManager : MonoBehaviour
             return;
         changeLight = true;
 
-        if (light_on == playernum)
+        /*if (light_on == playernum)
         {
             light_s[(int)playernum].ChangeLight(LocalPosY[1], gameObject);
             StartCoroutine(ChangeLight_End(ActiveLight.None, 1.2f));
@@ -92,7 +92,7 @@ public class LightManager : MonoBehaviour
             light_s[(int)playernum].ChangeLight(LocalPosY[0], gameObject);
             StartCoroutine(ChangeLight_End(playernum, 0.2f));
         }
-        else
+        else*/
         {
             for (int i = 0; i < light_s.Length; i++)
             {

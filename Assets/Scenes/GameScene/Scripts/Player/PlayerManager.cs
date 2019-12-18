@@ -28,8 +28,8 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         soundManager = GameObject.Find("SoundManager");
-
-        int i = PlayerIndex = 0;
+        PlayerIndex = 1;
+        int i = 0;
         foreach (Transform trans in transform)
         {
             player[i] = trans.GetComponent<Player>();
