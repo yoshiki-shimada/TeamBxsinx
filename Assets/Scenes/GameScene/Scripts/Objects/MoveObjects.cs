@@ -29,6 +29,10 @@ public class MoveObjects : MonoBehaviour
     GameObject OWall;
     GameObject MoveWall;
 
+    //! Stage2_3
+    GameObject TuruYuka;
+    GameObject Enemydes;
+
     private void Start()
     {
         SceneManager = GameObject.Find("SceneManager");
@@ -42,6 +46,8 @@ public class MoveObjects : MonoBehaviour
         Button = GameObject.Find("botann");
         OWall = GameObject.Find("StoneWall");
         MoveWall = GameObject.Find("MoveWall");
+        TuruYuka = GameObject.Find("TuruYuka");
+        Enemydes = GameObject.Find("Enemy1");
     }
 
     public void One()
@@ -114,7 +120,7 @@ public void Stage1()
 
             SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag = true;
             OBackLane.GetComponent<BackLane>().Move();
-            iTween.MoveBy(BackLane01, iTween.Hash("x", -28f, "time", 1f));      //  delay
+            iTween.MoveBy(BackLane01, iTween.Hash("x", -27f, "time", 1f));      //  delay
             OLope.GetComponent<Lope>().Delete();
             OBackLane.GetComponent<BackLane>().Delete();
         }
@@ -150,7 +156,22 @@ public void Stage1()
 
     public void Stage3()
     {
-
+        if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
+        {
+            OBackLane.GetComponent<BackLane>().Spawn();
+            iTween.MoveBy(BackLane01, iTween.Hash("x", 20f, "time", 2f, "delay", 2f));
+            TuruYuka.GetComponent<TuruYuka>().SpawnBack();
+            OLope.GetComponent<Lope>().SpawnFront();
+            Enemydes.GetComponent<Enemy>().SpawnBack();
+        }
+        else
+        {
+            OBackLane.GetComponent<BackLane>().Delete();
+            iTween.MoveBy(BackLane01, iTween.Hash("x", -20f, "time", 1f));      //  delay
+            TuruYuka.GetComponent<TuruYuka>().Delete();
+            OLope.GetComponent<Lope>().Delete();
+            Enemydes.GetComponent<Enemy>().Delete();
+        }
     }
 
 }

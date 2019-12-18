@@ -113,6 +113,7 @@ public class GameSceneManager : MonoBehaviour
                     {
                         Objectugokuze.GetComponent<MoveObjects>().One();
                         TD.displayNum++;
+                        TD.NextText();
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -134,6 +135,7 @@ public class GameSceneManager : MonoBehaviour
                     {
                         Objectugokuze.GetComponent<MoveObjects>().two();
                         TD.displayNum++;
+                        TD.NextText();
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -155,6 +157,7 @@ public class GameSceneManager : MonoBehaviour
                     {
                         Objectugokuze.GetComponent<MoveObjects>().three();
                         TD.displayNum++;
+                        TD.NextText();
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -177,6 +180,7 @@ public class GameSceneManager : MonoBehaviour
                     {
                         Objectugokuze.GetComponent<MoveObjects>().Stage1();
                         TD.displayNum++;
+                        TD.NextText();
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -195,12 +199,11 @@ public class GameSceneManager : MonoBehaviour
 
                 if (m_bStageFlag)
                 {
-                    m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
-                    break;
                     if (!m_bMoveFlag)
                     {
                         Objectugokuze.GetComponent<MoveObjects>().Stage2();
                         TD.displayNum++;
+                        TD.NextText();
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
@@ -208,7 +211,7 @@ public class GameSceneManager : MonoBehaviour
                         //m_fPlayer.ResetPlayer();
                         Objectugokuze.GetComponent<MoveObjects>().Stage3();
                         m_bStageFlag = false; m_bMoveFlag = false; bCatInFlag = false;
-                        m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
+                        m_ePhase = GamePhase.GAMEPHASE_STAGE3;
                         for (int i = 0; i < 2; i++)
                             MPlayer.Players[i].m_bInvincible = false;
                         break;
@@ -218,10 +221,13 @@ public class GameSceneManager : MonoBehaviour
             case GamePhase.GAMEPHASE_STAGE3:
                 if (m_bStageFlag)
                 {
+                    m_ePhase = GamePhase.GAMEPHASE_FADEOUT;
+                    break;
                     if (!m_bMoveFlag)
                     {
                         Objectugokuze.GetComponent<MoveObjects>().Stage3();
                         TD.displayNum++;
+                        TD.NextText();
                     }
                     bCatInFlag = m_fCat.isCatIn();
                     if (bCatInFlag)
