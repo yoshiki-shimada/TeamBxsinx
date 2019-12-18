@@ -28,8 +28,8 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         soundManager = GameObject.Find("SoundManager");
-
-        int i = PlayerIndex = 0;
+        PlayerIndex = 1;
+        int i = 0;
         foreach (Transform trans in transform)
         {
             player[i] = trans.GetComponent<Player>();
@@ -49,6 +49,7 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetButtonDown("GamePad1_buttonY"))
         {
             PlayerIndex = (PlayerIndex + 1) % 2;
+            player[PlayerIndex].RayPoint.GetComponent<ParticleSystem>().Play();
             soundManager.GetComponent<SoundManager>().changeplayerSE();
 
         }
