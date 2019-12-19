@@ -16,17 +16,27 @@ public class TextDraw : MonoBehaviour
     [Range(0.001f, 0.3f)]
     float intervalForCharDisplay = 0.05f;
 
-    public int displayNum = 0;                     //  現在の表示文字の番号
-    public string stringdisplay = string.Empty;    //  現在の文字列
-    private float timeUntilDisplay = 0;             //  表示にかかる時間
-    private float timeBeganDisplay = 1;             //  文字列の表示を始めた時間
-    private int lastUpdateCharCount = -1;           //  表示中の文字数
+    public int displayNum;                     //  現在の表示文字の番号
+    public string stringdisplay;                //  現在の文字列
+    private float timeUntilDisplay;             //  表示にかかる時間
+    private float timeBeganDisplay;             //  文字列の表示を始めた時間
+    private int lastUpdateCharCount;           //  表示中の文字数
 
-    // Start is called before the first frame update
-    public void NextText()
+    private void Start()
     {
-        SetNextSentence();
+        displayNum = 0;
+        stringdisplay = string.Empty;
+        timeUntilDisplay = 0;
+        timeBeganDisplay = 1;
+        lastUpdateCharCount = -1;
     }
+
+    //// Start is called before the first frame update
+    //void NextText()
+    //{
+    //    Debug.Log("SetText");
+    //    SetNextSentence();
+    //}
 
     // Update is called once per frame
     void Update()
@@ -54,7 +64,7 @@ public class TextDraw : MonoBehaviour
     }
 
     // 次の文章をセットする
-    void SetNextSentence()
+    public void SetNextSentence()
     {
         stringdisplay = Sentences[displayNum];
         timeUntilDisplay = stringdisplay.Length * intervalForCharDisplay;

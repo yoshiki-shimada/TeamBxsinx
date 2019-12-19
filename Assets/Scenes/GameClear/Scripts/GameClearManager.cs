@@ -74,7 +74,7 @@ public class GameClearManager : MonoBehaviour
                 break;
             case ClearPhase.CLEARPHASE_RUN:
 
-                if (Input.GetButtonDown("GamePad1_buttonB") && !bImageFlag)
+                if (Input.GetButtonDown("GamePad1_buttonA") && !bImageFlag)
                 {
                     bImageFlag = true;
                 }

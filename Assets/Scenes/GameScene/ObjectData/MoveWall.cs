@@ -30,7 +30,7 @@ public class MoveWall : MonoBehaviour
 
     public void Delete()
     {
-        iTween.MoveBy(t, iTween.Hash("x", MWallData.ODereteAnim[2].y, "time", 1f));
+        iTween.MoveBy(t, iTween.Hash("y", MWallData.ODereteAnim[2].y, "time", 1f));
         Destroy(t);
     }
 

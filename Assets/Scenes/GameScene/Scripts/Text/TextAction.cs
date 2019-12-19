@@ -63,7 +63,7 @@ public class TextAction : MonoBehaviour
 
             //! ImageのWidthを広げる
             TextImage.sizeDelta = new Vector2(x, y);
-            Text.GetComponent<TextDraw>().NextText();
+            Text.GetComponent<TextDraw>().SetNextSentence();
         }
 
     }
