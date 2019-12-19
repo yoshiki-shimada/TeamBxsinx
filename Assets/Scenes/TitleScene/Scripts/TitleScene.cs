@@ -140,7 +140,7 @@ public class TitleScene : MonoBehaviour
                     if (Vertical < 0.5f && Vertical > -0.5f)
                         m_bFlag = false;
                 }
-                if (Input.GetButtonDown("GamePad1_buttonA"))
+                if (Input.GetButtonDown("GamePad1_buttonA") || Input.GetButtonDown("GamePad1_buttonB"))
                     m_ePhase = TitlePhase.TITLEPHASE_FADEOUT;
 
                 break;

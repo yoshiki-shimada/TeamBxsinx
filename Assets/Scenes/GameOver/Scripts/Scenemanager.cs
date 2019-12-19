@@ -110,7 +110,7 @@ public class Scenemanager : MonoBehaviour
                     if (hori < 0.5f && hori > -0.5f)
                         m_bFlag = false;
                 }
-                if (Input.GetButtonDown("GamePad1_buttonB"))
+                if (Input.GetButtonDown("GamePad1_buttonA") || Input.GetButtonDown("GamePad1_buttonB"))
                     m_ePhase = OverPhase.OVERPHASE_FADEOUT;
 
                 break;
