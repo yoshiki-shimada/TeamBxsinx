@@ -22,10 +22,10 @@ public class TuruYuka : MonoBehaviour
     public void SpawnBack()
     {
         //! CloneInstance
-        t = Instantiate(TUPrefab, TUData.spawnPoints[4], TUData.q2) as GameObject;
+        t = Instantiate(TUPrefab, TUData.spawnPoints[5], TUData.q2) as GameObject;
 
         //! animation
-        iTween.MoveBy(t, iTween.Hash("x", TUData.OInitAnim[5].x, "time", 1f, "delay", 2.5f));
+        iTween.MoveBy(t, iTween.Hash("y", TUData.OInitAnim[5].y, "time", 1f, "delay", 2.5f));
     }
 
     public void Delete()

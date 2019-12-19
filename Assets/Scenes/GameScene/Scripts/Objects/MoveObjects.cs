@@ -159,19 +159,24 @@ public void Stage1()
         if (SceneManager.GetComponent<GameSceneManager>().m_bMoveFlag)
         {
             OBackLane.GetComponent<BackLane>().Spawn();
-            iTween.MoveBy(BackLane01, iTween.Hash("x", 20f, "time", 2f, "delay", 2f));
+            iTween.MoveBy(BackLane01, iTween.Hash("x", 23f, "time", 2f, "delay", 2f, "oncomplete", "OncompleteHandler", "oncompletetarget", gameObject));
             TuruYuka.GetComponent<TuruYuka>().SpawnBack();
-            OLope.GetComponent<Lope>().SpawnFront();
-            Enemydes.GetComponent<Enemy>().SpawnBack();
+            OLope.GetComponent<Lope>().SpawnBack();
         }
         else
         {
             OBackLane.GetComponent<BackLane>().Delete();
-            iTween.MoveBy(BackLane01, iTween.Hash("x", -20f, "time", 1f));      //  delay
+            iTween.MoveBy(BackLane01, iTween.Hash("x", -23f, "time", 1f));      //  delay
             TuruYuka.GetComponent<TuruYuka>().Delete();
             OLope.GetComponent<Lope>().Delete();
             Enemydes.GetComponent<Enemy>().Delete();
         }
+    }
+
+    void OncompleteHandler()
+    {
+        Debug.Log("enemy");
+        Enemydes.GetComponent<Enemy>().SpawnBack();
     }
 
 }

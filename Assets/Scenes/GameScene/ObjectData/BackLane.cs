@@ -19,7 +19,7 @@ public class BackLane : MonoBehaviour
     public void Spawn()
     {
         //! CloneInstance
-        t = Instantiate(LanePrefab, LaneData.spawnPoints[Count], LaneData.q) as GameObject;
+        t = Instantiate(LanePrefab, LaneData.spawnPoints[0], LaneData.q) as GameObject;
 
         //! animation
         iTween.MoveBy(t, iTween.Hash("x", LaneData.OInitAnim[0].x, "time", 2f,"delay",2f));
