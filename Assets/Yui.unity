@@ -565,6 +565,7 @@ MonoBehaviour:
   openpage: {fileID: 8300000, guid: da84bc6b614c1b14691f9114a63a61cf, type: 3}
   objscroll: {fileID: 8300000, guid: a1ac854be8258ab4987309de88b5e43d, type: 3}
   stringswitch: {fileID: 8300000, guid: 8b3f6479e44287649aebb65ae6e2ec2f, type: 3}
+  buttonswitch: {fileID: 0}
   isBGM: 0
 --- !u!4 &75563649
 Transform:
@@ -1689,7 +1690,7 @@ GameObject:
   - component: {fileID: 335732378}
   - component: {fileID: 335732377}
   - component: {fileID: 335732376}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: BackLane01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2853,7 +2854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 780210580}
   m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
-  m_LocalPosition: {x: 30.6, y: -0.4, z: 4.71}
+  m_LocalPosition: {x: 31.93, y: -0.4, z: 4.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 994989842}
