@@ -134,6 +134,8 @@ public void Stage1()
             OWall.GetComponent<StoneWall>().SpawnBack();
             MoveWall.GetComponent<MoveWall>().SpawnFront();
             OLope.GetComponent<Lope>().SpawnFront();
+            iTween.MoveTo(center.transform.GetChild(1).gameObject,
+                iTween.Hash("x", 19, "time", 1f));
             Range3D[0].transform.position = new Vector3(-0.4f, 1.8f, 6.1f);
             Range3D[0].GetComponent<SolidRange>().SetRange(4, 1);
             // 生成：「1」
@@ -162,6 +164,9 @@ public void Stage1()
             iTween.MoveBy(BackLane01, iTween.Hash("x", 23f, "time", 2f, "delay", 2f, "oncomplete", "OncompleteHandler", "oncompletetarget", gameObject));
             TuruYuka.GetComponent<TuruYuka>().SpawnBack();
             OLope.GetComponent<Lope>().SpawnBack();
+            Range3D[0].transform.position = new Vector3(3.6f, 1.8f, 6.1f);
+            Range3D[0].GetComponent<SolidRange>().SetRange(6, 1);
+            Range3D[1].SetActive(false);
         }
         else
         {
