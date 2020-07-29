@@ -6,11 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:Assets/Scenes/GameScene/Models/Character/Animation/HanselAnim.controller
   m_Name: HanselAnim
-=======
-  m_Name: HenselAnim
->>>>>>> fec49956e41937a67a071a943b51842886d0bcb0:Assets/Scenes/GameScene/Models/Character/Animation/HenselAnim.controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: State
