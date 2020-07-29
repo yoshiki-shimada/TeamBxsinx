@@ -26,9 +26,9 @@ MeshCollider:
   m_Material: {fileID: 13400000, guid: 2ffd84a87e1e6344fa5bf0fef253ca3c, type: 2}
   m_IsTrigger: 0
   m_Enabled: 0
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: cb7d908d7d7e74c47bcabbe533b97d52, type: 3}
 --- !u!1 &7506550026263164897
 GameObject:
@@ -86,6 +86,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -97,6 +98,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -204,6 +206,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SchattenSolid
       objectReference: {fileID: 0}
+    - target: {fileID: 8421698062057927830, guid: 9fe5791f2ac7f104ba74efcb63c9e4ed,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 059fd75a27003cd408afbf80f042bffb, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fe5791f2ac7f104ba74efcb63c9e4ed, type: 3}
 --- !u!1001 &7506550025778923990
